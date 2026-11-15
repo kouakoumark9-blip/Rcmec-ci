@@ -678,18 +678,12 @@ def page_caisses():
 {rows}  </ul>
 </section>
 '''
-    chips = '<button type="button" class="chip on" data-region="Toutes">Toutes</button>' + "".join(f'<button type="button" class="chip" data-region="{e(r)}">{e(r)}</button>' for r in CAISSES)
     return head("Nos caisses | RCMEC-CI", "Les caisses du RCMEC-CI en Côte d'Ivoire : Vallée du Bandama, Lagunes, Agnéby, Zanzan et Sud-Comoé. Siège à Cocody II Plateaux, Abidjan.", "caisses.html", "assets/img/artisane.jpg") + \
         pagehead("Nos caisses", "Les caisses du réseau, classées par région.") + f'''
-<section class="section">
+<section class="section section--caisses">
   <div class="wrap">
-    <div class="dir__tools">
-      <input id="q" type="search" placeholder="Rechercher une localité" aria-label="Rechercher une localité">
-      <div class="chips" id="chips">{chips}</div>
-    </div>
     <div id="dir" class="rgroups">
 {groups}    </div>
-    <p class="empty" id="empty" hidden>Aucune caisse trouvée.</p>
     <aside class="hq">
       <div>
         <span class="kicker kicker--l">Siège, Direction Générale</span>
