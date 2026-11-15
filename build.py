@@ -180,50 +180,93 @@ def cs_items():
 
 
 # ---------------------------------------------------------------- ACCUEIL
+TILES = [("epargne", "femme-sourire.jpg"), ("parts-sociales", "reunion-equipe.jpg"), ("depot-a-terme", "equipe-bureau.jpg"),
+         ("credit", "vendeur-banane.jpg"), ("credit-agricole", "cabosse-cacao.jpg"), ("transfert", "client-telephone.jpg")]
+
+
 def page_index():
-    items = ""
-    for n, sid in enumerate(HOME_SERVICES, 1):
+    tiles = ""
+    for sid, img in TILES:
         s = next(x for x in SERVICES if x["id"] == sid)
-        items += f'''<a class="item" href="services.html#{s["id"]}"><span class="item__n">{n:02d}</span><i data-lucide="{s["ico"]}"></i><h3>{s["t"]}</h3><p>{e(s["d"])}</p><span class="more">En savoir plus<i data-lucide="arrow-right"></i></span></a>
+        tiles += f'''<a class="tile" href="services.html#{s["id"]}">
+  <img src="assets/img/{img}" alt="" loading="lazy">
+  <span class="tile__body"><i data-lucide="{s["ico"]}"></i><h3>{s["t"]}</h3><p>{e(s["d"])}</p><span class="tile__more">En savoir plus<i data-lucide="arrow-right"></i></span></span>
+</a>
 '''
+    regions = "".join(f"<li>{e(r)}</li>" for r in CAISSES)
     return head("RCMEC-CI | " + FULL, f"RCMEC-CI, faîtière de microfinance (SFD agréé) créée en 1995. 18 caisses dans plus de 10 régions de Côte d'Ivoire. {SLOGAN}.",
                 "index.html", ld=True) + f'''
-<section class="hero">
-  <div class="hero__text">
-    <div class="hero__in">
-      <span class="kicker kicker--l">{FULL}</span>
-      <h1>{SLOGAN}</h1>
-      <p class="lead">Faîtière de microfinance, Système Financier Décentralisé (SFD) agréé en Côte d'Ivoire, depuis 1995.</p>
-      <div class="btns"><a class="btn" href="contact.html">Ouvrir un compte</a><a class="btn btn--ghost" href="services.html">Nos services</a></div>
-    </div>
+<section class="hero2" style="--img:url(../assets/img/agricultrice.jpg)">
+  <div class="wrap hero2__in">
+    <span class="kicker kicker--l">{FULL}</span>
+    <h1>{SLOGAN}</h1>
+    <p class="lead">Faîtière de microfinance, Système Financier Décentralisé (SFD) agréé en Côte d'Ivoire, depuis 1995.</p>
+    <div class="btns"><a class="btn" href="contact.html">Ouvrir un compte</a><a class="btn btn--ghost" href="services.html">Découvrir nos services</a></div>
   </div>
-  <div class="hero__img" role="img" aria-label="Cliente souriante" style="--img:url(../assets/img/femme-sourire.jpg)"></div>
 </section>
 
-<section class="facts">
-  <div class="wrap facts__in">
-    <div class="fact"><b data-count="1995" data-plain="1">1995</b><span>Année de création</span></div>
-    <div class="fact"><b data-count="18">18</b><span>Caisses de base</span></div>
-    <div class="fact"><b data-count="10" data-prefix="+">+10</b><span>Régions</span></div>
+<section class="quick">
+  <div class="wrap quick__grid">
+    <a href="contact.html"><i data-lucide="user-plus"></i><span>Ouvrir un compte</span></a>
+    <a href="services.html"><i data-lucide="layout-grid"></i><span>Nos services</span></a>
+    <a href="caisses.html"><i data-lucide="map-pin"></i><span>Trouver une caisse</span></a>
+    <a href="simulateur.html"><i data-lucide="calculator"></i><span>Simulateur</span></a>
+  </div>
+</section>
+
+<section class="statsband" aria-label="Chiffres clés">
+  <div class="wrap statsband__in">
+    <div><b data-count="1995" data-plain="1">1995</b><span>Année de création</span></div>
+    <div><b data-count="18">18</b><span>Caisses de base</span></div>
+    <div><b data-count="10" data-prefix="+">+10</b><span>Régions</span></div>
+    <div><b data-count="30" data-prefix="+">+30</b><span>Ans d'existence</span></div>
   </div>
 </section>
 
 <section class="section">
   <div class="wrap">
     {head2("Nos services", "Nos produits et services", ("services.html", "Tous nos services"))}
-    <div class="items">{items}</div>
+    <div class="tiles">{tiles}</div>
   </div>
 </section>
 
-<section class="section section--tint">
+<section class="banner2">
+  <div class="banner2__txt">
+    <div class="banner2__in">
+      <span class="kicker kicker--l">Prêt scolaire · RCMEC Sécurité Étude</span>
+      <h2>La clé d'une rentrée réussie</h2>
+      <p>RCMEC Sécurité Étude : l'assurance qui protège chaque parcours scolaire.</p>
+      <a class="btn btn--light" href="services.html#pret-scolaire">Découvrir</a>
+    </div>
+  </div>
+  <div class="banner2__img" role="img" aria-label="Élève souriante" style="--img:url(../assets/img/ecoliere.jpg)"></div>
+</section>
+
+<section class="section">
   <div class="wrap split">
     <div class="split__img"><img src="assets/img/artisane.jpg" alt="Commerçante dans sa boutique" loading="lazy"></div>
     <div class="split__txt">
       <span class="kicker">À propos de nous</span>
       <h2>Une faîtière de microfinance</h2>
       <p>Nous représentons une solution durable d'offre de services financiers aux populations qui n'ont pas accès aux produits des banques classiques. Depuis 1995, nous accompagnons ces populations vulnérables dans la réalisation de leurs projets et le développement de leur environnement.</p>
+      <ul class="force">
+        <li><i data-lucide="landmark"></i><span><b>18 caisses actives</b>implantées dans plus de 10 régions de la Côte d'Ivoire</span></li>
+        <li><i data-lucide="users"></i><span><b>Un personnel qualifié</b>adapté pour répondre à vos besoins, dans chacune de nos agences</span></li>
+        <li><i data-lucide="sprout"></i><span><b>Implantés en priorité en zone rurale</b>au service des populations n'ayant pas accès aux banques classiques</span></li>
+      </ul>
       <a class="more" href="a-propos.html">En savoir plus<i data-lucide="arrow-right"></i></a>
     </div>
+  </div>
+</section>
+
+<section class="regions">
+  <div class="wrap regions__in">
+    <div>
+      <span class="kicker kicker--l">Nos caisses</span>
+      <h2>Dans plus de 10 régions de la Côte d'Ivoire</h2>
+      <ul class="regions__list">{regions}</ul>
+    </div>
+    <a class="btn btn--light" href="caisses.html">Trouver ma caisse</a>
   </div>
 </section>
 ''' + cta() + footer()
