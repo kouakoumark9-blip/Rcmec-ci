@@ -79,7 +79,7 @@ def head(title, desc, page, og_img="assets/img/femme-sourire.jpg", ld=False):
 <title>{e(title)}</title>
 <meta name="description" content="{e(desc)}">
 <meta name="theme-color" content="#0b2545">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon.png" type="image/png">
 <link rel="canonical" href="https://rcmec-ci.com/{'' if page == 'index.html' else page}">
 <meta property="og:type" content="website">
 <meta property="og:title" content="{e(title)}">
@@ -101,7 +101,7 @@ def head(title, desc, page, og_img="assets/img/femme-sourire.jpg", ld=False):
 </div>
 <header class="nav" id="nav">
   <div class="wrap nav__in">
-    <a class="brand" href="index.html" aria-label="RCMEC-CI, accueil"><img src="assets/logo-mark.png" alt="RCMEC-CI" width="112" height="48"></a>
+    <a class="brand" href="index.html" aria-label="RCMEC-CI, accueil"><img src="assets/logo-mark.png" alt="RCMEC-CI" width="118" height="52"></a>
     <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <nav class="menu" id="menu" aria-label="Navigation principale">
       {items}
@@ -119,7 +119,7 @@ def footer():
 <footer class="footer">
   <div class="wrap footer__grid">
     <div class="footer__brand">
-      <div class="logo-card"><img src="assets/logo-mark.png" alt="RCMEC-CI" width="112" height="48" loading="lazy"></div>
+      <div class="logo-card"><img src="assets/logo.png" alt="RCMEC-CI, Réseau des Caisses Mutuelles d'Épargne et de Crédit de Côte d'Ivoire" width="178" height="72" loading="lazy"></div>
       <p>{FULL}</p>
       <p class="footer__slogan">{SLOGAN}.</p>
     </div>

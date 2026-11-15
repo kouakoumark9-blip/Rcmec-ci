@@ -360,3 +360,12 @@ input:focus,select:focus,textarea:focus{border-color:var(--green);outline:0;box-
 .mapgrid__map{min-height:400px;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:#e9edf2}
 .mapgrid__map iframe{display:block;width:100%;height:100%;min-height:400px;border:0}
 @media(max-width:900px){.mapgrid{grid-template-columns:1fr;gap:28px}.mapgrid__map,.mapgrid__map iframe{min-height:320px}}
+
+/* nouveau logo haute définition */
+.brand img{height:54px;width:auto}
+.nav.scrolled .brand img{height:46px}
+.logo-card{padding:12px 16px}
+.logo-card img{height:72px;width:auto}
+.brand img{height:62px}
+.nav.scrolled .brand img{height:50px}
+@media(max-width:640px){.brand img{height:50px}}
