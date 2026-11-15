@@ -458,7 +458,6 @@ def page_services():
 <section class="section svcintro">
   <div class="wrap">
     <p class="lead2">Nous représentons une solution durable d'offre de services financiers aux populations qui n'ont pas accès aux produits des banques classiques. Notre mission est de collecter et de gérer l'épargne de nos adhérents et d'accorder des crédits à ceux qui en expriment le besoin, avec des services de proximité à moindre coût.</p>
-    <nav class="pillnav" aria-label="Aller à un service">{nav}</nav>
   </div>
 </section>
 <section class="section section--tint svclist2"><div class="wrap">{blocks}</div></section>
