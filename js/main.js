@@ -9,20 +9,31 @@
   function icons() { if (window.lucide) window.lucide.createIcons(); }
   icons();
 
-  /* ---------- Menu mobile ---------- */
+  /* ---------- Menu mobile + sous-menu ---------- */
   var burger = $('#burger'), menu = $('#menu');
   on(burger, 'click', function () {
     var o = menu.classList.toggle('open');
     burger.setAttribute('aria-expanded', o);
   });
+  $$('.sub-toggle').forEach(function (b) {
+    on(b, 'click', function () {
+      var p = b.closest('.has-sub'), o = p.classList.toggle('open');
+      b.setAttribute('aria-expanded', o);
+    });
+  });
 
-  /* ---------- Barre de progression ---------- */
-  var bar = $('#progress');
-  function prog() {
+  /* ---------- Sélecteur de profil ---------- */
+  var who = $('#who');
+  on(who, 'change', function () { if (who.value) location.href = who.value; });
+
+  /* ---------- En-tête + progression ---------- */
+  var bar = $('#progress'), nav = $('#nav');
+  function onScroll() {
     var h = document.documentElement;
     if (bar) bar.style.width = (scrollY / Math.max(1, h.scrollHeight - h.clientHeight) * 100) + '%';
+    if (nav) nav.classList.toggle('scrolled', scrollY > 30);
   }
-  window.addEventListener('scroll', prog, { passive: true }); prog();
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
 
   /* ---------- Slider (accueil) ---------- */
   var slides = $$('.slide');
@@ -35,7 +46,7 @@
     };
     var start = function () {
       clearInterval(timer);
-      if (!matchMedia('(prefers-reduced-motion:reduce)').matches) timer = setInterval(function () { go(cur + 1); }, 6500);
+      if (!matchMedia('(prefers-reduced-motion:reduce)').matches) timer = setInterval(function () { go(cur + 1); }, 7000);
     };
     slides.forEach(function (_, i) {
       var b = document.createElement('button');
@@ -54,7 +65,7 @@
     var pre = el.dataset.prefix || '', plain = el.dataset.plain, t0 = null;
     function step(t) {
       if (!t0) t0 = t;
-      var p = Math.min((t - t0) / 1400, 1), v = Math.round(target * (1 - Math.pow(1 - p, 3)));
+      var p = Math.min((t - t0) / 1500, 1), v = Math.round(target * (1 - Math.pow(1 - p, 3)));
       el.textContent = pre + (plain ? v : v.toLocaleString('fr-FR'));
       if (p < 1) requestAnimationFrame(step);
     }
@@ -66,54 +77,59 @@
       if (e.target.dataset.count) count(e.target); else e.target.classList.add('in');
       io.unobserve(e.target);
     });
-  }, { threshold: .2 }) : null;
+  }, { threshold: .15 }) : null;
   $$('[data-count]').forEach(function (el) {
     if (io) io.observe(el); else el.textContent = (el.dataset.prefix || '') + (el.dataset.count === 'years' ? years : el.dataset.count);
   });
-  $$('.pcard,.profiles article,.tips article,.collage img,.card,.vals article,.arts article,.svc,.ccards article,.cs').forEach(function (el) {
-    if (io) { el.classList.add('rv'); io.observe(el); }
+  $$('.pcard,.need,.promo,.card,.tips article,.vals article,.profiles article,.arts article,.svc,.ccards article,.split__img,.simmini').forEach(function (el, i) {
+    if (io) { el.classList.add('rv'); el.style.transitionDelay = (i % 4) * 70 + 'ms'; io.observe(el); }
   });
 
   /* ---------- Simulateur ---------- */
+  var out = function (id, outId, suffix) {
+    var el = $(id), o = $(outId);
+    if (!el || !o) return;
+    var up = function () { o.textContent = suffix === 'm' ? el.value + ' mois' : fmt(el.value); };
+    on(el, 'input', up); up();
+  };
   if ($('#c-amount')) {
-    var out = function (id, outId, suffix) {
-      var el = $(id), o = $(outId);
-      var up = function () { o.textContent = suffix === 'm' ? el.value + ' mois' : fmt(el.value); };
-      on(el, 'input', up); up();
-    };
     var calcCredit = function () {
       var P = +$('#c-amount').value, n = +$('#c-dur').value, r = (+$('#c-rate').value || 0) / 100 / 12;
       var m = r === 0 ? P / n : P * r / (1 - Math.pow(1 + r, -n));
       $('#c-month').textContent = fmt(m); $('#c-cost').textContent = fmt(m * n - P); $('#c-total').textContent = fmt(m * n);
     };
+    ['#c-amount', '#c-dur', '#c-rate'].forEach(function (s) { on($(s), 'input', calcCredit); });
+    out('#c-amount', '#c-amount-o'); out('#c-dur', '#c-dur-o', 'm');
+    calcCredit();
+  }
+  if ($('#e-amount')) {
     var calcSave = function () {
       var P = +$('#e-amount').value, n = +$('#e-dur').value, r = (+$('#e-rate').value || 0) / 100;
       var i = P * r * n / 12;
       $('#e-int').textContent = fmt(i); $('#e-total').textContent = fmt(P + i);
     };
-    ['#c-amount', '#c-dur', '#c-rate'].forEach(function (s) { on($(s), 'input', calcCredit); });
     ['#e-amount', '#e-dur', '#e-rate'].forEach(function (s) { on($(s), 'input', calcSave); });
-    out('#c-amount', '#c-amount-o'); out('#c-dur', '#c-dur-o', 'm'); out('#e-amount', '#e-amount-o'); out('#e-dur', '#e-dur-o', 'm');
-    calcCredit(); calcSave();
-    $$('.tab').forEach(function (t) {
-      on(t, 'click', function () {
-        $$('.tab').forEach(function (x) { x.classList.toggle('is-on', x === t); x.setAttribute('aria-selected', x === t); });
-        $$('.simform').forEach(function (f) { f.hidden = f.dataset.panel !== t.dataset.tab; });
-      });
-    });
+    out('#e-amount', '#e-amount-o'); out('#e-dur', '#e-dur-o', 'm');
+    calcSave();
   }
+  $$('.tab').forEach(function (t) {
+    on(t, 'click', function () {
+      $$('.tab').forEach(function (x) { x.classList.toggle('is-on', x === t); x.setAttribute('aria-selected', x === t); });
+      $$('.simform').forEach(function (f) { f.hidden = f.dataset.panel !== t.dataset.tab; });
+    });
+  });
 
-  /* ---------- Répertoire des caisses (filtre) ---------- */
+  /* ---------- Caisses : filtre (page annuaire et accueil) ---------- */
   if ($('#dir')) {
-    var region = 'Toutes', q = $('#q');
+    var region = 'Toutes', q = $('#q'), sel = $('#region-sel'), empty = $('#empty');
     var norm = function (s) { return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); };
     var render = function () {
-      var term = norm(q.value.trim()), shown = 0;
+      var term = q ? norm(q.value.trim()) : '', shown = 0;
       $$('.cs').forEach(function (c) {
         var ok = (region === 'Toutes' || c.dataset.region === region) && (!term || norm(c.dataset.q).indexOf(term) > -1);
         c.hidden = !ok; if (ok) shown++;
       });
-      $('#empty').hidden = shown > 0;
+      if (empty) empty.hidden = shown > 0;
     };
     $$('.chip').forEach(function (b) {
       on(b, 'click', function () {
@@ -122,6 +138,7 @@
         render();
       });
     });
+    on(sel, 'change', function () { region = sel.value; render(); });
     on(q, 'input', render);
   }
 
