@@ -262,8 +262,6 @@ def page_index():
   <div class="wrap split">
     <div class="split__img split__img--wide"><img src="assets/img/conseiller-rcmec.jpg" width="1536" height="1024" alt="Conseiller RCMEC-CI au bureau, avec en arrière-plan un marché et un village de Côte d'Ivoire" loading="lazy"></div>
     <div class="split__txt">
-      <span class="kicker">À propos de nous</span>
-      <h2>Une faîtière de microfinance</h2>
       <p>Nous représentons une solution durable d'offre de services financiers aux populations qui n'ont pas accès aux produits des banques classiques. Depuis 1995, nous accompagnons ces populations vulnérables dans la réalisation de leurs projets et le développement de leur environnement.</p>
       <p>Nous nous adressons aux populations vulnérables ou exclues des banques classiques, aux opérateurs économiques du secteur informel, aux agriculteurs, commerçants, artisans, entrepreneurs et PME.</p>
       <ul class="force">
