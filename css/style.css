@@ -310,3 +310,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--green);outline:0;box-
   .banner2__txt{margin:0;padding:60px 24px}
   .banner2__img{min-height:300px;order:-1}
 }
+
+/* texte d'introduction */
+.intro{max-width:760px;color:var(--muted);font-size:19px;margin:-14px 0 40px}
+.cta p{color:#e1f3e8;margin-top:8px;max-width:640px;font-size:18px}

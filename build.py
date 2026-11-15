@@ -150,10 +150,11 @@ def pagehead(title, sub=""):
 '''
 
 
-def cta():
-    return '''<section class="cta">
+def cta(text=""):
+    p = f"<p>{e(text)}</p>" if text else ""
+    return f'''<section class="cta">
   <div class="wrap cta__in">
-    <h2>Ouvrir un compte chez RCMEC-CI</h2>
+    <div><h2>Ouvrir un compte chez RCMEC-CI</h2>{p}</div>
     <a class="btn btn--light" href="contact.html">Nous contacter</a>
   </div>
 </section>
@@ -223,9 +224,17 @@ def page_index():
   </div>
 </section>
 
+<section class="section section--tint">
+  <div class="wrap duo">
+    <div class="statement"><span class="kicker">Notre mission</span><p>Collecter et gérer l'épargne de nos adhérents, accorder des crédits adaptés à moindre coût à ceux qui en expriment le besoin, et protéger les populations contre l'endettement usurier.</p></div>
+    <div class="statement"><span class="kicker">Notre objectif</span><p>Apporter aux caisses un appui adéquat afin de leur permettre d'offrir des services financiers de qualité, accessibles à tous les opérateurs économiques en général et particulièrement à ceux du monde rural, semi-urbain, urbain et du secteur informel.</p></div>
+  </div>
+</section>
+
 <section class="section">
   <div class="wrap">
     {head2("Nos services", "Nos produits et services", ("services.html", "Tous nos services"))}
+    <p class="intro">Épargne sécurisée, parts sociales rémunérées, dépôts à terme, crédits, transfert rapide d'argent et micro-assurance : des services financiers destinés aux particuliers, aux groupements et aux professionnels.</p>
     <div class="tiles">{tiles}</div>
   </div>
 </section>
@@ -249,6 +258,7 @@ def page_index():
       <span class="kicker">À propos de nous</span>
       <h2>Une faîtière de microfinance</h2>
       <p>Nous représentons une solution durable d'offre de services financiers aux populations qui n'ont pas accès aux produits des banques classiques. Depuis 1995, nous accompagnons ces populations vulnérables dans la réalisation de leurs projets et le développement de leur environnement.</p>
+      <p>Nous nous adressons aux populations vulnérables ou exclues des banques classiques, aux opérateurs économiques du secteur informel, aux agriculteurs, commerçants, artisans, entrepreneurs et PME.</p>
       <ul class="force">
         <li><i data-lucide="landmark"></i><span><b>18 caisses actives</b>implantées dans plus de 10 régions de la Côte d'Ivoire</span></li>
         <li><i data-lucide="users"></i><span><b>Un personnel qualifié</b>adapté pour répondre à vos besoins, dans chacune de nos agences</span></li>
@@ -269,7 +279,7 @@ def page_index():
     <a class="btn btn--light" href="caisses.html">Trouver ma caisse</a>
   </div>
 </section>
-''' + cta() + footer()
+''' + cta("Ne soyez plus inquiets, vos projets et votre entreprise sont en de bonnes mains.") + footer()
 
 
 # --------------------------------------------------------------- A PROPOS
