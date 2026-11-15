@@ -255,7 +255,7 @@ def page_index():
       <a class="btn btn--light" href="service-pret-scolaire.html">Découvrir</a>
     </div>
   </div>
-  <div class="banner2__img" role="img" aria-label="Élève souriante" style="--img:url(../assets/img/ecoliere.jpg)"></div>
+  <div class="banner2__img" role="img" aria-label="Enfants en uniforme à l'école" style="--img:url(../assets/img/ecole-uniformes.jpg)"></div>
 </section>
 
 <section class="section">
@@ -392,7 +392,7 @@ def page_apropos():
 NOTE_CONDITIONS = "Les conditions précises (montants, durées, taux, pièces à fournir) sont communiquées par votre caisse. Contactez-nous pour les connaître."
 
 SVC = {
- "epargne": dict(img="famille.jpg", pos="50% 35%", alt="Famille souriante réunie sur un canapé",
+ "epargne": dict(img="comptabilite.jpg", pos="50% 40%", alt="Femme comptant des billets à son bureau",
    lead="Un compte d'épargne sécurisé pour mettre votre argent à l'abri et construire votre avenir.",
    rcmec=["Des comptes d'épargne sécurisés, pour les particuliers, les groupements et les professionnels.",
           "Collecter et gérer l'épargne de nos adhérents est la mission du réseau.",
@@ -408,7 +408,7 @@ SVC = {
             "Le capital ainsi constitué sert de base solide à l'activité de la caisse, notamment pour accorder des crédits à ses membres."],
    pour=["Toute personne qui souhaite devenir membre sociétaire de sa caisse"],
    quote=None),
- "depot-a-terme": dict(img="comptabilite.jpg", pos="50% 40%", alt="Femme comptant des billets à son bureau",
+ "depot-a-terme": dict(img="placement.jpg", pos="70% 50%", alt="Horloge et piles de pièces d'or devant un graphique en hausse",
    lead="Placez une somme sur une durée définie, avec un taux d'intérêt avantageux.",
    rcmec=["Un placement d'une somme bloquée sur une durée définie.", "Un taux d'intérêt avantageux."],
    general=["Un dépôt à terme est un placement : vous confiez une somme à l'institution pour une durée convenue à l'avance, pendant laquelle elle reste bloquée.",
@@ -430,7 +430,7 @@ SVC = {
             "L'activité agricole suit les saisons : c'est pourquoi le crédit se discute avec la caisse en fonction de votre projet."],
    pour=["Les agriculteurs", "Les populations du monde rural"],
    quote="Votre projet agricole mérite un coup de pouce !"),
- "pret-scolaire": dict(img="ecolieres.jpg", pos="50% 40%", alt="Écolières en uniforme se rendant à l'école",
+ "pret-scolaire": dict(img="ecole-uniformes.jpg", pos="50% 40%", alt="Enfants en uniforme assis à leurs bancs d'école",
    lead="La clé d'une rentrée réussie.",
    rcmec=["Le prêt scolaire : la clé d'une rentrée réussie."],
    general=["Un prêt scolaire est un crédit destiné aux dépenses liées à la scolarité des enfants. Il permet d'étaler ces dépenses plutôt que de les payer en une fois."],
@@ -442,7 +442,7 @@ SVC = {
    general=["Une assurance liée aux études a pour but de protéger la scolarité d'un enfant face aux aléas de la vie."],
    pour=["Les familles dont les enfants sont scolarisés"],
    quote="L'assurance qui protège chaque parcours scolaire."),
- "transfert": dict(img="client-telephone.jpg", pos="50% 30%", alt="Homme souriant avec son téléphone",
+ "transfert": dict(img="telephone-homme.jpg", pos="60% 40%", alt="Homme souriant consultant son téléphone",
    lead="Envoyez et recevez de l'argent facilement, en toute sécurité.",
    rcmec=["Envoi et réception de fonds sécurisés.", "Sur l'ensemble du territoire.", "Un réseau de caisses réparties dans plus de 10 régions."],
    general=["Un transfert d'argent permet de faire parvenir une somme à un proche, ou d'en recevoir une, sans avoir à se déplacer avec de l'argent liquide.",
@@ -490,6 +490,27 @@ WHY = [("shield-check", "Un réseau agréé", "SFD agréé en Côte d'Ivoire : a
        ("lock", "Une protection contre l'endettement usurier", "Une mission : accorder des crédits à ceux qui en expriment le besoin et protéger les populations de l'endettement usurier.")]
 
 
+HDR = {"epargne": "h-epargne.jpg", "parts-sociales": "h-parts-sociales.jpg", "depot-a-terme": "placement.jpg", "credit": "h-credit.jpg",
+       "credit-agricole": "h-credit-agricole.jpg", "pret-scolaire": "h-pret-scolaire.jpg", "securite-etude": "h-securite-etude.jpg",
+       "transfert": "h-transfert.jpg", "micro-assurance": "h-micro-assurance.jpg"}
+HDR_ALT = {"epargne": "Femme comptant des billets à son bureau", "parts-sociales": "Réunion de travail autour d'une table", "depot-a-terme": "Horloge et piles de pièces d'or devant un graphique en hausse",
+           "credit": "Commerçante souriante sur un marché", "credit-agricole": "Agricultrice souriante dans son champ", "pret-scolaire": "Enfants en uniforme assis à leurs bancs d'école",
+           "securite-etude": "Enfants souriants dans une salle de classe", "transfert": "Homme souriant consultant son téléphone", "micro-assurance": "Famille souriante assise sur le perron de sa maison"}
+
+
+def herosvc(h1, lead, img, alt, crumbs, btns, pos="center"):
+    return f'''<section class="shero2">
+  <img class="shero2__bg" src="assets/img/{img}" alt="{e(alt)}" fetchpriority="high" style="object-position:{pos}">
+  <div class="wrap shero2__in">
+    <nav class="crumbs" aria-label="Fil d'Ariane">{crumbs}</nav>
+    <h1>{h1}</h1>
+    <p class="shero2__lead">{e(lead)}</p>
+    <div class="btns">{btns}</div>
+  </div>
+</section>
+'''
+
+
 def surl(sid):
     return f"service-{sid}.html"
 
@@ -504,7 +525,7 @@ def page_services():
 </a>
 '''
     return head("Nos services | RCMEC-CI", "Épargne, parts sociales rémunérées, dépôts à terme, crédit, crédit agricole, prêt scolaire, RCMEC Sécurité Étude, transfert rapide d'argent et micro-assurance.", "services.html", "assets/img/vendeur-banane.jpg") + \
-        pagehead("Nos services") + f'''
+        herosvc("Nos services", "Épargne, crédit, assurance et transfert d'argent : des services financiers de proximité.", "h-services.jpg", "Femmes d'une équipe réunies autour d'une tablette", '<a href="index.html">Accueil</a><span aria-hidden="true">/</span><span>Nos services</span>', '<a class="btn" href="contact.html">Nous contacter</a>') + f'''
 <section class="section svcintro">
   <div class="wrap">
     <p class="lead2">Nous représentons une solution durable d'offre de services financiers aux populations qui n'ont pas accès aux produits des banques classiques. Notre mission est de collecter et de gérer l'épargne de nos adhérents et d'accorder des crédits à ceux qui en expriment le besoin, avec des services de proximité à moindre coût.</p>
@@ -526,21 +547,13 @@ def page_service(i):
     imp = "".join(f"<p>{e(x)}</p>" for x in IMPORTANCE[s["id"]])
     why = "".join(f'<article><span class="ico"><i data-lucide="{ic}"></i></span><h3>{e(t)}</h3><p>{e(x)}</p></article>' for ic, t, x in WHY)
     quote = f'<p class="svc2__q">« {e(d["quote"])} »</p>' if d.get("quote") else ""
+    crumbs_svc = f'<a href="index.html">Accueil</a><span aria-hidden="true">/</span><a href="services.html">Nos services</a><span aria-hidden="true">/</span><span>{s["t"]}</span>'
+    btns_svc = '<a class="btn" href="contact.html">Nous contacter</a><a class="btn btn--ghost" href="services.html">Tous les services</a>'
     others = "".join(
         f'<a class="scard scard--s" href="{surl(o["id"])}"><span class="scard__img"><img src="assets/img/{SVC[o["id"]]["img"]}" alt="" loading="lazy" style="object-position:{SVC[o["id"]]["pos"]}"></span><span class="scard__body"><h3>{o["t"]}</h3><span class="more">Lire le détail<i data-lucide="arrow-right"></i></span></span></a>'
         for o in SERVICES if o["id"] != s["id"])
     return head(f'{s["t"]} | RCMEC-CI', d["lead"], surl(s["id"]), f'assets/img/{d["img"]}', active="services.html") + f'''
-<section class="shero">
-  <div class="wrap shero__in">
-    <div class="shero__txt">
-      <nav class="crumbs" aria-label="Fil d'Ariane"><a href="index.html">Accueil</a><span aria-hidden="true">/</span><a href="services.html">Nos services</a><span aria-hidden="true">/</span><span>{s["t"]}</span></nav>
-      <h1>{s["t"]}</h1>
-      <p class="shero__lead">{e(d["lead"])}</p>
-      <div class="btns"><a class="btn" href="contact.html">Nous contacter</a><a class="btn btn--ghost" href="services.html">Tous les services</a></div>
-    </div>
-    <div class="shero__img"><img src="assets/img/{d["img"]}" alt="{e(d["alt"])}" style="object-position:{d["pos"]}"></div>
-  </div>
-</section>
+{herosvc(s["t"], d["lead"], HDR[s["id"]], HDR_ALT[s["id"]], crumbs_svc, btns_svc)}
 
 <section class="section">
   <div class="wrap sdetail">
