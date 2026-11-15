@@ -30,11 +30,28 @@
     "initials": "MW"
   },
   {
-    "name": "Opérateurs de Transfert d'Argent",
-    "role": "Services Financiers",
-    "logo": "transfert.png",
-    "initials": "TA",
-    "icon": "send"
+    "name": "Orange Money",
+    "role": "Transfert d'argent",
+    "logo": "orange-money.svg",
+    "initials": "OM"
+  },
+  {
+    "name": "MTN MoMo",
+    "role": "Transfert d'argent",
+    "logo": "mtn-momo.png",
+    "initials": "MTN"
+  },
+  {
+    "name": "Moov Money",
+    "role": "Transfert d'argent",
+    "logo": "moov-money.png",
+    "initials": "MM"
+  },
+  {
+    "name": "Wave",
+    "role": "Transfert d'argent",
+    "logo": "wave.png",
+    "initials": "WV"
   },
   {
     "name": "Compagnies de Micro-Assurance",
