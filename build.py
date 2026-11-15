@@ -242,7 +242,6 @@ def page_index():
 
 <section class="section">
   <div class="wrap">
-    {head2("Nos services", "Autres produits et services", ("services.html", "Tous nos services"))}
     <div class="tiles">{tiles}</div>
   </div>
 </section>
