@@ -40,9 +40,9 @@ SERVICES = [
       d="Votre projet agricole mérite un coup de pouce !", q="La référence en milieu rural et défavorisé."),
  dict(id="pret-scolaire", ico="graduation-cap", t="Prêt scolaire",
       d="Le prêt scolaire : la clé d'une rentrée réussie."),
- dict(id="securite-etude", ico="shield-check", t="RCMEC Sécurité Étude",
-      d="RCMEC Sécurité Étude : l'assurance qui protège chaque parcours scolaire."),
- dict(id="transfert", ico="send", t="Transfert rapide d'argent",
+ dict(id="epargne-ecole", ico="piggy-bank", t="Épargne pour l'école des enfants",
+      d="Une épargne pour préparer l'école des enfants."),
+ dict(id="transfert", ico="send", t="Transfert d'argent rapide",
       d="Envoi et réception de fonds sécurisés sur l'ensemble du territoire.", q="Transférez votre argent en toute sécurité."),
  dict(id="micro-assurance", ico="umbrella", t="Micro-assurance",
       d="Des solutions de micro-assurance."),
@@ -260,9 +260,9 @@ def page_index():
 <section class="banner2">
   <div class="banner2__txt">
     <div class="banner2__in">
-      <span class="kicker kicker--l">Prêt scolaire · RCMEC Sécurité Étude</span>
+      <span class="kicker kicker--l">Prêt scolaire · Épargne pour l'école des enfants</span>
       <h2>La clé d'une rentrée réussie</h2>
-      <p>RCMEC Sécurité Étude : l'assurance qui protège chaque parcours scolaire.</p>
+      <p>Le prêt scolaire et l'épargne pour l'école des enfants : deux services pour préparer la scolarité.</p>
       <a class="btn btn--light" href="service-pret-scolaire.html">Découvrir</a>
     </div>
   </div>
@@ -448,12 +448,13 @@ SVC = {
    general=["Un prêt scolaire est un crédit destiné aux dépenses liées à la scolarité des enfants. Il permet d'étaler ces dépenses plutôt que de les payer en une fois."],
    pour=["Les parents d'élèves"],
    quote="La clé d'une rentrée réussie."),
- "securite-etude": dict(img="classe.jpg", pos="50% 35%", alt="Enfants souriants dans une salle de classe",
-   lead="L'assurance qui protège chaque parcours scolaire.",
-   rcmec=["Une assurance liée au parcours scolaire, proposée sous le nom RCMEC Sécurité Étude."],
-   general=["Une assurance liée aux études a pour but de protéger la scolarité d'un enfant face aux aléas de la vie."],
-   pour=["Les familles dont les enfants sont scolarisés"],
-   quote="L'assurance qui protège chaque parcours scolaire."),
+ "epargne-ecole": dict(img="classe.jpg", pos="50% 35%", alt="Enfants souriants dans une salle de classe",
+   lead="Mettez de côté dès aujourd'hui pour l'école de vos enfants.",
+   rcmec=["Un produit consacré à l'épargne pour l'école des enfants."],
+   general=["Une épargne scolaire consiste à mettre régulièrement de l'argent de côté pour les dépenses d'école des enfants.",
+            "Elle permet d'aborder la rentrée avec une réserve, plutôt que de tout payer en une seule fois."],
+   pour=["Les parents qui souhaitent préparer la scolarité de leurs enfants"],
+   quote=None),
  "transfert": dict(img="telephone-homme.jpg", pos="60% 40%", alt="Homme souriant consultant son téléphone",
    lead="Envoyez et recevez de l'argent facilement, en toute sécurité.",
    rcmec=["Envoi et réception de fonds sécurisés.", "Un service disponible sur l'ensemble du territoire.", "Des caisses réparties dans plus de 10 régions."],
@@ -485,8 +486,8 @@ IMPORTANCE = {
                      "Soutenir les projets agricoles, c'est aussi soutenir les familles et l'économie des zones rurales, où le réseau est implanté en priorité."],
  "pret-scolaire": ["L'éducation est l'un des investissements les plus importants pour une famille, et la rentrée concentre de nombreuses dépenses.",
                    "Un prêt scolaire permet d'étaler ces dépenses pour que les enfants commencent l'année dans de bonnes conditions."],
- "securite-etude": ["Un imprévu dans la vie d'une famille peut fragiliser la scolarité d'un enfant.",
-                    "Une assurance dédiée au parcours scolaire vise à protéger cette continuité, pour que les études ne soient pas interrompues faute de moyens."],
+ "epargne-ecole": ["La scolarité d'un enfant représente des dépenses régulières, qui se concentrent au moment de la rentrée.",
+                    "Épargner à l'avance permet de les préparer sans s'endetter."],
  "transfert": ["Pouvoir envoyer de l'argent à un proche, ou en recevoir, rapidement, est souvent essentiel : soutien à la famille, règlement d'une urgence, échanges entre régions.",
                "Passer par une institution agréée évite de transporter de l'argent liquide et sécurise l'opération."],
  "micro-assurance": ["Un accident, une maladie ou un sinistre peuvent suffire à faire basculer un ménage ou une petite activité.",
@@ -503,11 +504,11 @@ WHY = [("shield-check", "Un réseau agréé", "Système Financier Décentralisé
 
 
 HDR = {"epargne": "h-epargne.jpg", "parts-sociales": "h-parts-sociales.jpg", "depot-a-terme": "placement.jpg", "credit": "h-credit.jpg",
-       "credit-agricole": "h-credit-agricole.jpg", "pret-scolaire": "h-pret-scolaire.jpg", "securite-etude": "h-securite-etude.jpg",
+       "credit-agricole": "h-credit-agricole.jpg", "pret-scolaire": "h-pret-scolaire.jpg", "epargne-ecole": "h-epargne-ecole.jpg",
        "transfert": "h-transfert.jpg", "micro-assurance": "h-micro-assurance.jpg"}
 HDR_ALT = {"epargne": "Femme comptant des billets à son bureau", "parts-sociales": "Réunion de travail autour d'une table", "depot-a-terme": "Horloge et piles de pièces d'or devant un graphique en hausse",
            "credit": "Commerçante souriante sur un marché", "credit-agricole": "Cabosse de cacao posée sur des fèves de cacao", "pret-scolaire": "Enfants en uniforme assis à leurs bancs d'école",
-           "securite-etude": "Enfants souriants dans une salle de classe", "transfert": "Homme souriant consultant son téléphone", "micro-assurance": "Famille souriante assise sur le perron de sa maison"}
+           "epargne-ecole": "Enfants souriants dans une salle de classe", "transfert": "Homme souriant consultant son téléphone", "micro-assurance": "Famille souriante assise sur le perron de sa maison"}
 
 
 def herosvc(h1, lead, img, alt, crumbs, btns, pos="center"):
@@ -538,7 +539,7 @@ def partners_section():
             vis = f'<span class="pt__ini{" pt__ini--long" if len(ini) > 3 else ""}" aria-hidden="true">{ini}</span>'
         return f'<li class="pt"><span class="pt__logo">{vis}</span><span class="pt__txt"><b>{e(pt["name"])}</b><small>{e(pt["role"])}</small></span></li>'
     lis = "".join(card(pt) for pt in items)
-    dur = max(30, 9 * len(items))
+    dur = max(24, 4 * len(items))
     return f'''<section class="partners" aria-label="Nos partenaires">
   <div class="wrap partners__head"><h2>Nos Partenaires</h2></div>
   <div class="marquee" style="--dur:{dur}s">
@@ -564,7 +565,7 @@ def page_services():
   <span class="scard__body"><span class="scard__n">{n:02d}</span><h2>{s["t"]}</h2><p>{e(d["lead"])}</p><span class="more">Lire le détail<i data-lucide="arrow-right"></i></span></span>
 </a>
 '''
-    return head("Nos services | RCMEC-CI", "Épargne, parts sociales rémunérées, dépôts à terme, crédit, crédit agricole, prêt scolaire, RCMEC Sécurité Étude, transfert rapide d'argent et micro-assurance.", "services.html", "assets/img/vendeur-banane.jpg") + \
+    return head("Nos services | RCMEC-CI", "Épargne, parts sociales rémunérées, dépôts à terme, crédit, crédit agricole, prêt scolaire, épargne pour l'école des enfants, transfert d'argent rapide et micro-assurance.", "services.html", "assets/img/vendeur-banane.jpg") + \
         herosvc("Nos services", "Épargne, crédit, assurance et transfert d'argent : des services financiers de proximité.", "h-services.jpg", "Femmes d'une équipe réunies autour d'une tablette", '<a href="index.html">Accueil</a><span aria-hidden="true">/</span><span>Nos services</span>', '<a class="btn" href="contact.html">Nous contacter</a>') + f'''
 <section class="section svcintro">
   <div class="wrap">
