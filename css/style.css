@@ -773,4 +773,12 @@ input:focus,select:focus,textarea:focus{border-color:var(--green);outline:0;box-
 .banner3 h2{color:#fff;font-size:clamp(30px,3.8vw,48px);margin-bottom:14px;text-shadow:0 2px 14px rgba(0,0,0,.35)}
 .banner3 p{color:#fff;font-size:19px;line-height:1.55;margin-bottom:28px;text-shadow:0 1px 10px rgba(0,0,0,.4)}
 .banner3 .btns{display:flex;flex-wrap:wrap;gap:12px}
-@media(max-width:760px){.banner3{min-height:520px;background:linear-gradient(180deg,rgba(0,0,0,.1) 0%,rgba(0,0,0,.45) 35%,rgba(0,0,0,.85) 100%),var(--img) 72% 40%/cover no-repeat;align-items:flex-end}.banner3__in{padding:60px 0 48px}}
+@media(max-width:760px){
+.banner3{display:block;min-height:0;background:#16100c}
+.banner3::before{content:"";display:block;height:280px;background:linear-gradient(180deg,rgba(22,16,12,0) 55%,#16100c 100%),url(../assets/img/ecole-uniformes.jpg) 62% 30%/cover no-repeat}
+.banner3__in{width:auto;margin:0;padding:6px 24px 44px}
+.banner3 h2{font-size:30px;text-shadow:none}
+.banner3 p{font-size:17px;text-shadow:none;margin-bottom:22px}
+.banner3 .btns{flex-direction:column}
+.banner3 .btns .btn{width:100%;text-align:center;justify-content:center}
+}
