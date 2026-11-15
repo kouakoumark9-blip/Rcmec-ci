@@ -423,7 +423,7 @@ SVC = {
             "Un crédit bien adapté à votre activité vous évite de recourir à des prêts informels à des conditions défavorables."],
    pour=["Les commerçants", "Les artisans", "Les agriculteurs", "Les entrepreneurs et PME", "Les opérateurs du secteur informel"],
    quote="Financez vos projets agricoles, commerciaux & personnels."),
- "credit-agricole": dict(img="agricultrice.jpg", pos="50% 25%", alt="Agricultrice souriante dans son champ",
+ "credit-agricole": dict(img="cabosse-cacao.jpg", pos="50% 50%", alt="Cabosse de cacao posée sur des fèves de cacao",
    lead="Votre projet agricole mérite un coup de pouce.",
    rcmec=["Un financement pour les projets agricoles.", "Des caisses implantées en priorité en zone rurale.", "« La référence en milieu rural et défavorisé. »"],
    general=["Un crédit agricole finance l'activité d'une exploitation : préparation des terres, achat de semences et de matériel, par exemple.",
@@ -494,7 +494,7 @@ HDR = {"epargne": "h-epargne.jpg", "parts-sociales": "h-parts-sociales.jpg", "de
        "credit-agricole": "h-credit-agricole.jpg", "pret-scolaire": "h-pret-scolaire.jpg", "securite-etude": "h-securite-etude.jpg",
        "transfert": "h-transfert.jpg", "micro-assurance": "h-micro-assurance.jpg"}
 HDR_ALT = {"epargne": "Femme comptant des billets à son bureau", "parts-sociales": "Réunion de travail autour d'une table", "depot-a-terme": "Horloge et piles de pièces d'or devant un graphique en hausse",
-           "credit": "Commerçante souriante sur un marché", "credit-agricole": "Agricultrice souriante dans son champ", "pret-scolaire": "Enfants en uniforme assis à leurs bancs d'école",
+           "credit": "Commerçante souriante sur un marché", "credit-agricole": "Cabosse de cacao posée sur des fèves de cacao", "pret-scolaire": "Enfants en uniforme assis à leurs bancs d'école",
            "securite-etude": "Enfants souriants dans une salle de classe", "transfert": "Homme souriant consultant son téléphone", "micro-assurance": "Famille souriante assise sur le perron de sa maison"}
 
 
