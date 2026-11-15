@@ -12,6 +12,9 @@ LI = "https://www.linkedin.com/company/rcmec-ci/"
 IG = "https://www.instagram.com/rcmecci/"
 TEL, TEL_HREF, MAIL = "+225 27 22 50 12 85", "+2252722501285", "contact@rcmec.ci"
 OSM = "https://www.openstreetmap.org/search?query=Carrefour%20Duncan%20Cocody%20Abidjan"
+GMAPS_Q = "Carrefour+Duncan,+II+Plateaux,+Cocody,+Abidjan,+Côte+d'Ivoire"
+GMAPS = "https://www.google.com/maps/search/?api=1&query=" + GMAPS_Q.replace("'", "%27")
+GMAPS_EMBED = "https://www.google.com/maps?q=" + GMAPS_Q.replace("'", "%27") + "&output=embed"
 SLOGAN = "Avec vous au quotidien pour garantir votre épargne et assurer votre avenir"
 FULL = "Réseau des Caisses Mutuelles d'Épargne et de Crédit de Côte d'Ivoire"
 
@@ -265,6 +268,21 @@ def page_index():
         <li><i data-lucide="sprout"></i><span><b>Implantés en priorité en zone rurale</b>au service des populations n'ayant pas accès aux banques classiques</span></li>
       </ul>
       <a class="more" href="a-propos.html">En savoir plus<i data-lucide="arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tint mapsec">
+  <div class="wrap">
+    {head2("Nous trouver", "Notre siège à Abidjan")}
+    <div class="mapgrid">
+      <div class="mapgrid__info">
+        <h3>Siège, Direction Générale</h3>
+        <address>Cocody II Plateaux, Carrefour Duncan,<br>en face de l'ex-ADDR, Immeuble SICOGI,<br>Bâtiment A, 3<sup>e</sup> étage, Abidjan<br>05 BP 822 Abidjan 05</address>
+        <p><a href="tel:{TEL_HREF}">{TEL}</a><br><a href="mailto:{MAIL}">{MAIL}</a></p>
+        <a class="more" target="_blank" rel="noopener" href="{GMAPS}">Ouvrir dans Google Maps<i data-lucide="arrow-right"></i></a>
+      </div>
+      <div class="mapgrid__map"><iframe title="Carte : siège du RCMEC-CI, Cocody II Plateaux, Abidjan" src="{GMAPS_EMBED}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
     </div>
   </div>
 </section>
