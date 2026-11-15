@@ -453,3 +453,9 @@ input:focus,select:focus,textarea:focus{border-color:var(--green);outline:0;box-
   .brand{display:block;margin:0 auto}
   .burger{position:absolute;right:-8px;top:50%;transform:translateY(-50%)}
 }
+@media(max-width:640px){
+  .nav__in{padding:14px 0}
+  .brand img{height:88px;width:auto}
+  .nav.scrolled .brand img{height:64px}
+  .nav.scrolled .nav__in{padding:8px 0}
+}
