@@ -135,7 +135,6 @@ def footer():
   </div>
   <div class="wrap legal">
     <span>© <span id="y"></span> RCMEC-CI. Système Financier Décentralisé (SFD) agréé en Côte d'Ivoire.</span>
-    <span>Photos : <a href="https://www.pexels.com" target="_blank" rel="noopener">Pexels</a>, à remplacer par des photos du réseau.</span>
   </div>
 </footer>
 <script src="js/lucide.min.js"></script>
@@ -691,8 +690,7 @@ def page_contact():
       </div>
       <textarea name="msg" rows="5" placeholder="Votre message" required aria-label="Message"></textarea>
       <button class="btn" type="submit">Envoyer</button>
-      <p class="fine">Le bouton ouvre votre application e-mail avec le message pré-rempli, adressé à {MAIL}.</p>
-      </div>
+            </div>
     </form>
   </div>
 </section>
