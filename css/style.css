@@ -782,3 +782,4 @@ input:focus,select:focus,textarea:focus{border-color:var(--green);outline:0;box-
 .banner3 .btns{flex-direction:column}
 .banner3 .btns .btn{width:100%;text-align:center;justify-content:center}
 }
+.banner3 p.banner3__note{font-size:15px;opacity:.85;margin:-8px 0 24px}
