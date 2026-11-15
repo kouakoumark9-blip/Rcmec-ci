@@ -605,3 +605,67 @@ input:focus,select:focus,textarea:focus{border-color:var(--green);outline:0;box-
 .svcintro{padding-bottom:56px}
 @media(min-width:861px){.nav__in{gap:96px}}
 @media(min-width:861px) and (max-width:1100px){.nav__in{gap:52px}}
+
+/* ===== Services : liste en cartes photo ===== */
+.scards{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.scard{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:0 8px 28px rgba(11,37,69,.06);transition:transform .3s,box-shadow .3s}
+.scard:hover{transform:translateY(-6px);box-shadow:0 18px 44px rgba(11,37,69,.14)}
+.scard__img{display:block;aspect-ratio:3/2;overflow:hidden;background:var(--tint)}
+.scard__img img{width:100%;height:100%;object-fit:cover;transition:transform .7s}
+.scard:hover .scard__img img{transform:scale(1.05)}
+.scard__body{display:flex;flex-direction:column;flex:1;padding:24px 26px 26px;position:relative}
+.scard__n{position:absolute;top:22px;right:24px;font:500 15px var(--f-head);color:#9aa5b6}
+.scard h2,.scard h3{font-size:23px;margin-bottom:8px;padding-right:34px}
+.scard p{color:var(--muted);flex:1;margin-bottom:14px}
+.scard .more{margin-top:auto}
+.scards--s{grid-template-columns:repeat(4,1fr);gap:20px}
+.scard--s h3{font-size:18px;padding-right:0;margin-bottom:10px}
+.scard--s .scard__body{padding:18px 20px 20px}
+.svclist2 .wrap{display:block}
+
+/* ===== Page d'un service ===== */
+.shero{background:var(--navy);color:#fff}
+.shero__in{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:stretch;padding:0}
+.shero__txt{padding:64px 0 64px;display:flex;flex-direction:column;justify-content:center}
+.shero h1{color:#fff;font-size:clamp(34px,4.2vw,54px);margin:14px 0 16px}
+.shero__lead{color:#cdd8e8;font-size:20px;max-width:520px;margin-bottom:30px}
+.shero__img{margin-right:calc(-1 * max(24px, (100vw - 1180px)/2));min-height:380px}
+.shero__img img{width:100%;height:100%;object-fit:cover;display:block}
+.sdetail{display:grid;grid-template-columns:1.6fr 1fr;gap:56px;align-items:start}
+.sdetail h2{font-size:30px;margin-bottom:16px}
+.sdetail__h{margin-top:44px}
+.prose p{font-size:18.5px;line-height:1.8;color:var(--ink);margin-bottom:16px}
+.sdetail .svc2__q{font:italic 500 21px/1.5 var(--f-head);color:var(--green);border-left:3px solid var(--gold);padding-left:18px;margin:22px 0 0}
+.sdetail .srcnote{margin-top:26px;padding-top:16px;border-top:1px solid var(--line)}
+.sdetail__side{display:grid;gap:22px;position:sticky;top:110px}
+.sbox{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:26px 28px;box-shadow:0 8px 28px rgba(11,37,69,.06)}
+.sbox h3{font-size:22px;margin-bottom:12px}
+.sbox .checks li{font-size:17px}
+.sbox--navy{background:var(--navy);border-color:var(--navy)}
+.sbox--navy h3{color:#fff}.sbox--navy p{color:#cdd8e8;margin-bottom:18px}
+.sbox__tel{margin:16px 0 0!important;font-weight:600}
+.sbox__tel a{color:#fff}
+.pager{display:flex;justify-content:space-between;gap:18px;margin-top:40px;flex-wrap:wrap}
+.pager a{display:flex;align-items:center;gap:14px;padding:16px 22px;background:#fff;border:1px solid var(--line);border-radius:var(--r);font:600 17px var(--f-head);color:var(--navy);transition:.2s}
+.pager a:hover{border-color:var(--green);color:var(--green)}
+.pager small{display:block;font:600 11px var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.pager a:last-child{text-align:right;margin-left:auto}
+.pager svg{flex:none;width:22px;height:22px}
+@media(max-width:1020px){
+  .scards{grid-template-columns:repeat(2,1fr)}.scards--s{grid-template-columns:repeat(2,1fr)}
+  .shero__in{grid-template-columns:1fr;gap:0}
+  .shero__txt{padding:44px 0 36px}
+  .shero__img{margin:0 calc(-1 * 24px);min-height:260px;height:300px}
+  .sdetail{grid-template-columns:1fr;gap:34px}
+  .sdetail__side{position:static}
+}
+@media(max-width:640px){
+  .scards,.scards--s{grid-template-columns:1fr}
+  .pager a{width:100%}.pager a:last-child{margin-left:0}
+  .shero__lead{font-size:18px}
+  .sdetail h2{font-size:25px}
+}
+.shero__img{position:relative;height:460px;min-height:0}
+.shero__img img{position:absolute;inset:0;width:100%;height:100%}
+.shero__txt{padding:56px 0}
+@media(max-width:1020px){.shero__img{height:300px}}

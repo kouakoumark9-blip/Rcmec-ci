@@ -63,7 +63,7 @@ def e(s):
     return html.escape(s, quote=True)
 
 
-def head(title, desc, page, og_img="assets/img/femme-sourire.jpg", ld=False):
+def head(title, desc, page, og_img="assets/img/femme-sourire.jpg", ld=False, active=None):
     ldjson = ""
     if ld:
         ldjson = '<script type="application/ld+json">' + json.dumps({
@@ -74,7 +74,7 @@ def head(title, desc, page, og_img="assets/img/femme-sourire.jpg", ld=False):
                         "streetAddress": "Cocody II Plateaux, Carrefour Duncan, en face de l'ex-ADDR, Immeuble SICOGI, Bât. A, 3e étage",
                         "postOfficeBoxNumber": "05 BP 822", "addressLocality": "Abidjan", "addressCountry": "CI"}},
             ensure_ascii=False) + "</script>"
-    items = "".join(f'<a href="{h}"{" class=on aria-current=page" if h == page else ""}>{l}</a>' for h, l in HEAD_NAV)
+    items = "".join(f'<a href="{h}"{" class=on aria-current=page" if h == (active or page) else ""}>{l}</a>' for h, l in HEAD_NAV)
     return f'''<!doctype html>
 <html lang="fr">
 <head>
@@ -201,13 +201,13 @@ def page_index():
     tiles = ""
     for sid, img in TILES:
         s = next(x for x in SERVICES if x["id"] == sid)
-        tiles += f'''<a class="tile" href="services.html#{s["id"]}">
+        tiles += f'''<a class="tile" href="{surl(s["id"])}">
   <img src="assets/img/{img}" alt="" loading="lazy">
   <span class="tile__body"><h3>{s["t"]}</h3><p>{e(s["d"])}</p><span class="tile__more">En savoir plus<i data-lucide="arrow-right"></i></span></span>
 </a>
 '''
     regions = "".join(f"<li>{e(r)}</li>" for r in CAISSES)
-    pics = "".join(f'''<a class="pic-card" href="services.html#{sid}"><img src="assets/ico/{f}" alt="" loading="lazy"><h3>{t}</h3><p>{e(p)}</p><span class="more">En savoir plus<i data-lucide="arrow-right"></i></span></a>
+    pics = "".join(f'''<a class="pic-card" href="{surl(sid)}"><img src="assets/ico/{f}" alt="" loading="lazy"><h3>{t}</h3><p>{e(p)}</p><span class="more">En savoir plus<i data-lucide="arrow-right"></i></span></a>
 ''' for sid, f, t, p in PICS)
     return head("RCMEC-CI | " + FULL, f"RCMEC-CI, faîtière de microfinance (SFD agréé) créée en 1995. 18 caisses dans plus de 10 régions de Côte d'Ivoire. {SLOGAN}.",
                 "index.html", ld=True) + f'''
@@ -252,7 +252,7 @@ def page_index():
       <span class="kicker kicker--l">Prêt scolaire · RCMEC Sécurité Étude</span>
       <h2>La clé d'une rentrée réussie</h2>
       <p>RCMEC Sécurité Étude : l'assurance qui protège chaque parcours scolaire.</p>
-      <a class="btn btn--light" href="services.html#pret-scolaire">Découvrir</a>
+      <a class="btn btn--light" href="service-pret-scolaire.html">Découvrir</a>
     </div>
   </div>
   <div class="banner2__img" role="img" aria-label="Élève souriante" style="--img:url(../assets/img/ecoliere.jpg)"></div>
@@ -388,70 +388,90 @@ def page_apropos():
 
 
 # -------------------------------------------------------------- SERVICES
-# Points : uniquement des éléments tirés de la fiche RCMEC-CI, des affiches et du site officiel.
-SERVICE_POINTS = {
- "epargne": ["Pour les particuliers, les groupements et les professionnels",
-             "Des comptes d'épargne sécurisés",
-             "Collecter et gérer l'épargne de nos adhérents : c'est la mission du réseau"],
- "parts-sociales": ["Une participation au capital mutualiste",
-                    "Le statut de membre sociétaire",
-                    "La possibilité de percevoir des dividendes sur vos parts"],
- "depot-a-terme": ["Une somme bloquée pendant toute la durée définie",
-                   "Un taux d'intérêt avantageux"],
- "credit": ["Financement de projets",
-            "Fonds de roulement",
-            "Crédits agricoles",
-            "Soutien aux activités génératrices de revenus",
-            "Des crédits adaptés, à moindre coût",
-            "Une protection contre l'endettement usurier"],
- "credit-agricole": ["Un financement pour vos projets agricoles",
-                     "Des caisses implantées en priorité en zone rurale"],
- "pret-scolaire": ["Un prêt pensé pour la rentrée scolaire"],
- "securite-etude": ["Une assurance liée au parcours scolaire",
-                    "Proposée sous le nom RCMEC Sécurité Étude"],
- "transfert": ["Envoi et réception de fonds",
-               "Des opérations sécurisées",
-               "Sur l'ensemble du territoire"],
- "micro-assurance": ["Des solutions de micro-assurance",
-                     "Pour protéger votre famille et vos biens"],
+# Règle : ce qui est propre à RCMEC-CI vient uniquement de leurs sources (fiche, affiches, site officiel).
+# Les rubriques « En général » ne sont que des définitions courantes du produit, sans aucune condition, taux ou durée.
+NOTE_CONDITIONS = "Les conditions précises (montants, durées, taux, pièces à fournir) sont communiquées par votre caisse. Contactez-nous pour les connaître."
+
+SVC = {
+ "epargne": dict(img="famille.jpg", pos="50% 35%", alt="Famille souriante réunie sur un canapé",
+   lead="Un compte d'épargne sécurisé pour mettre votre argent à l'abri et construire votre avenir.",
+   rcmec=["Des comptes d'épargne sécurisés, pour les particuliers, les groupements et les professionnels.",
+          "Collecter et gérer l'épargne de nos adhérents est la mission du réseau.",
+          "Un réseau de 18 caisses de base, dans plus de 10 régions de la Côte d'Ivoire."],
+   general=["L'épargne consiste à mettre de côté une partie de ses revenus plutôt que de la dépenser. Déposée dans une institution financière agréée, elle est plus en sécurité que de l'argent conservé chez soi.",
+            "Épargner régulièrement permet de faire face aux imprévus, de préparer un projet ou de se constituer un capital."],
+   pour=["Les particuliers", "Les groupements", "Les professionnels"],
+   quote="Construisez votre avenir en toute sécurité."),
+ "parts-sociales": dict(img="reunion-equipe.jpg", pos="50% 45%", alt="Réunion de travail autour d'une table",
+   lead="Devenez membre sociétaire de votre caisse en participant à son capital.",
+   rcmec=["Une participation au capital mutualiste.", "Elle permet de devenir membre sociétaire.", "Les parts sociales sont rémunérées : vous pouvez percevoir des dividendes."],
+   general=["Dans une mutuelle d'épargne et de crédit, les membres sont aussi ceux qui la possèdent. En souscrivant des parts sociales, chaque membre apporte une part du capital de la caisse.",
+            "Le capital ainsi constitué sert de base solide à l'activité de la caisse, notamment pour accorder des crédits à ses membres."],
+   pour=["Toute personne qui souhaite devenir membre sociétaire de sa caisse"],
+   quote=None),
+ "depot-a-terme": dict(img="comptabilite.jpg", pos="50% 40%", alt="Femme comptant des billets à son bureau",
+   lead="Placez une somme sur une durée définie, avec un taux d'intérêt avantageux.",
+   rcmec=["Un placement d'une somme bloquée sur une durée définie.", "Un taux d'intérêt avantageux."],
+   general=["Un dépôt à terme est un placement : vous confiez une somme à l'institution pour une durée convenue à l'avance, pendant laquelle elle reste bloquée.",
+            "En contrepartie, l'institution vous verse un intérêt. Ce type de placement convient à une somme dont vous n'avez pas besoin avant l'échéance."],
+   pour=["Toute personne ou structure qui dispose d'une somme à placer"],
+   quote=None),
+ "credit": dict(img="vendeur-banane.jpg", pos="50% 40%", alt="Commerçante souriante sur son étal",
+   lead="Des crédits adaptés à vos activités, à moindre coût, pour financer vos projets.",
+   rcmec=["Financement de projets.", "Fonds de roulement.", "Crédits agricoles.", "Soutien aux activités génératrices de revenus.",
+          "Des crédits adaptés, à moindre coût, et une protection contre l'endettement usurier."],
+   general=["Un crédit est une somme mise à votre disposition, que vous remboursez progressivement avec des intérêts. Un fonds de roulement finance les dépenses courantes d'une activité (achat de marchandises, par exemple).",
+            "Un crédit bien adapté à votre activité vous évite de recourir à des prêts informels à des conditions défavorables."],
+   pour=["Les commerçants", "Les artisans", "Les agriculteurs", "Les entrepreneurs et PME", "Les opérateurs du secteur informel"],
+   quote="Financez vos projets agricoles, commerciaux & personnels."),
+ "credit-agricole": dict(img="agricultrice.jpg", pos="50% 25%", alt="Agricultrice souriante dans son champ",
+   lead="Votre projet agricole mérite un coup de pouce.",
+   rcmec=["Un financement pour les projets agricoles.", "Des caisses implantées en priorité en zone rurale.", "« La référence en milieu rural et défavorisé. »"],
+   general=["Un crédit agricole finance l'activité d'une exploitation : préparation des terres, achat de semences et de matériel, par exemple.",
+            "L'activité agricole suit les saisons : c'est pourquoi le crédit se discute avec la caisse en fonction de votre projet."],
+   pour=["Les agriculteurs", "Les populations du monde rural"],
+   quote="Votre projet agricole mérite un coup de pouce !"),
+ "pret-scolaire": dict(img="ecolieres.jpg", pos="50% 40%", alt="Écolières en uniforme se rendant à l'école",
+   lead="La clé d'une rentrée réussie.",
+   rcmec=["Le prêt scolaire : la clé d'une rentrée réussie."],
+   general=["Un prêt scolaire est un crédit destiné aux dépenses liées à la scolarité des enfants. Il permet d'étaler ces dépenses plutôt que de les payer en une fois."],
+   pour=["Les parents d'élèves"],
+   quote="La clé d'une rentrée réussie."),
+ "securite-etude": dict(img="classe.jpg", pos="50% 35%", alt="Enfants souriants dans une salle de classe",
+   lead="L'assurance qui protège chaque parcours scolaire.",
+   rcmec=["RCMEC Sécurité Étude : l'assurance qui protège chaque parcours scolaire."],
+   general=["Une assurance liée aux études a pour but de protéger la scolarité d'un enfant face aux aléas de la vie."],
+   pour=["Les familles dont les enfants sont scolarisés"],
+   quote="L'assurance qui protège chaque parcours scolaire."),
+ "transfert": dict(img="client-telephone.jpg", pos="50% 30%", alt="Homme souriant avec son téléphone",
+   lead="Envoyez et recevez de l'argent facilement, en toute sécurité.",
+   rcmec=["Envoi et réception de fonds sécurisés.", "Sur l'ensemble du territoire.", "Un réseau de caisses réparties dans plus de 10 régions."],
+   general=["Un transfert d'argent permet de faire parvenir une somme à un proche, ou d'en recevoir une, sans avoir à se déplacer avec de l'argent liquide.",
+            "Pour votre sécurité, vérifiez toujours l'identité du bénéficiaire et ne communiquez jamais vos informations personnelles à des inconnus."],
+   pour=["Toute personne qui souhaite envoyer ou recevoir des fonds"],
+   quote="Recevez et envoyez de l'argent facilement."),
+ "micro-assurance": dict(img="famille-perron.jpg", pos="50% 45%", alt="Famille souriante assise sur le perron de sa maison",
+   lead="Protégez votre famille et vos biens.",
+   rcmec=["Des solutions de micro-assurance.", "Pour protéger votre famille et vos biens."],
+   general=["La micro-assurance est une assurance conçue pour les personnes à revenus modestes, avec des protections simples et accessibles.",
+            "Elle aide un ménage ou une petite activité à faire face à un événement imprévu sans compromettre son équilibre financier."],
+   pour=["Les familles", "Les petites activités"],
+   quote="Protégez votre famille et vos biens."),
 }
-# Descriptions d'ouverture de la page Services (reformulations des mêmes sources, sans doublon avec les points)
-SERVICE_DESC = {
- "epargne": "Confiez votre épargne à un réseau mutualiste dont la mission est de la collecter et de la gérer.",
- "parts-sociales": "Participez au capital mutualiste et devenez membre sociétaire.",
- "depot-a-terme": "Placez une somme sur une durée définie.",
- "credit": "Des crédits adaptés, à moindre coût, pour ceux qui en expriment le besoin.",
-}
-SERVICE_LINES = {
- "epargne": ["Avec nous, votre épargne est en sécurité.", "Construisez votre avenir en toute sécurité."],
- "credit": ["Financez vos projets agricoles, commerciaux & personnels."],
- "credit-agricole": ["Votre projet agricole mérite un coup de pouce !", "La référence en milieu rural et défavorisé."],
- "pret-scolaire": ["La clé d'une rentrée réussie."],
- "securite-etude": ["L'assurance qui protège chaque parcours scolaire."],
- "transfert": ["Transférez votre argent en toute sécurité.", "Recevez et envoyez de l'argent facilement."],
- "micro-assurance": ["Protégez votre famille et vos biens."],
-}
+
+
+def surl(sid):
+    return f"service-{sid}.html"
 
 
 def page_services():
-    nav = "".join(f'<a href="#{s["id"]}">{s["t"]}</a>' for s in SERVICES)
-    blocks = ""
+    cards = ""
     for n, s in enumerate(SERVICES, 1):
-        pic = (f'<img class="pic" src="assets/ico/{PIC_BY_ID[s["id"]]}" alt="" loading="lazy">' if s["id"] in PIC_BY_ID
-               else f'<span class="svc2__ico"><i data-lucide="{s["ico"]}"></i></span>')
-        pts = "".join(f"<li>{e(x)}</li>" for x in SERVICE_POINTS[s["id"]])
-        lines = "".join(f'<p class="svc2__q">« {e(x)} »</p>' for x in SERVICE_LINES.get(s["id"], []))
-        blocks += f'''<article class="svc2" id="{s["id"]}">
-  <div class="svc2__side">{pic}<span class="svc2__n">{n:02d}</span></div>
-  <div class="svc2__main">
-    <h2>{s["t"]}</h2>
-    <p class="svc2__d">{e(SERVICE_DESC.get(s["id"], s["d"]))}</p>
-    <h3>À retenir</h3>
-    <ul class="checks checks--one">{pts}</ul>
-    {lines}
-    <div class="svc2__f"><span>Pour connaître les conditions de ce service, contactez-nous.</span><a class="btn btn--sm" href="contact.html">Nous contacter</a></div>
-  </div>
-</article>
+        d = SVC[s["id"]]
+        cards += f'''<a class="scard" href="{surl(s["id"])}">
+  <span class="scard__img"><img src="assets/img/{d["img"]}" alt="{e(d["alt"])}" loading="lazy" style="object-position:{d["pos"]}"></span>
+  <span class="scard__body"><span class="scard__n">{n:02d}</span><h2>{s["t"]}</h2><p>{e(d["lead"])}</p><span class="more">Lire le détail<i data-lucide="arrow-right"></i></span></span>
+</a>
 '''
     return head("Nos services | RCMEC-CI", "Épargne, parts sociales rémunérées, dépôts à terme, crédit, crédit agricole, prêt scolaire, RCMEC Sécurité Étude, transfert rapide d'argent et micro-assurance.", "services.html", "assets/img/vendeur-banane.jpg") + \
         pagehead("Nos services") + f'''
@@ -460,9 +480,59 @@ def page_services():
     <p class="lead2">Nous représentons une solution durable d'offre de services financiers aux populations qui n'ont pas accès aux produits des banques classiques. Notre mission est de collecter et de gérer l'épargne de nos adhérents et d'accorder des crédits à ceux qui en expriment le besoin, avec des services de proximité à moindre coût.</p>
   </div>
 </section>
-<section class="section section--tint svclist2"><div class="wrap">{blocks}</div></section>
+<section class="section section--tint svclist2"><div class="wrap"><div class="scards">{cards}</div></div></section>
 <section class="triband" aria-label="Nos engagements">
   <div class="wrap triband__in"><div><b>Épargne</b></div><div><b>Sécurité</b></div><div><b>Fiabilité</b></div></div>
+</section>
+''' + cta() + footer()
+
+
+def page_service(i):
+    s = SERVICES[i]; d = SVC[s["id"]]
+    prev_s = SERVICES[(i - 1) % len(SERVICES)]; next_s = SERVICES[(i + 1) % len(SERVICES)]
+    rc = "".join(f"<li>{e(x)}</li>" for x in d["rcmec"])
+    gen = "".join(f"<p>{e(x)}</p>" for x in d["general"])
+    pour = "".join(f"<li>{e(x)}</li>" for x in d["pour"])
+    quote = f'<p class="svc2__q">« {e(d["quote"])} »</p>' if d.get("quote") else ""
+    others = "".join(
+        f'<a class="scard scard--s" href="{surl(o["id"])}"><span class="scard__img"><img src="assets/img/{SVC[o["id"]]["img"]}" alt="" loading="lazy" style="object-position:{SVC[o["id"]]["pos"]}"></span><span class="scard__body"><h3>{o["t"]}</h3><span class="more">Lire le détail<i data-lucide="arrow-right"></i></span></span></a>'
+        for o in SERVICES if o["id"] != s["id"])
+    return head(f'{s["t"]} | RCMEC-CI', d["lead"], surl(s["id"]), f'assets/img/{d["img"]}', active="services.html") + f'''
+<section class="shero">
+  <div class="wrap shero__in">
+    <div class="shero__txt">
+      <nav class="crumbs" aria-label="Fil d'Ariane"><a href="index.html">Accueil</a><span aria-hidden="true">/</span><a href="services.html">Nos services</a><span aria-hidden="true">/</span><span>{s["t"]}</span></nav>
+      <h1>{s["t"]}</h1>
+      <p class="shero__lead">{e(d["lead"])}</p>
+      <div class="btns"><a class="btn" href="contact.html">Nous contacter</a><a class="btn btn--ghost" href="services.html">Tous les services</a></div>
+    </div>
+    <div class="shero__img"><img src="assets/img/{d["img"]}" alt="{e(d["alt"])}" style="object-position:{d["pos"]}"></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap sdetail">
+    <div class="sdetail__main">
+      <h2>Ce que propose RCMEC-CI</h2>
+      <ul class="checks checks--one">{rc}</ul>
+      {quote}
+      <h2 class="sdetail__h">En général</h2>
+      <div class="prose">{gen}</div>
+      <p class="srcnote">Les paragraphes « Ce que propose RCMEC-CI » sont issus de la documentation du réseau (site officiel, affiches). La rubrique « En général » est une explication courante du produit, qui ne décrit aucune condition propre au RCMEC-CI.</p>
+    </div>
+    <aside class="sdetail__side">
+      <div class="sbox"><h3>Pour qui ?</h3><ul class="checks checks--one">{pour}</ul></div>
+      <div class="sbox sbox--navy"><h3>Conditions</h3><p>{e(NOTE_CONDITIONS)}</p><a class="btn btn--light" href="contact.html">Nous contacter</a><p class="sbox__tel"><a href="tel:{TEL_HREF}">{TEL}</a></p></div>
+    </aside>
+  </div>
+</section>
+
+<section class="section section--tint">
+  <div class="wrap">
+    {head2("Nos services", "Découvrez aussi")}
+    <div class="scards scards--s">{others}</div>
+    <div class="pager"><a href="{surl(prev_s["id"])}"><i data-lucide="arrow-left"></i><span><small>Précédent</small>{prev_s["t"]}</span></a><a href="{surl(next_s["id"])}"><span><small>Suivant</small>{next_s["t"]}</span><i data-lucide="arrow-right"></i></a></div>
+  </div>
 </section>
 ''' + cta() + footer()
 
@@ -580,10 +650,12 @@ if __name__ == "__main__":
     write("index.html", page_index())
     write("a-propos.html", page_apropos())
     write("services.html", page_services())
+    for _i, _s in enumerate(SERVICES):
+        write(surl(_s["id"]), page_service(_i))
     write("simulateur.html", page_simulateur())
     write("caisses.html", page_caisses())
     write("contact.html", page_contact())
-    urls = ["" if h == "index.html" else h for h, _ in NAV]
+    urls = ["" if h == "index.html" else h for h, _ in NAV] + [surl(_s["id"]) for _s in SERVICES]
     with open(os.path.join(OUT, "sitemap.xml"), "w", encoding="utf-8") as f:
         f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
                 "".join(f"  <url><loc>https://rcmec-ci.com/{u}</loc></url>\n" for u in urls) + "</urlset>\n")
