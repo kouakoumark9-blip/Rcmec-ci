@@ -257,16 +257,15 @@ def page_index():
   </div>
 </section>
 
-<section class="banner2">
-  <div class="banner2__txt">
-    <div class="banner2__in">
+<section class="banner3" role="img" aria-label="Enfants en uniforme à l'école" style="--img:url(../assets/img/h-ecole-banner.jpg)">
+  <div class="wrap banner3__in">
+    <div class="banner3__txt">
       <span class="kicker kicker--l">Prêt scolaire · Épargne pour l'école des enfants</span>
       <h2>La clé d'une rentrée réussie</h2>
       <p>Le prêt scolaire et l'épargne pour l'école des enfants : deux services pour préparer la scolarité.</p>
-      <a class="btn btn--light" href="service-pret-scolaire.html">Découvrir</a>
+      <div class="btns"><a class="btn btn--light" href="service-pret-scolaire.html">Le prêt scolaire</a><a class="btn btn--ghost" href="service-epargne-ecole.html">L'épargne pour l'école</a></div>
     </div>
   </div>
-  <div class="banner2__img" role="img" aria-label="Enfants en uniforme à l'école" style="--img:url(../assets/img/ecole-uniformes.jpg)"></div>
 </section>
 
 <section class="section">

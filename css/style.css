@@ -765,3 +765,12 @@ input:focus,select:focus,textarea:focus{border-color:var(--green);outline:0;box-
 .pt__logo img{image-rendering:auto}
 .regions__lead{color:#cdd8e8;margin:-6px 0 16px;font-size:17px}
 .section--caisses{padding-top:56px}
+
+/* Bandeau école : photo pleine largeur, texte sur l'image */
+.banner3{position:relative;color:#fff;min-height:480px;display:flex;align-items:center;background:var(--img) 100% 50%/cover no-repeat}
+.banner3__in{width:100%;padding:80px 24px}
+.banner3__txt{max-width:540px}
+.banner3 h2{color:#fff;font-size:clamp(30px,3.8vw,48px);margin-bottom:14px;text-shadow:0 2px 14px rgba(0,0,0,.35)}
+.banner3 p{color:#fff;font-size:19px;line-height:1.55;margin-bottom:28px;text-shadow:0 1px 10px rgba(0,0,0,.4)}
+.banner3 .btns{display:flex;flex-wrap:wrap;gap:12px}
+@media(max-width:760px){.banner3{min-height:520px;background:linear-gradient(180deg,rgba(0,0,0,.1) 0%,rgba(0,0,0,.45) 35%,rgba(0,0,0,.85) 100%),var(--img) 72% 40%/cover no-repeat;align-items:flex-end}.banner3__in{padding-top:60px;padding-bottom:48px}}
