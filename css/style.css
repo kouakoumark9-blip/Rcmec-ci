@@ -444,3 +444,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--green);outline:0;box-
 @media(max-width:640px){
   .hero2{min-height:650px;background:linear-gradient(180deg,rgba(0,0,0,.03) 0%,rgba(0,0,0,.06) 36%,rgba(0,0,0,.62) 68%,rgba(0,0,0,.78) 100%),var(--img) 54% -64px/auto 112% no-repeat,#2f4a2a}
 }
+@media(max-width:640px){
+  .util__in{justify-content:center}
+  .util__l{width:100%;justify-content:center}
+}
