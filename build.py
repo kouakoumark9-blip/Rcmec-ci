@@ -565,7 +565,6 @@ def page_service(i):
       <div class="prose">{gen}</div>
       <h2 class="sdetail__h">Pourquoi c'est important</h2>
       <div class="prose">{imp}</div>
-      <p class="srcnote">« Ce que propose RCMEC-CI » et « Pourquoi choisir RCMEC-CI » sont issus de la documentation du réseau (site officiel, affiches, liste officielle des SFD agréés). « En général » et « Pourquoi c'est important » sont des explications courantes, qui ne décrivent aucune condition propre au RCMEC-CI.</p>
     </div>
     <aside class="sdetail__side">
       <div class="sbox"><h3>Pour qui ?</h3><ul class="checks checks--one">{pour}</ul></div>
