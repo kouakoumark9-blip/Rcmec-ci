@@ -381,3 +381,33 @@ input:focus,select:focus,textarea:focus{border-color:var(--green);outline:0;box-
 @media(max-width:1020px){.pics{grid-template-columns:1fr 1fr}}
 @media(max-width:640px){.pics{grid-template-columns:1fr}.pic-card img{height:130px}}
 .row__t img.pic{width:58px;height:58px;margin-top:-2px}
+
+/* ===== accueil : image principale (logo intégré), slogan en dessous ===== */
+.hero3{background:#dfe9f2}
+.hero3__img{display:block;width:100%;height:clamp(520px,74vh,740px);object-fit:cover;object-position:50% 6%}
+.quick{margin-top:-60px}
+.welcome{padding:70px 0 56px;text-align:center}
+.welcome__in{max-width:900px}
+.welcome h1{font-size:clamp(30px,4vw,48px);margin-bottom:18px}
+.welcome .lead{color:var(--muted);margin:0 auto 30px}
+.welcome .btns{justify-content:center}
+.statsband{margin-top:0;padding:56px 0}
+.split__img--sq img{aspect-ratio:1/1;object-position:50% 36%}
+@media(max-width:900px){
+  .hero3__img{height:auto;aspect-ratio:3/2}
+  .quick{margin-top:-34px}
+}
+@media(max-width:640px){
+  .welcome{padding:50px 0 40px}
+}
+
+/* cadrage : image entière visible (logo + conseiller), fond neutre issu de la même image */
+.hero3{position:relative;overflow:hidden;background:#cfe0ee;padding-bottom:0}
+.hero3::before{content:"";position:absolute;inset:-30px;background:var(--img) center/cover no-repeat;filter:blur(26px) saturate(.9);transform:scale(1.05)}
+.hero3__img{position:relative;z-index:1;display:block;margin:0 auto;height:clamp(460px,76vh,780px);width:auto;max-width:100%;object-fit:contain;object-position:50% 50%}
+@media(max-width:900px){
+  .hero3::before{display:none}
+  .hero3__img{height:auto;width:100%;aspect-ratio:3/2}
+}
+.split__img img{height:auto}
+.split__img--sq img{aspect-ratio:1/1;object-fit:cover;object-position:50% 34%}

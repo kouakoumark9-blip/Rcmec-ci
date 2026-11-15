@@ -207,14 +207,9 @@ def page_index():
     pics = "".join(f'''<a class="pic-card" href="services.html#{sid}"><img src="assets/ico/{f}" alt="" loading="lazy"><h3>{t}</h3><p>{e(p)}</p><span class="more">En savoir plus<i data-lucide="arrow-right"></i></span></a>
 ''' for sid, f, t, p in PICS)
     return head("RCMEC-CI | " + FULL, f"RCMEC-CI, faîtière de microfinance (SFD agréé) créée en 1995. 18 caisses dans plus de 10 régions de Côte d'Ivoire. {SLOGAN}.",
-                "index.html", ld=True) + f'''
-<section class="hero2" style="--img:url(../assets/img/agricultrice.jpg)">
-  <div class="wrap hero2__in"><div class="hero2__card">
-    <span class="kicker">{FULL}</span>
-    <h1>{SLOGAN}</h1>
-    <p class="lead">Faîtière de microfinance, Système Financier Décentralisé (SFD) agréé en Côte d'Ivoire, depuis 1995.</p>
-    <div class="btns"><a class="btn" href="contact.html">Ouvrir un compte</a><a class="btn btn--outline" href="services.html">Découvrir nos services</a></div>
-  </div></div>
+                "index.html", "assets/img/hero-rcmec.jpg", ld=True) + f'''
+<section class="hero3" style="--img:url(../assets/img/hero-rcmec.jpg)">
+  <img class="hero3__img" src="assets/img/hero-rcmec.jpg" width="1536" height="1024" fetchpriority="high" alt="Conseiller RCMEC-CI au bureau, avec en arrière-plan un marché et un village de Côte d'Ivoire">
 </section>
 
 <section class="quick">
@@ -223,6 +218,15 @@ def page_index():
     <a href="services.html"><i data-lucide="layout-grid"></i><span>Nos services</span></a>
     <a href="caisses.html"><i data-lucide="map-pin"></i><span>Trouver une caisse</span></a>
     <a href="simulateur.html"><i data-lucide="calculator"></i><span>Simulateur</span></a>
+  </div>
+</section>
+
+<section class="welcome">
+  <div class="wrap welcome__in">
+    <span class="kicker">{FULL}</span>
+    <h1>{SLOGAN}</h1>
+    <p class="lead">Faîtière de microfinance, Système Financier Décentralisé (SFD) agréé en Côte d'Ivoire, depuis 1995.</p>
+    <div class="btns"><a class="btn" href="contact.html">Ouvrir un compte</a><a class="btn btn--outline" href="services.html">Découvrir nos services</a></div>
   </div>
 </section>
 
@@ -271,7 +275,7 @@ def page_index():
 
 <section class="section">
   <div class="wrap split">
-    <div class="split__img"><img src="assets/img/artisane.jpg" alt="Commerçante dans sa boutique" loading="lazy"></div>
+    <div class="split__img split__img--sq"><img src="assets/img/artisane.jpg" width="1350" height="1400" alt="Commerçante souriante derrière son étal" loading="lazy"></div>
     <div class="split__txt">
       <span class="kicker">À propos de nous</span>
       <h2>Une faîtière de microfinance</h2>
