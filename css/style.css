@@ -783,3 +783,20 @@ input:focus,select:focus,textarea:focus{border-color:var(--green);outline:0;box-
 .banner3 .btns .btn{width:100%;text-align:center;justify-content:center}
 }
 .banner3 p.banner3__note{font-size:15px;opacity:.85;margin:-8px 0 24px}
+
+/* Contenu enrichi */
+.timeline{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;counter-reset:t}
+.timeline li{position:relative;background:#fff;border:1px solid var(--line);border-top:4px solid var(--gold);border-radius:var(--r);padding:26px 24px;box-shadow:0 8px 24px rgba(11,37,69,.05)}
+.timeline b{display:block;font-family:"Source Serif 4",Georgia,serif;font-size:28px;color:var(--navy);margin-bottom:8px}
+.timeline p{margin:0;color:var(--muted);font-size:17px;line-height:1.65}
+.faqwrap{max-width:900px}
+.faq{display:grid;gap:12px}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:0 22px}
+.faq summary{cursor:pointer;list-style:none;padding:18px 28px 18px 0;font-weight:600;color:var(--navy);font-size:18px;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:0;top:50%;transform:translateY(-50%);font-size:24px;color:var(--green,#0a5f2d);line-height:1}
+.faq details[open] summary::after{content:"\2212"}
+.faq details p{margin:0 0 20px;color:var(--muted);font-size:17px;line-height:1.7}
+.caisses__intro{max-width:820px;margin:0 0 36px}
+.contact__intro{max-width:820px;margin:0 0 32px}
+@media(max-width:860px){.timeline{grid-template-columns:1fr}}

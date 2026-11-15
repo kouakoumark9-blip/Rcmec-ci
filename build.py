@@ -274,7 +274,7 @@ def page_index():
     <div class="split__img split__img--sq split__img--face"><img src="assets/img/vendeur-banane.jpg" width="933" height="1400" alt="Commerçante souriante sur un marché" loading="lazy"></div>
     <div class="split__txt">
       <p>Nous offrons des services financiers durables aux populations qui n'ont pas accès aux produits des banques classiques. Depuis 1995, nous accompagnons ces personnes en situation fragile dans la réalisation de leurs projets et le développement de leur environnement.</p>
-      <p>Nous nous adressons aux personnes en situation fragile ou exclues des banques classiques, aux opérateurs du petits métiers et commerces non déclarés, aux agriculteurs, aux commerçants, aux artisans, aux entrepreneurs et aux PME.</p>
+      <p>Nous nous adressons aux personnes en situation fragile ou exclues des banques classiques, aux personnes qui travaillent dans les petits métiers et commerces non déclarés, aux agriculteurs, aux commerçants, aux artisans, aux entrepreneurs et aux PME.</p>
       <ul class="force">
         <li><i data-lucide="landmark"></i><span><b>18 caisses actives</b>présentes dans plus de 10 régions de la Côte d'Ivoire</span></li>
         <li><i data-lucide="users"></i><span><b>Un personnel qualifié</b>à votre service dans chacune de nos agences, pour répondre à vos besoins</span></li>
@@ -282,6 +282,13 @@ def page_index():
       </ul>
       <a class="more" href="a-propos.html">En savoir plus<i data-lucide="arrow-right"></i></a>
     </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    {head2("Pourquoi choisir RCMEC-CI", "Ce qui caractérise le réseau")}
+    <div class="why">{"".join(f'<article><span class="ico"><i data-lucide="{ic}"></i></span><h3>{e(t)}</h3><p>{e(x)}</p></article>' for ic, t, x in WHY)}</div>
   </div>
 </section>
 
@@ -319,7 +326,7 @@ SOURCE_TRESOR = "Source : Direction Générale du Trésor et de la Comptabilité
 def page_apropos():
     vals = [("handshake", "Solidarité"), ("home", "Proximité"), ("landmark", "Inclusion financière"), ("trending-up", "Autonomisation économique"), ("shield-check", "Confiance")]
     vh = "".join(f'<li><i data-lucide="{i}"></i><span>{t}</span></li>' for i, t in vals)
-    cible = ["Personnes en situation fragile ou exclues des banques classiques", "Commerçants et artisans du petits métiers et commerces non déclarés", "Agriculteurs", "Commerçants", "Artisans", "Entrepreneurs et PME"]
+    cible = ["Personnes en situation fragile ou exclues des banques classiques", "Personnes qui travaillent dans les petits métiers et commerces non déclarés", "Agriculteurs", "Commerçants", "Artisans", "Entrepreneurs et PME"]
     ch = "".join(f"<li>{e(c)}</li>" for c in cible)
     regions = "".join(f"<li>{e(r)}</li>" for r in CAISSES)
     facts = [("Dénomination", "Réseau des Caisses Mutuelles d'Épargne et de Crédit de Côte d'Ivoire (RCMEC-CI)"),
@@ -331,7 +338,7 @@ def page_apropos():
              ("Implantation", "Surtout dans les campagnes, mais aussi dans les petites villes et les villes"),
              ("Siège, Direction Générale", "Cocody II Plateaux, Carrefour Duncan, en face de l'ex-ADDR, Immeuble SICOGI, Bâtiment A, 3e étage, Abidjan")]
     fh = "".join(f"<div><dt>{e(k)}</dt><dd>{e(v)}</dd></div>" for k, v in facts)
-    return head("À propos | RCMEC-CI", "Le RCMEC-CI est une réseau de microfinance, SFD agréé en Côte d'Ivoire, au service des populations depuis 1995. Mission, valeurs, cible et cadre officiel.", "a-propos.html") + \
+    return head("À propos | RCMEC-CI", "Le RCMEC-CI est un réseau de microfinance, SFD agréé en Côte d'Ivoire, au service des populations depuis 1995. Mission, valeurs, cible et cadre officiel.", "a-propos.html") + \
         pagehead("À propos de nous") + f'''
 <section class="section">
   <div class="wrap split">
@@ -363,6 +370,31 @@ def page_apropos():
   <div class="wrap duo">
     <div class="statement"><span class="kicker">Notre mission</span><p>Recevoir et gérer l'épargne de nos membres, accorder des crédits adaptés et peu coûteux à ceux qui en ont besoin, et protéger les populations contre les prêts à taux abusifs.</p></div>
     <div class="statement"><span class="kicker">Notre objectif</span><p>Aider les caisses du réseau à offrir des services financiers de qualité, accessibles à tous, en particulier aux habitants des campagnes, des petites villes et des villes, et à ceux qui travaillent à leur compte.</p></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    {head2("Nos repères", "Une histoire au service des populations")}
+    <ol class="timeline">
+      <li><b>1995</b><p>Début de l'accompagnement des populations qui n'ont pas accès aux produits des banques classiques.</p></li>
+      <li><b>8 juin 1999</b><p>Agrément comme Système Financier Décentralisé en Côte d'Ivoire, par arrêté n° 151.</p></li>
+      <li><b>Aujourd'hui</b><p>18 caisses de base, dans plus de 10 régions de la Côte d'Ivoire, situées en priorité dans les campagnes.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section section--tint">
+  <div class="wrap duo">
+    <div class="statement"><span class="kicker">Le principe mutualiste</span><p>Une caisse mutualiste appartient à ses membres. En achetant une part de son capital (les parts sociales), on devient membre et on peut recevoir une part des bénéfices.</p></div>
+    <div class="statement"><span class="kicker">Un réseau de caisses</span><p>Le RCMEC-CI regroupe les caisses et les aide à offrir des services financiers de qualité, proches de leurs membres.</p></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    {head2("Cadre officiel", "Un secteur encadré")}
+    <p class="lead2">Les Systèmes Financiers Décentralisés exercent dans un cadre réglementé. Le RCMEC-CI est agréé en Côte d'Ivoire et figure sur la liste officielle des SFD agréés publiée par la Direction Générale du Trésor et de la Comptabilité Publique.</p>
   </div>
 </section>
 
@@ -433,7 +465,7 @@ SVC = {
           "Des crédits adaptés, à faible coût.", "Une protection contre les prêts à taux abusifs."],
    general=["Un crédit est une somme mise à votre disposition, que vous remboursez progressivement avec des intérêts. Un fonds de roulement finance les dépenses courantes d'une activité (achat de marchandises, par exemple).",
             "Un crédit bien adapté à votre activité vous évite de recourir à des prêts informels à des conditions défavorables."],
-   pour=["Les commerçants", "Les artisans", "Les agriculteurs", "Les entrepreneurs et PME", "Les opérateurs du petits métiers et commerces non déclarés"],
+   pour=["Les commerçants", "Les artisans", "Les agriculteurs", "Les entrepreneurs et PME", "Les personnes qui travaillent dans les petits métiers et commerces non déclarés"],
    quote="Financez vos projets agricoles, commerciaux & personnels."),
  "credit-agricole": dict(img="cabosse-cacao.jpg", pos="50% 50%", alt="Cabosse de cacao posée sur des fèves de cacao",
    lead="Votre projet agricole mérite un coup de pouce.",
@@ -573,6 +605,18 @@ def page_services():
   </div>
 </section>
 <section class="section section--tint svclist2"><div class="wrap"><div class="scards">{cards}</div></div></section>
+<section class="section">
+  <div class="wrap faqwrap">
+    {head2("Questions fréquentes", "Vos questions, nos réponses")}
+    <div class="faq">
+      <details><summary>Qu'est-ce qu'un Système Financier Décentralisé (SFD) ?</summary><p>Un SFD est une institution de microfinance qui propose des services d'épargne et de crédit de proximité, notamment à ceux qui n'ont pas accès aux banques classiques. Le RCMEC-CI est agréé SFD en Côte d'Ivoire.</p></details>
+      <details><summary>Que veut dire « mutualiste » ?</summary><p>Une caisse mutualiste appartient à ses membres. En participant à son capital par l'achat de parts sociales, on devient membre et on peut recevoir une part des bénéfices.</p></details>
+      <details><summary>Où trouver les conditions (montants, durées, taux, pièces à fournir) ?</summary><p>Ces conditions sont communiquées par votre caisse. Vous pouvez aussi nous contacter par téléphone, par e-mail ou via le formulaire de la page Contact.</p></details>
+      <details><summary>Où se trouvent les caisses ?</summary><p>Le réseau compte 18 caisses de base, dans plus de 10 régions de la Côte d'Ivoire. La page « Nos caisses » les classe par région.</p></details>
+      <details><summary>Puis-je estimer un crédit ou un dépôt à terme ?</summary><p>Oui, avec le simulateur. Il calcule une estimation à partir du montant, de la durée et du taux que votre caisse vous communique.</p></details>
+    </div>
+  </div>
+</section>
 <section class="triband" aria-label="Nos engagements">
   <div class="wrap triband__in"><div><b>Épargne</b></div><div><b>Sécurité</b></div><div><b>Fiabilité</b></div></div>
 </section>
@@ -664,6 +708,17 @@ def page_simulateur():
     </div>
   </div>
 </section>
+
+<section class="section section--tint">
+  <div class="wrap faqwrap">
+    {head2("Méthode de calcul", "Comment lire le résultat")}
+    <div class="faq">
+      <details open><summary>Crédit</summary><p>La mensualité est calculée avec des remboursements mensuels égaux sur toute la durée. Le coût total est la différence entre le total remboursé et le montant emprunté.</p></details>
+      <details open><summary>Dépôt à terme</summary><p>Les intérêts sont calculés de façon simple, en proportion de la durée : somme placée × taux annuel × nombre de mois ÷ 12. Le capital au terme est la somme placée plus les intérêts.</p></details>
+      <details open><summary>À retenir</summary><p>Le simulateur ne contient aucun taux officiel. Seule votre caisse peut vous donner les conditions réelles.</p></details>
+    </div>
+  </div>
+</section>
 ''' + footer()
 
 
@@ -683,6 +738,7 @@ def page_caisses():
         pagehead("Nos caisses", "Les caisses du réseau, classées par région.") + f'''
 <section class="section section--caisses">
   <div class="wrap">
+    <p class="lead2 caisses__intro">Le RCMEC-CI compte 18 caisses de base dans plus de 10 régions de la Côte d'Ivoire. Retrouvez ci-dessous les caisses présentes sur ce site, classées par région. Pour connaître les conditions de nos services, contactez votre caisse ou le siège à Abidjan.</p>
     <div id="dir" class="rgroups">
 {groups}    </div>
     <aside class="hq">
@@ -702,6 +758,7 @@ def page_contact():
     return head("Contact | RCMEC-CI", f"Contactez le RCMEC-CI : Cocody II Plateaux, Carrefour Duncan, Abidjan. Téléphone {TEL}, e-mail {MAIL}.", "contact.html", "assets/img/artisane.jpg") + \
         pagehead("Contact") + f'''
 <section class="section">
+  <div class="wrap"><p class="lead2 contact__intro">Pour ouvrir un compte, connaître les conditions de nos services ou trouver la caisse la plus proche, contactez le siège par téléphone, par e-mail ou avec le formulaire ci-dessous.</p></div>
   <div class="wrap contact">
     <div class="ccol">
       <header class="ccol__h"><span>Nos coordonnées</span><h2>Siège, Direction Générale</h2></header>
