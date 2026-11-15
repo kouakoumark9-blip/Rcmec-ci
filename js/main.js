@@ -132,6 +132,7 @@
         var ok = (region === 'Toutes' || c.dataset.region === region) && (!term || norm(c.dataset.q).indexOf(term) > -1);
         c.hidden = !ok; if (ok) shown++;
       });
+      $$('.rgroup').forEach(function (g) { g.hidden = !$$('.cs', g).some(function (c) { return !c.hidden; }); });
       if (empty) empty.hidden = shown > 0;
     };
     $$('.chip').forEach(function (b) {

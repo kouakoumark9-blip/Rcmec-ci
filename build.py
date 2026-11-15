@@ -400,6 +400,16 @@ def page_simulateur():
 
 # ----------------------------------------------------------------- CAISSES
 def page_caisses():
+    groups = ""
+    for r, lst in CAISSES.items():
+        rows = "".join(f'<li class="cs" data-region="{e(r)}" data-q="{e((n + " " + v + " " + r).lower())}"><span class="cs__n"><i data-lucide="landmark"></i>Caisse de {e(n)}</span><span class="cs__v">{e(v)}</span></li>\n' for n, v in lst)
+        groups += f'''<section class="rgroup" data-region="{e(r)}">
+  <header class="rgroup__h"><h2>{e(r)}</h2><span>Région</span></header>
+  <div class="rgroup__cols"><span>Caisse</span><span>Localité de rattachement</span></div>
+  <ul class="rgroup__list">
+{rows}  </ul>
+</section>
+'''
     chips = '<button type="button" class="chip on" data-region="Toutes">Toutes</button>' + "".join(f'<button type="button" class="chip" data-region="{e(r)}">{e(r)}</button>' for r in CAISSES)
     return head("Nos caisses | RCMEC-CI", "Les caisses du RCMEC-CI en Côte d'Ivoire : Vallée du Bandama, Lagunes, Agnéby, Zanzan et Sud-Comoé. Siège à Cocody II Plateaux, Abidjan.", "caisses.html", "assets/img/artisane.jpg") + \
         pagehead("Nos caisses", "Dix-huit caisses de base, dans plus de 10 régions de la Côte d'Ivoire.") + f'''
@@ -409,8 +419,8 @@ def page_caisses():
       <input id="q" type="search" placeholder="Rechercher une localité" aria-label="Rechercher une localité">
       <div class="chips" id="chips">{chips}</div>
     </div>
-    <div class="dir__grid" id="dir">
-{cs_items()}    </div>
+    <div id="dir" class="rgroups">
+{groups}    </div>
     <p class="empty" id="empty" hidden>Aucune caisse trouvée.</p>
     <aside class="hq">
       <div>

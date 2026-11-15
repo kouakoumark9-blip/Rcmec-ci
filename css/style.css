@@ -484,3 +484,27 @@ input:focus,select:focus,textarea:focus{border-color:var(--green);outline:0;box-
 .logo-foot img{width:260px;max-width:100%;height:auto}
 @media(max-width:640px){.logo-foot img{width:230px}}
 .split__img--face img{object-position:50% 40%}
+
+/* ===== page Nos caisses : annuaire par région ===== */
+.rgroups{display:grid;gap:28px;margin-bottom:44px}
+.rgroup{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:0 8px 28px rgba(11,37,69,.06)}
+.rgroup[hidden]{display:none}
+.rgroup__h{display:flex;align-items:baseline;gap:14px;padding:20px 26px;background:var(--navy);color:#fff}
+.rgroup__h h2{color:#fff;font-size:24px;margin:0}
+.rgroup__h span{font:600 11px var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:#d9c28f;order:-1}
+.rgroup__cols{display:grid;grid-template-columns:1.4fr 1fr;padding:12px 26px;background:var(--tint);border-bottom:1px solid var(--line);font:600 12px var(--f-body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.rgroup__list{margin:0}
+.rgroup .cs{display:grid;grid-template-columns:1.4fr 1fr;align-items:center;gap:0;padding:16px 26px;border:0;border-bottom:1px solid var(--line);border-radius:0;background:#fff;box-shadow:none;transform:none;transition:background .2s}
+.rgroup .cs:last-child{border-bottom:0}
+.rgroup .cs:hover{background:var(--tint);transform:none;box-shadow:none}
+.cs__n{display:flex;align-items:center;gap:12px;font:600 18px var(--f-head);color:var(--navy)}
+.cs__n svg{flex:none;width:20px;height:20px;color:var(--green);stroke-width:1.7}
+.cs__v{color:var(--muted);font-size:17px}
+.dir__tools{margin-bottom:36px}
+@media(max-width:640px){
+  .rgroup__h{padding:16px 18px}.rgroup__h h2{font-size:21px}
+  .rgroup__cols{display:none}
+  .rgroup .cs{grid-template-columns:1fr;gap:2px;padding:14px 18px}
+  .cs__n{font-size:17px}
+  .cs__v{padding-left:32px;font-size:15px}
+}

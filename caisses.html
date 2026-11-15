@@ -50,26 +50,56 @@
       <input id="q" type="search" placeholder="Rechercher une localité" aria-label="Rechercher une localité">
       <div class="chips" id="chips"><button type="button" class="chip on" data-region="Toutes">Toutes</button><button type="button" class="chip" data-region="Vallée du Bandama">Vallée du Bandama</button><button type="button" class="chip" data-region="Lagunes">Lagunes</button><button type="button" class="chip" data-region="Agnéby">Agnéby</button><button type="button" class="chip" data-region="Zanzan">Zanzan</button><button type="button" class="chip" data-region="Sud-Comoé">Sud-Comoé</button></div>
     </div>
-    <div class="dir__grid" id="dir">
-<div class="cs" data-region="Vallée du Bandama" data-q="katiola katiola vallée du bandama"><strong>Caisse de Katiola</strong><span>(Katiola)</span><em>Vallée du Bandama</em></div>
-<div class="cs" data-region="Vallée du Bandama" data-q="boniérédougou dabakala vallée du bandama"><strong>Caisse de Boniérédougou</strong><span>(Dabakala)</span><em>Vallée du Bandama</em></div>
-<div class="cs" data-region="Lagunes" data-q="macory abidjan lagunes"><strong>Caisse de Macory</strong><span>(Abidjan)</span><em>Lagunes</em></div>
-<div class="cs" data-region="Lagunes" data-q="koumassi abidjan lagunes"><strong>Caisse de Koumassi</strong><span>(Abidjan)</span><em>Lagunes</em></div>
-<div class="cs" data-region="Lagunes" data-q="yopougon millionnaire abidjan lagunes"><strong>Caisse de Yopougon Millionnaire</strong><span>(Abidjan)</span><em>Lagunes</em></div>
-<div class="cs" data-region="Lagunes" data-q="bingerville abidjan lagunes"><strong>Caisse de Bingerville</strong><span>(Abidjan)</span><em>Lagunes</em></div>
-<div class="cs" data-region="Lagunes" data-q="ahouanou grand-lahou lagunes"><strong>Caisse de Ahouanou</strong><span>(Grand-Lahou)</span><em>Lagunes</em></div>
-<div class="cs" data-region="Agnéby" data-q="tiassalé agboville agnéby"><strong>Caisse de Tiassalé</strong><span>(Agboville)</span><em>Agnéby</em></div>
-<div class="cs" data-region="Agnéby" data-q="n&#x27;zianouan agboville agnéby"><strong>Caisse de N&#x27;Zianouan</strong><span>(Agboville)</span><em>Agnéby</em></div>
-<div class="cs" data-region="Agnéby" data-q="bacon bacon agnéby"><strong>Caisse de Bacon</strong><span>(Bacon)</span><em>Agnéby</em></div>
-<div class="cs" data-region="Zanzan" data-q="bondoukou bondoukou zanzan"><strong>Caisse de Bondoukou</strong><span>(Bondoukou)</span><em>Zanzan</em></div>
-<div class="cs" data-region="Zanzan" data-q="tabagne bondoukou zanzan"><strong>Caisse de Tabagne</strong><span>(Bondoukou)</span><em>Zanzan</em></div>
-<div class="cs" data-region="Zanzan" data-q="gouméré bondoukou zanzan"><strong>Caisse de Gouméré</strong><span>(Bondoukou)</span><em>Zanzan</em></div>
-<div class="cs" data-region="Zanzan" data-q="assuéfry tanda zanzan"><strong>Caisse de Assuéfry</strong><span>(Tanda)</span><em>Zanzan</em></div>
-<div class="cs" data-region="Zanzan" data-q="transua tanda zanzan"><strong>Caisse de Transua</strong><span>(Tanda)</span><em>Zanzan</em></div>
-<div class="cs" data-region="Sud-Comoé" data-q="aboisso aboisso sud-comoé"><strong>Caisse de Aboisso</strong><span>(Aboisso)</span><em>Sud-Comoé</em></div>
-<div class="cs" data-region="Sud-Comoé" data-q="affiénou aboisso sud-comoé"><strong>Caisse de Affiénou</strong><span>(Aboisso)</span><em>Sud-Comoé</em></div>
-<div class="cs" data-region="Sud-Comoé" data-q="koffikro aboisso sud-comoé"><strong>Caisse de Koffikro</strong><span>(Aboisso)</span><em>Sud-Comoé</em></div>
-<div class="cs" data-region="Sud-Comoé" data-q="n&#x27;zikro aboisso sud-comoé"><strong>Caisse de N&#x27;Zikro</strong><span>(Aboisso)</span><em>Sud-Comoé</em></div>
+    <div id="dir" class="rgroups">
+<section class="rgroup" data-region="Vallée du Bandama">
+  <header class="rgroup__h"><h2>Vallée du Bandama</h2><span>Région</span></header>
+  <div class="rgroup__cols"><span>Caisse</span><span>Localité de rattachement</span></div>
+  <ul class="rgroup__list">
+<li class="cs" data-region="Vallée du Bandama" data-q="katiola katiola vallée du bandama"><span class="cs__n"><i data-lucide="landmark"></i>Caisse de Katiola</span><span class="cs__v">Katiola</span></li>
+<li class="cs" data-region="Vallée du Bandama" data-q="boniérédougou dabakala vallée du bandama"><span class="cs__n"><i data-lucide="landmark"></i>Caisse de Boniérédougou</span><span class="cs__v">Dabakala</span></li>
+  </ul>
+</section>
+<section class="rgroup" data-region="Lagunes">
+  <header class="rgroup__h"><h2>Lagunes</h2><span>Région</span></header>
+  <div class="rgroup__cols"><span>Caisse</span><span>Localité de rattachement</span></div>
+  <ul class="rgroup__list">
+<li class="cs" data-region="Lagunes" data-q="macory abidjan lagunes"><span class="cs__n"><i data-lucide="landmark"></i>Caisse de Macory</span><span class="cs__v">Abidjan</span></li>
+<li class="cs" data-region="Lagunes" data-q="koumassi abidjan lagunes"><span class="cs__n"><i data-lucide="landmark"></i>Caisse de Koumassi</span><span class="cs__v">Abidjan</span></li>
+<li class="cs" data-region="Lagunes" data-q="yopougon millionnaire abidjan lagunes"><span class="cs__n"><i data-lucide="landmark"></i>Caisse de Yopougon Millionnaire</span><span class="cs__v">Abidjan</span></li>
+<li class="cs" data-region="Lagunes" data-q="bingerville abidjan lagunes"><span class="cs__n"><i data-lucide="landmark"></i>Caisse de Bingerville</span><span class="cs__v">Abidjan</span></li>
+<li class="cs" data-region="Lagunes" data-q="ahouanou grand-lahou lagunes"><span class="cs__n"><i data-lucide="landmark"></i>Caisse de Ahouanou</span><span class="cs__v">Grand-Lahou</span></li>
+  </ul>
+</section>
+<section class="rgroup" data-region="Agnéby">
+  <header class="rgroup__h"><h2>Agnéby</h2><span>Région</span></header>
+  <div class="rgroup__cols"><span>Caisse</span><span>Localité de rattachement</span></div>
+  <ul class="rgroup__list">
+<li class="cs" data-region="Agnéby" data-q="tiassalé agboville agnéby"><span class="cs__n"><i data-lucide="landmark"></i>Caisse de Tiassalé</span><span class="cs__v">Agboville</span></li>
+<li class="cs" data-region="Agnéby" data-q="n&#x27;zianouan agboville agnéby"><span class="cs__n"><i data-lucide="landmark"></i>Caisse de N&#x27;Zianouan</span><span class="cs__v">Agboville</span></li>
+<li class="cs" data-region="Agnéby" data-q="bacon bacon agnéby"><span class="cs__n"><i data-lucide="landmark"></i>Caisse de Bacon</span><span class="cs__v">Bacon</span></li>
+  </ul>
+</section>
+<section class="rgroup" data-region="Zanzan">
+  <header class="rgroup__h"><h2>Zanzan</h2><span>Région</span></header>
+  <div class="rgroup__cols"><span>Caisse</span><span>Localité de rattachement</span></div>
+  <ul class="rgroup__list">
+<li class="cs" data-region="Zanzan" data-q="bondoukou bondoukou zanzan"><span class="cs__n"><i data-lucide="landmark"></i>Caisse de Bondoukou</span><span class="cs__v">Bondoukou</span></li>
+<li class="cs" data-region="Zanzan" data-q="tabagne bondoukou zanzan"><span class="cs__n"><i data-lucide="landmark"></i>Caisse de Tabagne</span><span class="cs__v">Bondoukou</span></li>
+<li class="cs" data-region="Zanzan" data-q="gouméré bondoukou zanzan"><span class="cs__n"><i data-lucide="landmark"></i>Caisse de Gouméré</span><span class="cs__v">Bondoukou</span></li>
+<li class="cs" data-region="Zanzan" data-q="assuéfry tanda zanzan"><span class="cs__n"><i data-lucide="landmark"></i>Caisse de Assuéfry</span><span class="cs__v">Tanda</span></li>
+<li class="cs" data-region="Zanzan" data-q="transua tanda zanzan"><span class="cs__n"><i data-lucide="landmark"></i>Caisse de Transua</span><span class="cs__v">Tanda</span></li>
+  </ul>
+</section>
+<section class="rgroup" data-region="Sud-Comoé">
+  <header class="rgroup__h"><h2>Sud-Comoé</h2><span>Région</span></header>
+  <div class="rgroup__cols"><span>Caisse</span><span>Localité de rattachement</span></div>
+  <ul class="rgroup__list">
+<li class="cs" data-region="Sud-Comoé" data-q="aboisso aboisso sud-comoé"><span class="cs__n"><i data-lucide="landmark"></i>Caisse de Aboisso</span><span class="cs__v">Aboisso</span></li>
+<li class="cs" data-region="Sud-Comoé" data-q="affiénou aboisso sud-comoé"><span class="cs__n"><i data-lucide="landmark"></i>Caisse de Affiénou</span><span class="cs__v">Aboisso</span></li>
+<li class="cs" data-region="Sud-Comoé" data-q="koffikro aboisso sud-comoé"><span class="cs__n"><i data-lucide="landmark"></i>Caisse de Koffikro</span><span class="cs__v">Aboisso</span></li>
+<li class="cs" data-region="Sud-Comoé" data-q="n&#x27;zikro aboisso sud-comoé"><span class="cs__n"><i data-lucide="landmark"></i>Caisse de N&#x27;Zikro</span><span class="cs__v">Aboisso</span></li>
+  </ul>
+</section>
     </div>
     <p class="empty" id="empty" hidden>Aucune caisse trouvée.</p>
     <aside class="hq">
