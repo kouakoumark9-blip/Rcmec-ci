@@ -81,8 +81,8 @@
   $$('[data-count]').forEach(function (el) {
     if (io) io.observe(el); else el.textContent = (el.dataset.prefix || '') + (el.dataset.count === 'years' ? years : el.dataset.count);
   });
-  $$('.pcard,.need,.promo,.card,.panel,.fact,.tips article,.vals article,.profiles article,.arts article,.svc,.ccards article,.split__img,.simmini').forEach(function (el, i) {
-    if (io) { el.classList.add('rv'); el.style.transitionDelay = (i % 4) * 70 + 'ms'; io.observe(el); }
+  $$('.item,.row,.statement,.values li,.split__img,.split__txt,.cform,.contact__info,.sim__box').forEach(function (el, i) {
+    if (io) { el.classList.add('rv'); el.style.transitionDelay = (i % 3) * 80 + 'ms'; io.observe(el); }
   });
 
   /* ---------- Simulateur ---------- */

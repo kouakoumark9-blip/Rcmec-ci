@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nos caisses | RCMEC-CI</title>
 <meta name="description" content="Les caisses du RCMEC-CI en Côte d&#x27;Ivoire : Vallée du Bandama, Lagunes, Agnéby, Zanzan et Sud-Comoé. Siège à Cocody II Plateaux, Abidjan.">
-<meta name="theme-color" content="#0a2342">
+<meta name="theme-color" content="#0b2545">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://rcmec-ci.com/caisses.html">
 <meta property="og:type" content="website">
@@ -14,102 +14,92 @@
 <meta property="og:image" content="assets/img/artisane.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 
 </head>
 <body>
 <a class="skip" href="#main">Aller au contenu</a>
-<div class="progress" id="progress" aria-hidden="true"></div>
 <div class="util">
-  <div class="container util__in">
-    <ul class="util__info">
-      <li><i data-lucide="phone"></i><a href="tel:+2252722501285">+225 27 22 50 12 85</a></li>
-      <li class="hide-sm"><i data-lucide="mail"></i><a href="mailto:contact@rcmec.ci">contact@rcmec.ci</a></li>
-    </ul>
-    <div class="util__soc"><a href="https://web.facebook.com/p/R%C3%A9seau-des-Caisses-Mutuelles-dEpargne-et-de-Cr%C3%A9dit-de-C%C3%B4te-dIvoire-61587044378852/" target="_blank" rel="noopener" aria-label="Facebook"><i data-lucide="facebook"></i></a><a href="https://www.linkedin.com/company/rcmec-ci/" target="_blank" rel="noopener" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a><a href="https://www.instagram.com/rcmecci/" target="_blank" rel="noopener" aria-label="Instagram"><i data-lucide="instagram"></i></a></div>
+  <div class="wrap util__in">
+    <div class="util__l"><a href="tel:+2252722501285"><i data-lucide="phone"></i>+225 27 22 50 12 85</a><a class="hide-sm" href="mailto:contact@rcmec.ci"><i data-lucide="mail"></i>contact@rcmec.ci</a></div>
+    <div class="util__r"><a href="https://web.facebook.com/p/R%C3%A9seau-des-Caisses-Mutuelles-dEpargne-et-de-Cr%C3%A9dit-de-C%C3%B4te-dIvoire-61587044378852/" target="_blank" rel="noopener" aria-label="Facebook"><i data-lucide="facebook"></i></a><a href="https://www.linkedin.com/company/rcmec-ci/" target="_blank" rel="noopener" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a><a href="https://www.instagram.com/rcmecci/" target="_blank" rel="noopener" aria-label="Instagram"><i data-lucide="instagram"></i></a></div>
   </div>
 </div>
 <header class="nav" id="nav">
-  <div class="container nav__in">
-    <a class="brand" href="index.html" aria-label="RCMEC-CI, accueil"><img src="assets/logo.png" alt="RCMEC-CI" width="150" height="58"></a>
+  <div class="wrap nav__in">
+    <a class="brand" href="index.html" aria-label="RCMEC-CI, accueil"><img src="assets/logo-mark.png" alt="RCMEC-CI" width="112" height="48"></a>
     <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <nav class="menu" id="menu" aria-label="Navigation principale">
       <a href="index.html">Accueil</a><a href="a-propos.html">À propos</a><a href="services.html">Nos services</a><a href="caisses.html" class=on aria-current=page>Nos caisses</a><a href="simulateur.html">Simulateur</a><a href="contact.html">Contact</a>
-      <a class="btn menu__cta" href="contact.html">Ouvrir un compte<i data-lucide="arrow-right"></i></a>
+      <a class="btn btn--sm menu__cta" href="contact.html">Ouvrir un compte</a>
     </nav>
   </div>
 </header>
 <main id="main">
-<section class="pagehead" style="--img:url(../assets/img/artisane.jpg)">
-  <div class="container">
-    <nav class="crumbs" aria-label="Fil d'Ariane"><a href="index.html">Accueil</a><i data-lucide="chevron-right"></i><span>Nos caisses</span></nav>
+<section class="pagehead">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Fil d'Ariane"><a href="index.html">Accueil</a><span aria-hidden="true">/</span><span>Nos caisses</span></nav>
     <h1>Nos caisses</h1>
     <p>Dix-huit caisses de base, dans plus de 10 régions de la Côte d&#x27;Ivoire.</p>
   </div>
 </section>
 
-<section class="section section--tint">
-  <div class="container">
-    <div class="dir">
-      <div class="dir__tools">
-        <input id="q" type="search" placeholder="Rechercher une localité" aria-label="Rechercher une localité">
-        <div class="chips" id="chips"><button type="button" class="chip on" data-region="Toutes">Toutes</button><button type="button" class="chip" data-region="Vallée du Bandama">Vallée du Bandama</button><button type="button" class="chip" data-region="Lagunes">Lagunes</button><button type="button" class="chip" data-region="Agnéby">Agnéby</button><button type="button" class="chip" data-region="Zanzan">Zanzan</button><button type="button" class="chip" data-region="Sud-Comoé">Sud-Comoé</button></div>
-      </div>
-      <div class="dir__grid" id="dir">
-<div class="cs" data-region="Vallée du Bandama" data-q="katiola katiola vallée du bandama"><em>Région Vallée du Bandama</em><strong>Caisse de Katiola</strong><small>(Katiola)</small></div>
-<div class="cs" data-region="Vallée du Bandama" data-q="boniérédougou dabakala vallée du bandama"><em>Région Vallée du Bandama</em><strong>Caisse de Boniérédougou</strong><small>(Dabakala)</small></div>
-<div class="cs" data-region="Lagunes" data-q="macory abidjan lagunes"><em>Région Lagunes</em><strong>Caisse de Macory</strong><small>(Abidjan)</small></div>
-<div class="cs" data-region="Lagunes" data-q="koumassi abidjan lagunes"><em>Région Lagunes</em><strong>Caisse de Koumassi</strong><small>(Abidjan)</small></div>
-<div class="cs" data-region="Lagunes" data-q="yopougon millionnaire abidjan lagunes"><em>Région Lagunes</em><strong>Caisse de Yopougon Millionnaire</strong><small>(Abidjan)</small></div>
-<div class="cs" data-region="Lagunes" data-q="bingerville abidjan lagunes"><em>Région Lagunes</em><strong>Caisse de Bingerville</strong><small>(Abidjan)</small></div>
-<div class="cs" data-region="Lagunes" data-q="ahouanou grand-lahou lagunes"><em>Région Lagunes</em><strong>Caisse de Ahouanou</strong><small>(Grand-Lahou)</small></div>
-<div class="cs" data-region="Agnéby" data-q="tiassalé agboville agnéby"><em>Région Agnéby</em><strong>Caisse de Tiassalé</strong><small>(Agboville)</small></div>
-<div class="cs" data-region="Agnéby" data-q="n&#x27;zianouan agboville agnéby"><em>Région Agnéby</em><strong>Caisse de N&#x27;Zianouan</strong><small>(Agboville)</small></div>
-<div class="cs" data-region="Agnéby" data-q="bacon bacon agnéby"><em>Région Agnéby</em><strong>Caisse de Bacon</strong><small>(Bacon)</small></div>
-<div class="cs" data-region="Zanzan" data-q="bondoukou bondoukou zanzan"><em>Région Zanzan</em><strong>Caisse de Bondoukou</strong><small>(Bondoukou)</small></div>
-<div class="cs" data-region="Zanzan" data-q="tabagne bondoukou zanzan"><em>Région Zanzan</em><strong>Caisse de Tabagne</strong><small>(Bondoukou)</small></div>
-<div class="cs" data-region="Zanzan" data-q="gouméré bondoukou zanzan"><em>Région Zanzan</em><strong>Caisse de Gouméré</strong><small>(Bondoukou)</small></div>
-<div class="cs" data-region="Zanzan" data-q="assuéfry tanda zanzan"><em>Région Zanzan</em><strong>Caisse de Assuéfry</strong><small>(Tanda)</small></div>
-<div class="cs" data-region="Zanzan" data-q="transua tanda zanzan"><em>Région Zanzan</em><strong>Caisse de Transua</strong><small>(Tanda)</small></div>
-<div class="cs" data-region="Sud-Comoé" data-q="aboisso aboisso sud-comoé"><em>Région Sud-Comoé</em><strong>Caisse de Aboisso</strong><small>(Aboisso)</small></div>
-<div class="cs" data-region="Sud-Comoé" data-q="affiénou aboisso sud-comoé"><em>Région Sud-Comoé</em><strong>Caisse de Affiénou</strong><small>(Aboisso)</small></div>
-<div class="cs" data-region="Sud-Comoé" data-q="koffikro aboisso sud-comoé"><em>Région Sud-Comoé</em><strong>Caisse de Koffikro</strong><small>(Aboisso)</small></div>
-<div class="cs" data-region="Sud-Comoé" data-q="n&#x27;zikro aboisso sud-comoé"><em>Région Sud-Comoé</em><strong>Caisse de N&#x27;Zikro</strong><small>(Aboisso)</small></div>
-      </div>
-      <p class="empty" id="empty" hidden>Aucune caisse trouvée.</p>
-      <aside class="hq">
-        <div>
-          <h3><i data-lucide="building-2"></i>Siège (Direction Générale)</h3>
-          <p>Cocody II Plateaux, Carrefour Duncan, en face de l'ex-ADDR, Immeuble SICOGI, Bâtiment A, 3<sup>e</sup> étage, Abidjan<br>05 BP 822 Abidjan 05</p>
-          <p><i data-lucide="phone"></i> +225 27 22 50 12 85</p>
-        </div>
-        <a class="btn btn--ghost" target="_blank" rel="noopener" href="https://www.openstreetmap.org/search?query=Carrefour%20Duncan%20Cocody%20Abidjan">Voir sur la carte <i data-lucide="arrow-right"></i></a>
-      </aside>
+<section class="section">
+  <div class="wrap">
+    <div class="dir__tools">
+      <input id="q" type="search" placeholder="Rechercher une localité" aria-label="Rechercher une localité">
+      <div class="chips" id="chips"><button type="button" class="chip on" data-region="Toutes">Toutes</button><button type="button" class="chip" data-region="Vallée du Bandama">Vallée du Bandama</button><button type="button" class="chip" data-region="Lagunes">Lagunes</button><button type="button" class="chip" data-region="Agnéby">Agnéby</button><button type="button" class="chip" data-region="Zanzan">Zanzan</button><button type="button" class="chip" data-region="Sud-Comoé">Sud-Comoé</button></div>
     </div>
+    <div class="dir__grid" id="dir">
+<div class="cs" data-region="Vallée du Bandama" data-q="katiola katiola vallée du bandama"><strong>Caisse de Katiola</strong><span>(Katiola)</span><em>Vallée du Bandama</em></div>
+<div class="cs" data-region="Vallée du Bandama" data-q="boniérédougou dabakala vallée du bandama"><strong>Caisse de Boniérédougou</strong><span>(Dabakala)</span><em>Vallée du Bandama</em></div>
+<div class="cs" data-region="Lagunes" data-q="macory abidjan lagunes"><strong>Caisse de Macory</strong><span>(Abidjan)</span><em>Lagunes</em></div>
+<div class="cs" data-region="Lagunes" data-q="koumassi abidjan lagunes"><strong>Caisse de Koumassi</strong><span>(Abidjan)</span><em>Lagunes</em></div>
+<div class="cs" data-region="Lagunes" data-q="yopougon millionnaire abidjan lagunes"><strong>Caisse de Yopougon Millionnaire</strong><span>(Abidjan)</span><em>Lagunes</em></div>
+<div class="cs" data-region="Lagunes" data-q="bingerville abidjan lagunes"><strong>Caisse de Bingerville</strong><span>(Abidjan)</span><em>Lagunes</em></div>
+<div class="cs" data-region="Lagunes" data-q="ahouanou grand-lahou lagunes"><strong>Caisse de Ahouanou</strong><span>(Grand-Lahou)</span><em>Lagunes</em></div>
+<div class="cs" data-region="Agnéby" data-q="tiassalé agboville agnéby"><strong>Caisse de Tiassalé</strong><span>(Agboville)</span><em>Agnéby</em></div>
+<div class="cs" data-region="Agnéby" data-q="n&#x27;zianouan agboville agnéby"><strong>Caisse de N&#x27;Zianouan</strong><span>(Agboville)</span><em>Agnéby</em></div>
+<div class="cs" data-region="Agnéby" data-q="bacon bacon agnéby"><strong>Caisse de Bacon</strong><span>(Bacon)</span><em>Agnéby</em></div>
+<div class="cs" data-region="Zanzan" data-q="bondoukou bondoukou zanzan"><strong>Caisse de Bondoukou</strong><span>(Bondoukou)</span><em>Zanzan</em></div>
+<div class="cs" data-region="Zanzan" data-q="tabagne bondoukou zanzan"><strong>Caisse de Tabagne</strong><span>(Bondoukou)</span><em>Zanzan</em></div>
+<div class="cs" data-region="Zanzan" data-q="gouméré bondoukou zanzan"><strong>Caisse de Gouméré</strong><span>(Bondoukou)</span><em>Zanzan</em></div>
+<div class="cs" data-region="Zanzan" data-q="assuéfry tanda zanzan"><strong>Caisse de Assuéfry</strong><span>(Tanda)</span><em>Zanzan</em></div>
+<div class="cs" data-region="Zanzan" data-q="transua tanda zanzan"><strong>Caisse de Transua</strong><span>(Tanda)</span><em>Zanzan</em></div>
+<div class="cs" data-region="Sud-Comoé" data-q="aboisso aboisso sud-comoé"><strong>Caisse de Aboisso</strong><span>(Aboisso)</span><em>Sud-Comoé</em></div>
+<div class="cs" data-region="Sud-Comoé" data-q="affiénou aboisso sud-comoé"><strong>Caisse de Affiénou</strong><span>(Aboisso)</span><em>Sud-Comoé</em></div>
+<div class="cs" data-region="Sud-Comoé" data-q="koffikro aboisso sud-comoé"><strong>Caisse de Koffikro</strong><span>(Aboisso)</span><em>Sud-Comoé</em></div>
+<div class="cs" data-region="Sud-Comoé" data-q="n&#x27;zikro aboisso sud-comoé"><strong>Caisse de N&#x27;Zikro</strong><span>(Aboisso)</span><em>Sud-Comoé</em></div>
+    </div>
+    <p class="empty" id="empty" hidden>Aucune caisse trouvée.</p>
+    <aside class="hq">
+      <div>
+        <span class="kicker kicker--l">Siège, Direction Générale</span>
+        <p>Cocody II Plateaux, Carrefour Duncan, en face de l'ex-ADDR, Immeuble SICOGI, Bâtiment A, 3<sup>e</sup> étage, Abidjan<br>05 BP 822 Abidjan 05 · +225 27 22 50 12 85</p>
+      </div>
+      <a class="btn btn--light" target="_blank" rel="noopener" href="https://www.openstreetmap.org/search?query=Carrefour%20Duncan%20Cocody%20Abidjan">Voir sur la carte</a>
+    </aside>
   </div>
 </section>
 </main>
 <footer class="footer">
-  <div class="container footer__grid">
+  <div class="wrap footer__grid">
     <div class="footer__brand">
-      <div class="logo-card"><img src="assets/logo.png" alt="RCMEC-CI" width="150" height="58" loading="lazy"></div>
-      <p>Réseau des Caisses Mutuelles d'Épargne et de Crédit de Côte d'Ivoire. Avec vous au quotidien pour garantir votre épargne et assurer votre avenir.</p>
-      <ul class="soc">
-        <li><a href="https://web.facebook.com/p/R%C3%A9seau-des-Caisses-Mutuelles-dEpargne-et-de-Cr%C3%A9dit-de-C%C3%B4te-dIvoire-61587044378852/" target="_blank" rel="noopener" aria-label="Facebook"><i data-lucide="facebook"></i></a></li>
-        <li><a href="https://www.linkedin.com/company/rcmec-ci/" target="_blank" rel="noopener" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a></li>
-        <li><a href="https://www.instagram.com/rcmecci/" target="_blank" rel="noopener" aria-label="Instagram"><i data-lucide="instagram"></i></a></li>
-      </ul>
+      <div class="logo-card"><img src="assets/logo-mark.png" alt="RCMEC-CI" width="112" height="48" loading="lazy"></div>
+      <p>Réseau des Caisses Mutuelles d'Épargne et de Crédit de Côte d'Ivoire</p>
+      <p class="footer__slogan">Avec vous au quotidien pour garantir votre épargne et assurer votre avenir.</p>
     </div>
     <div><h4>Navigation</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="a-propos.html">À propos</a></li><li><a href="services.html">Nos services</a></li><li><a href="caisses.html">Nos caisses</a></li><li><a href="simulateur.html">Simulateur</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-    <div><h4>Siège (Direction Générale)</h4>
-      <ul class="fcontact"><li><i data-lucide="map-pin"></i><span>Cocody II Plateaux, Carrefour Duncan, en face de l'ex-ADDR, Immeuble SICOGI, Bâtiment A, 3<sup>e</sup> étage, Abidjan<br>05 BP 822 Abidjan 05</span></li>
-      <li><i data-lucide="phone"></i><a href="tel:+2252722501285">+225 27 22 50 12 85</a></li><li><i data-lucide="mail"></i><a href="mailto:contact@rcmec.ci">contact@rcmec.ci</a></li></ul>
+    <div><h4>Siège, Direction Générale</h4>
+      <address>Cocody II Plateaux, Carrefour Duncan,<br>en face de l'ex-ADDR, Immeuble SICOGI,<br>Bâtiment A, 3<sup>e</sup> étage, Abidjan<br>05 BP 822 Abidjan 05</address>
+      <p><a href="tel:+2252722501285">+225 27 22 50 12 85</a><br><a href="mailto:contact@rcmec.ci">contact@rcmec.ci</a></p>
+      <div class="soc"><a href="https://web.facebook.com/p/R%C3%A9seau-des-Caisses-Mutuelles-dEpargne-et-de-Cr%C3%A9dit-de-C%C3%B4te-dIvoire-61587044378852/" target="_blank" rel="noopener" aria-label="Facebook"><i data-lucide="facebook"></i></a><a href="https://www.linkedin.com/company/rcmec-ci/" target="_blank" rel="noopener" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a><a href="https://www.instagram.com/rcmecci/" target="_blank" rel="noopener" aria-label="Instagram"><i data-lucide="instagram"></i></a></div>
     </div>
   </div>
-  <div class="container legal">
-    <p>RCMEC-CI, Système Financier Décentralisé (SFD) agréé en Côte d'Ivoire.</p>
-    <p>Photos : <a href="https://www.pexels.com" target="_blank" rel="noopener">Pexels</a> (licence libre), illustrations à remplacer par des photos du réseau. © <span id="y"></span> RCMEC-CI. Tous droits réservés.</p>
+  <div class="wrap legal">
+    <span>© <span id="y"></span> RCMEC-CI. Système Financier Décentralisé (SFD) agréé en Côte d'Ivoire.</span>
+    <span>Photos : <a href="https://www.pexels.com" target="_blank" rel="noopener">Pexels</a>, à remplacer par des photos du réseau.</span>
   </div>
 </footer>
 <script src="js/lucide.min.js"></script>
