@@ -289,15 +289,14 @@ def page_index():
   </div>
 </section>
 
-<section class="regions">
-  <div class="wrap regions__in">
-    <div>
-      <span class="kicker kicker--l">Nos caisses</span>
-      <h2>Dans plus de 10 régions de la Côte d'Ivoire</h2>
-      <ul class="regions__list">{regions}</ul>
-    </div>
-    <a class="btn btn--light" href="caisses.html">Trouver ma caisse</a>
-  </div>
+<section class="plc">
+  <img class="plc__img" src="assets/img/placement.jpg" width="2000" height="668" loading="lazy" alt="Horloge et piles de pièces d'or devant un graphique en hausse">
+  <div class="wrap plc__wrap"><div class="plc__txt">
+    <span class="kicker kicker--l">Dépôts à terme</span>
+    <h2>Parce que vos projets méritent un partenaire solide !</h2>
+    <p>Placement d'une somme bloquée sur une durée définie avec un taux d'intérêt avantageux.</p>
+    <a class="btn" href="service-depot-a-terme.html">Découvrir les dépôts à terme</a>
+  </div></div>
 </section>
 ''' + cta("Ne soyez plus inquiets, vos projets et votre entreprise sont en de bonnes mains.") + footer()
 
@@ -460,6 +459,37 @@ SVC = {
 }
 
 
+# « Pourquoi c'est important » : explications générales du rôle de chaque produit, sans condition propre à RCMEC-CI.
+IMPORTANCE = {
+ "epargne": ["L'épargne est votre première protection contre les imprévus : maladie, panne, mauvaise saison. Elle permet d'y faire face sans s'endetter.",
+             "Placée dans une institution agréée, elle est à l'abri des risques liés à l'argent conservé chez soi (perte, vol, dépenses impulsives) et prépare vos projets à long terme."],
+ "parts-sociales": ["Dans une mutuelle, ce sont les membres qui constituent le capital de la caisse. Souscrire des parts sociales, c'est donc contribuer à la solidité de l'institution qui vous sert.",
+                    "C'est aussi ce qui fait la différence avec une banque classique : le membre n'est pas seulement un client, il est sociétaire."],
+ "depot-a-terme": ["Bloquer une somme pour une durée définie aide à la protéger des dépenses du quotidien et à la faire fructifier grâce aux intérêts.",
+                   "C'est une façon simple de préparer une échéance : un investissement, une dépense importante, un projet familial."],
+ "credit": ["Pour un commerçant, un artisan ou un entrepreneur, le crédit permet d'acheter du stock, d'équiper son atelier ou de saisir une opportunité sans attendre d'avoir économisé la somme.",
+            "Un crédit encadré, auprès d'une institution agréée, protège de l'endettement informel, souvent beaucoup plus coûteux."],
+ "credit-agricole": ["En agriculture, il faut dépenser avant de récolter : semences, entretien, main-d'œuvre. Un financement adapté permet de franchir ce cap.",
+                     "Soutenir les projets agricoles, c'est aussi soutenir les familles et l'économie des zones rurales, où le réseau est implanté en priorité."],
+ "pret-scolaire": ["L'éducation est l'un des investissements les plus importants pour une famille, et la rentrée concentre de nombreuses dépenses.",
+                   "Un prêt scolaire permet d'étaler ces dépenses pour que les enfants commencent l'année dans de bonnes conditions."],
+ "securite-etude": ["Un imprévu dans la vie d'une famille peut fragiliser la scolarité d'un enfant.",
+                    "Une assurance dédiée au parcours scolaire vise à protéger cette continuité, pour que les études ne soient pas interrompues faute de moyens."],
+ "transfert": ["Pouvoir envoyer de l'argent à un proche, ou en recevoir, rapidement, est souvent essentiel : soutien à la famille, règlement d'une urgence, échanges entre régions.",
+               "Passer par une institution agréée évite de transporter de l'argent liquide et sécurise l'opération."],
+ "micro-assurance": ["Un accident, une maladie ou un sinistre peuvent suffire à faire basculer un ménage ou une petite activité.",
+                     "La micro-assurance, par ses protections simples et accessibles, aide à absorber ces chocs sans perdre ce que l'on a construit."],
+}
+
+# « Pourquoi choisir RCMEC-CI » : uniquement des faits issus de la liste officielle des SFD agréés, du site officiel et de la fiche.
+WHY = [("shield-check", "Un réseau agréé", "SFD agréé en Côte d'Ivoire : arrêté n° 151 du 8 juin 1999 (liste des SFD agréés, Trésor)."),
+       ("calendar-check", "Depuis 1995", "Un réseau qui accompagne les populations depuis 1995."),
+       ("map-pinned", "Un réseau de proximité", "18 caisses de base, dans plus de 10 régions de la Côte d'Ivoire, en priorité en zone rurale."),
+       ("hand-coins", "Des services à moindre coût", "Des services de proximité à moindre coût, pour les populations qui n'ont pas accès aux banques classiques."),
+       ("users", "Un personnel qualifié", "Un personnel adapté et qualifié pour répondre à vos besoins, dans chacune des agences."),
+       ("lock", "Une protection contre l'endettement usurier", "Une mission : accorder des crédits à ceux qui en expriment le besoin et protéger les populations de l'endettement usurier.")]
+
+
 def surl(sid):
     return f"service-{sid}.html"
 
@@ -493,6 +523,8 @@ def page_service(i):
     rc = "".join(f"<li>{e(x)}</li>" for x in d["rcmec"])
     gen = "".join(f"<p>{e(x)}</p>" for x in d["general"])
     pour = "".join(f"<li>{e(x)}</li>" for x in d["pour"])
+    imp = "".join(f"<p>{e(x)}</p>" for x in IMPORTANCE[s["id"]])
+    why = "".join(f'<article><span class="ico"><i data-lucide="{ic}"></i></span><h3>{e(t)}</h3><p>{e(x)}</p></article>' for ic, t, x in WHY)
     quote = f'<p class="svc2__q">« {e(d["quote"])} »</p>' if d.get("quote") else ""
     others = "".join(
         f'<a class="scard scard--s" href="{surl(o["id"])}"><span class="scard__img"><img src="assets/img/{SVC[o["id"]]["img"]}" alt="" loading="lazy" style="object-position:{SVC[o["id"]]["pos"]}"></span><span class="scard__body"><h3>{o["t"]}</h3><span class="more">Lire le détail<i data-lucide="arrow-right"></i></span></span></a>'
@@ -518,7 +550,9 @@ def page_service(i):
       {quote}
       <h2 class="sdetail__h">En général</h2>
       <div class="prose">{gen}</div>
-      <p class="srcnote">Les paragraphes « Ce que propose RCMEC-CI » sont issus de la documentation du réseau (site officiel, affiches). La rubrique « En général » est une explication courante du produit, qui ne décrit aucune condition propre au RCMEC-CI.</p>
+      <h2 class="sdetail__h">Pourquoi c'est important</h2>
+      <div class="prose">{imp}</div>
+      <p class="srcnote">« Ce que propose RCMEC-CI » et « Pourquoi choisir RCMEC-CI » sont issus de la documentation du réseau (site officiel, affiches, liste officielle des SFD agréés). « En général » et « Pourquoi c'est important » sont des explications courantes, qui ne décrivent aucune condition propre au RCMEC-CI.</p>
     </div>
     <aside class="sdetail__side">
       <div class="sbox"><h3>Pour qui ?</h3><ul class="checks checks--one">{pour}</ul></div>
@@ -528,6 +562,13 @@ def page_service(i):
 </section>
 
 <section class="section section--tint">
+  <div class="wrap">
+    {head2("Pourquoi choisir RCMEC-CI", "Ce qui caractérise le réseau")}
+    <div class="why">{why}</div>
+  </div>
+</section>
+
+<section class="section">
   <div class="wrap">
     {head2("Nos services", "Découvrez aussi")}
     <div class="scards scards--s">{others}</div>

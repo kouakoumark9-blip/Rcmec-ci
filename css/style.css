@@ -669,3 +669,27 @@ input:focus,select:focus,textarea:focus{border-color:var(--green);outline:0;box-
 .shero__img img{position:absolute;inset:0;width:100%;height:100%}
 .shero__txt{padding:56px 0}
 @media(max-width:1020px){.shero__img{height:300px}}
+
+/* ===== accueil : bannière placement (remplace la section régions) ===== */
+.plc{position:relative;background:#0a0c0e;color:#fff;overflow:hidden}
+.plc__img{display:block;width:100%;height:clamp(300px,34vw,470px);object-fit:cover;object-position:68% 50%}
+.plc__wrap{position:absolute;inset:0;display:flex;align-items:center}
+.plc__txt{max-width:520px}
+.plc h2{color:#fff;font-size:clamp(26px,3.2vw,42px);margin-bottom:14px}
+.plc p{color:#d6dbe3;font-size:18px;margin-bottom:26px}
+@media(max-width:900px){
+  .plc__img{height:auto;aspect-ratio:3/1.15;object-position:70% 50%}
+  .plc__wrap{position:static;display:block;padding:34px 0 44px}
+  .plc__txt{max-width:none}
+}
+
+/* ===== Pourquoi choisir RCMEC-CI ===== */
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.why article{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px 26px;box-shadow:0 8px 28px rgba(11,37,69,.06)}
+.why .ico{display:inline-grid;place-items:center;width:54px;height:54px;border-radius:50%;background:#e7f4ec;color:var(--green);margin-bottom:14px}
+.why .ico svg{width:26px;height:26px;stroke-width:1.7}
+.why h3{font-size:21px;margin-bottom:8px}
+.why p{color:var(--muted);font-size:17px;line-height:1.65;margin:0}
+@media(max-width:1020px){.why{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.why{grid-template-columns:1fr}}
+@media(min-width:901px){.plc__txt{max-width:400px}.plc h2{font-size:clamp(26px,2.9vw,38px)}.plc p{font-size:17px}}
