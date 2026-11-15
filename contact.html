@@ -23,14 +23,11 @@
 <div class="progress" id="progress" aria-hidden="true"></div>
 <div class="util">
   <div class="container util__in">
-    <label class="who"><span>Je suis :</span>
-      <select id="who" aria-label="Je suis"><option value="" selected disabled>Mon profil</option><option value="services.html#epargne">Un particulier</option><option value="services.html#credit-agricole">Un agriculteur</option><option value="services.html#credit">Un commerçant ou artisan</option><option value="services.html#credit">Un entrepreneur ou une PME</option><option value="services.html#pret-scolaire">Un parent d'élève</option><option value="services.html#epargne">Un groupement</option></select>
-    </label>
     <ul class="util__info">
       <li><i data-lucide="phone"></i><a href="tel:+2252722501285">+225 27 22 50 12 85</a></li>
       <li class="hide-sm"><i data-lucide="mail"></i><a href="mailto:contact@rcmec.ci">contact@rcmec.ci</a></li>
-      <li class="util__soc"><a href="https://web.facebook.com/p/R%C3%A9seau-des-Caisses-Mutuelles-dEpargne-et-de-Cr%C3%A9dit-de-C%C3%B4te-dIvoire-61587044378852/" target="_blank" rel="noopener" aria-label="Facebook"><i data-lucide="facebook"></i></a><a href="https://www.linkedin.com/company/rcmec-ci/" target="_blank" rel="noopener" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a><a href="https://www.instagram.com/rcmecci/" target="_blank" rel="noopener" aria-label="Instagram"><i data-lucide="instagram"></i></a></li>
     </ul>
+    <div class="util__soc"><a href="https://web.facebook.com/p/R%C3%A9seau-des-Caisses-Mutuelles-dEpargne-et-de-Cr%C3%A9dit-de-C%C3%B4te-dIvoire-61587044378852/" target="_blank" rel="noopener" aria-label="Facebook"><i data-lucide="facebook"></i></a><a href="https://www.linkedin.com/company/rcmec-ci/" target="_blank" rel="noopener" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a><a href="https://www.instagram.com/rcmecci/" target="_blank" rel="noopener" aria-label="Instagram"><i data-lucide="instagram"></i></a></div>
   </div>
 </div>
 <header class="nav" id="nav">
@@ -38,8 +35,8 @@
     <a class="brand" href="index.html" aria-label="RCMEC-CI, accueil"><img src="assets/logo.png" alt="RCMEC-CI" width="150" height="58"></a>
     <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <nav class="menu" id="menu" aria-label="Navigation principale">
-      <a href="index.html">Accueil</a><a href="a-propos.html">À propos</a><div class="has-sub"><a href="services.html">Services<i data-lucide="chevron-down"></i></a><button class="sub-toggle" type="button" aria-label="Afficher les services" aria-expanded="false"><i data-lucide="chevron-down"></i></button><div class="mega"><div class="mega__grid"><a href="services.html#epargne"><i data-lucide="piggy-bank"></i><span><b>Épargne</b><small>Compte d&#x27;épargne sécurisé</small></span></a><a href="services.html#parts-sociales"><i data-lucide="users"></i><span><b>Parts sociales rémunérées</b><small>Devenez sociétaire</small></span></a><a href="services.html#depot-a-terme"><i data-lucide="lock"></i><span><b>Dépôts à terme (DAT)</b><small>Placement à échéance</small></span></a><a href="services.html#credit"><i data-lucide="hand-coins"></i><span><b>Crédit</b><small>Projets et fonds de roulement</small></span></a><a href="services.html#credit-agricole"><i data-lucide="sprout"></i><span><b>Crédit agricole</b><small>Cacao, anacarde, vivrier</small></span></a><a href="services.html#pret-scolaire"><i data-lucide="graduation-cap"></i><span><b>Prêt scolaire & Sécurité Étude</b><small>Rentrée et parcours scolaire</small></span></a><a href="services.html#transfert"><i data-lucide="send"></i><span><b>Transfert rapide d'argent</b><small>Envoi et réception de fonds</small></span></a><a href="services.html#micro-assurance"><i data-lucide="umbrella"></i><span><b>Micro-assurance</b><small>Protégez famille et activité</small></span></a></div><div class="mega__side"><b>Besoin d'un conseil ?</b><p>Un conseiller vous répond au +225 27 22 50 12 85.</p><a class="btn btn--sm" href="contact.html">Nous contacter<i data-lucide="arrow-right"></i></a></div></div></div><a href="caisses.html">Nos caisses</a><a href="simulateur.html">Simulateur</a><a href="conseils.html">Conseils</a><a href="contact.html" class="on" aria-current="page">Contact</a>
-      <a class="btn menu__cta" href="contact.html">Devenir membre<i data-lucide="arrow-right"></i></a>
+      <a href="index.html">Accueil</a><a href="a-propos.html">À propos</a><a href="services.html">Nos services</a><a href="caisses.html">Nos caisses</a><a href="simulateur.html">Simulateur</a><a href="contact.html" class=on aria-current=page>Contact</a>
+      <a class="btn menu__cta" href="contact.html">Ouvrir un compte<i data-lucide="arrow-right"></i></a>
     </nav>
   </div>
 </header>
@@ -48,7 +45,7 @@
   <div class="container">
     <nav class="crumbs" aria-label="Fil d'Ariane"><a href="index.html">Accueil</a><i data-lucide="chevron-right"></i><span>Contact</span></nav>
     <h1>Contact</h1>
-    <p>Devenez membre ou posez-nous vos questions.</p>
+    
   </div>
 </section>
 
@@ -56,10 +53,9 @@
   <div class="container contact">
     <div class="contact__photo">
       <img src="assets/img/artisane.jpg" alt="Commerçante souriante dans sa boutique" loading="lazy">
-      <div class="badge-circle"><b>30+</b><span>ans d'expérience</span></div>
       <div class="contact__info">
         <ul>
-          <li><i data-lucide="map-pin"></i><span>II Plateaux, carrefour Duncan, en face de l'ex-ADDR, Immeuble SICOGI, Bât. A, 3<sup>e</sup> étage, Abidjan<br>05 BP 822 Abidjan 05</span></li>
+          <li><i data-lucide="map-pin"></i><span>Cocody II Plateaux, Carrefour Duncan, en face de l'ex-ADDR, Immeuble SICOGI, Bâtiment A, 3<sup>e</sup> étage, Abidjan<br>05 BP 822 Abidjan 05</span></li>
           <li><i data-lucide="phone"></i><a href="tel:+2252722501285">+225 27 22 50 12 85</a></li>
           <li><i data-lucide="mail"></i><a href="mailto:contact@rcmec.ci">contact@rcmec.ci</a></li>
         </ul>
@@ -67,29 +63,19 @@
     </div>
     <form class="cform" id="cform">
       <span class="eyebrow">Contactez-nous</span>
-      <h2>Devenez <em>membre</em></h2>
-      <p class="lead2">Écrivez-nous ou passez à la caisse la plus proche : un conseiller vous orientera.</p>
+      <h2>Ouvrir un compte</h2>
       <div class="row">
         <input name="nom" placeholder="Nom et prénom" required autocomplete="name" aria-label="Nom et prénom">
         <input name="email" type="email" placeholder="E-mail" required autocomplete="email" aria-label="E-mail">
       </div>
       <div class="row">
-        <select name="objet" aria-label="Objet"><option>Ouvrir un compte</option><option>Demander un crédit</option><option>Placer mon épargne (DAT)</option><option>Transfert d'argent</option><option>Micro-assurance</option><option>Autre question</option></select>
-        <input name="tel" type="tel" placeholder="Téléphone / Mobile" autocomplete="tel" aria-label="Téléphone">
+        <select name="objet" aria-label="Objet"><option>Ouvrir un compte</option><option>Épargne</option><option>Crédit</option><option>Dépôt à terme</option><option>Transfert d'argent</option><option>Micro-assurance</option><option>Autre demande</option></select>
+        <input name="tel" type="tel" placeholder="Téléphone" autocomplete="tel" aria-label="Téléphone">
       </div>
       <textarea name="msg" rows="4" placeholder="Votre message" required aria-label="Message"></textarea>
-      <button class="btn" type="submit">Envoyer le message <i data-lucide="arrow-right"></i></button>
+      <button class="btn" type="submit">Envoyer <i data-lucide="arrow-right"></i></button>
       <p class="fine">Le bouton ouvre votre application e-mail avec le message pré-rempli, adressé à contact@rcmec.ci.</p>
     </form>
-  </div>
-</section>
-<section class="section">
-  <div class="container">
-    <div class="ccards">
-      <article><span class="ico"><i data-lucide="map-pin"></i></span><h3>Siège</h3><p>Cocody II Plateaux, Carrefour Duncan, Immeuble SICOGI, Bât. A, 3<sup>e</sup> étage, Abidjan</p><a class="link" target="_blank" rel="noopener" href="https://www.openstreetmap.org/search?query=Carrefour%20Duncan%20Cocody%20Abidjan">Voir sur la carte<i data-lucide="arrow-right"></i></a></article>
-      <article><span class="ico"><i data-lucide="phone"></i></span><h3>Téléphone</h3><p>+225 27 22 50 12 85</p><a class="link" href="tel:+2252722501285">Appeler<i data-lucide="arrow-right"></i></a></article>
-      <article><span class="ico"><i data-lucide="landmark"></i></span><h3>Nos caisses</h3><p>Trouvez la caisse la plus proche de chez vous.</p><a class="link" href="caisses.html">Voir les caisses<i data-lucide="arrow-right"></i></a></article>
-    </div>
   </div>
 </section>
 </main>
@@ -97,31 +83,24 @@
   <div class="container footer__grid">
     <div class="footer__brand">
       <div class="logo-card"><img src="assets/logo.png" alt="RCMEC-CI" width="150" height="58" loading="lazy"></div>
-      <p>Réseau des Caisses Mutuelles d'Épargne et de Crédit de Côte d'Ivoire. Faîtière de microfinance, SFD agréé, au service des populations depuis 1995.</p>
+      <p>Réseau des Caisses Mutuelles d'Épargne et de Crédit de Côte d'Ivoire. Avec vous au quotidien pour garantir votre épargne et assurer votre avenir.</p>
       <ul class="soc">
         <li><a href="https://web.facebook.com/p/R%C3%A9seau-des-Caisses-Mutuelles-dEpargne-et-de-Cr%C3%A9dit-de-C%C3%B4te-dIvoire-61587044378852/" target="_blank" rel="noopener" aria-label="Facebook"><i data-lucide="facebook"></i></a></li>
         <li><a href="https://www.linkedin.com/company/rcmec-ci/" target="_blank" rel="noopener" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a></li>
         <li><a href="https://www.instagram.com/rcmecci/" target="_blank" rel="noopener" aria-label="Instagram"><i data-lucide="instagram"></i></a></li>
       </ul>
     </div>
-    <div><h4>Le réseau</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="a-propos.html">À propos</a></li><li><a href="services.html">Services</a></li><li><a href="caisses.html">Nos caisses</a></li><li><a href="simulateur.html">Simulateur</a></li><li><a href="conseils.html">Conseils</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-    <div><h4>Nos services</h4><ul><li><a href="services.html#epargne">Épargne</a></li><li><a href="services.html#parts-sociales">Parts sociales rémunérées</a></li><li><a href="services.html#depot-a-terme">Dépôts à terme (DAT)</a></li><li><a href="services.html#credit">Crédit</a></li><li><a href="services.html#credit-agricole">Crédit agricole</a></li><li><a href="services.html#pret-scolaire">Prêt scolaire & Sécurité Étude</a></li><li><a href="services.html#transfert">Transfert rapide d'argent</a></li><li><a href="services.html#micro-assurance">Micro-assurance</a></li></ul></div>
-    <div><h4>Nous joindre</h4>
-      <ul class="fcontact"><li><i data-lucide="map-pin"></i><span>Cocody II Plateaux, Carrefour Duncan<br>Immeuble SICOGI, Bât. A, 3<sup>e</sup> étage<br>05 BP 822 Abidjan 05</span></li>
+    <div><h4>Navigation</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="a-propos.html">À propos</a></li><li><a href="services.html">Nos services</a></li><li><a href="caisses.html">Nos caisses</a></li><li><a href="simulateur.html">Simulateur</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div><h4>Siège (Direction Générale)</h4>
+      <ul class="fcontact"><li><i data-lucide="map-pin"></i><span>Cocody II Plateaux, Carrefour Duncan, en face de l'ex-ADDR, Immeuble SICOGI, Bâtiment A, 3<sup>e</sup> étage, Abidjan<br>05 BP 822 Abidjan 05</span></li>
       <li><i data-lucide="phone"></i><a href="tel:+2252722501285">+225 27 22 50 12 85</a></li><li><i data-lucide="mail"></i><a href="mailto:contact@rcmec.ci">contact@rcmec.ci</a></li></ul>
-      <form class="nl" id="nl"><input type="email" placeholder="Votre e-mail" required aria-label="E-mail"><button class="btn btn--sm" type="submit" aria-label="S'abonner à la newsletter"><i data-lucide="arrow-right"></i></button></form>
     </div>
   </div>
   <div class="container legal">
-    <p>RCMEC-CI est un Système Financier Décentralisé (SFD) agréé en Côte d'Ivoire. Les conditions de crédit, d'épargne et d'assurance sont communiquées en caisse. Les simulations présentées sur ce site sont indicatives.</p>
-    <p>Photos : <a href="https://www.pexels.com" target="_blank" rel="noopener">Pexels</a> (licence libre), à remplacer par des photos du réseau. © <span id="y"></span> RCMEC-CI. Tous droits réservés.</p>
+    <p>RCMEC-CI, Système Financier Décentralisé (SFD) agréé en Côte d'Ivoire.</p>
+    <p>Photos : <a href="https://www.pexels.com" target="_blank" rel="noopener">Pexels</a> (licence libre), illustrations à remplacer par des photos du réseau. © <span id="y"></span> RCMEC-CI. Tous droits réservés.</p>
   </div>
 </footer>
-<div class="dock" aria-label="Accès rapides">
-  <a href="tel:+2252722501285" aria-label="Appeler"><i data-lucide="phone"></i><span>Appeler</span></a>
-  <a href="caisses.html" aria-label="Trouver une caisse"><i data-lucide="map-pin"></i><span>Nos caisses</span></a>
-  <a href="https://web.facebook.com/p/R%C3%A9seau-des-Caisses-Mutuelles-dEpargne-et-de-Cr%C3%A9dit-de-C%C3%B4te-dIvoire-61587044378852/" target="_blank" rel="noopener" aria-label="Facebook"><i data-lucide="facebook"></i><span>Facebook</span></a>
-</div>
 <script src="js/lucide.min.js"></script>
 <script src="js/main.js"></script>
 </body>

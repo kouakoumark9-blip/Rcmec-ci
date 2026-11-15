@@ -81,7 +81,7 @@
   $$('[data-count]').forEach(function (el) {
     if (io) io.observe(el); else el.textContent = (el.dataset.prefix || '') + (el.dataset.count === 'years' ? years : el.dataset.count);
   });
-  $$('.pcard,.need,.promo,.card,.tips article,.vals article,.profiles article,.arts article,.svc,.ccards article,.split__img,.simmini').forEach(function (el, i) {
+  $$('.pcard,.need,.promo,.card,.panel,.fact,.tips article,.vals article,.profiles article,.arts article,.svc,.ccards article,.split__img,.simmini').forEach(function (el, i) {
     if (io) { el.classList.add('rv'); el.style.transitionDelay = (i % 4) * 70 + 'ms'; io.observe(el); }
   });
 
@@ -94,7 +94,9 @@
   };
   if ($('#c-amount')) {
     var calcCredit = function () {
-      var P = +$('#c-amount').value, n = +$('#c-dur').value, r = (+$('#c-rate').value || 0) / 100 / 12;
+      var P = +$('#c-amount').value, n = +$('#c-dur').value, rate = parseFloat($('#c-rate').value);
+      if (isNaN(rate) || rate < 0) { ['#c-month', '#c-cost', '#c-total'].forEach(function (k) { $(k).textContent = '-'; }); return; }
+      var r = rate / 100 / 12;
       var m = r === 0 ? P / n : P * r / (1 - Math.pow(1 + r, -n));
       $('#c-month').textContent = fmt(m); $('#c-cost').textContent = fmt(m * n - P); $('#c-total').textContent = fmt(m * n);
     };
@@ -104,8 +106,9 @@
   }
   if ($('#e-amount')) {
     var calcSave = function () {
-      var P = +$('#e-amount').value, n = +$('#e-dur').value, r = (+$('#e-rate').value || 0) / 100;
-      var i = P * r * n / 12;
+      var P = +$('#e-amount').value, n = +$('#e-dur').value, rate = parseFloat($('#e-rate').value);
+      if (isNaN(rate) || rate < 0) { $('#e-int').textContent = '-'; $('#e-total').textContent = '-'; return; }
+      var i = P * (rate / 100) * n / 12;
       $('#e-int').textContent = fmt(i); $('#e-total').textContent = fmt(P + i);
     };
     ['#e-amount', '#e-dur', '#e-rate'].forEach(function (s) { on($(s), 'input', calcSave); });

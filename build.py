@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Génère les pages HTML statiques du site RCMEC-CI. Usage : python3 build.py"""
+"""Génère les pages HTML statiques du site RCMEC-CI. Usage : python3 build.py
+
+RÈGLE : tout texte vient des informations fournies par RCMEC-CI (fiche, affiches,
+site officiel rcmec-ci.com). Aucune information inventée.
+"""
 import html, json, os
 
 OUT = os.path.dirname(os.path.abspath(__file__))
@@ -8,50 +12,37 @@ LI = "https://www.linkedin.com/company/rcmec-ci/"
 IG = "https://www.instagram.com/rcmecci/"
 TEL, TEL_HREF, MAIL = "+225 27 22 50 12 85", "+2252722501285", "contact@rcmec.ci"
 OSM = "https://www.openstreetmap.org/search?query=Carrefour%20Duncan%20Cocody%20Abidjan"
+SLOGAN = "Avec vous au quotidien pour garantir votre épargne et assurer votre avenir"
+FULL = "Réseau des Caisses Mutuelles d'Épargne et de Crédit de Côte d'Ivoire"
 
-NAV = [("index.html", "Accueil"), ("a-propos.html", "À propos"), ("services.html", "Services"),
-       ("caisses.html", "Nos caisses"), ("simulateur.html", "Simulateur"), ("conseils.html", "Conseils"),
-       ("contact.html", "Contact")]
+NAV = [("index.html", "Accueil"), ("a-propos.html", "À propos"), ("services.html", "Nos services"),
+       ("caisses.html", "Nos caisses"), ("simulateur.html", "Simulateur"), ("contact.html", "Contact")]
 
-PROFILES = [("services.html#epargne", "Un particulier"), ("services.html#credit-agricole", "Un agriculteur"),
-            ("services.html#credit", "Un commerçant ou artisan"), ("services.html#credit", "Un entrepreneur ou une PME"),
-            ("services.html#pret-scolaire", "Un parent d'élève"), ("services.html#epargne", "Un groupement")]
-
+# Services : libellés et descriptions issus de la fiche, des affiches et du site officiel.
 SERVICES = [
- dict(id="epargne", ico="piggy-bank", t="Épargne", s="Compte d'épargne sécurisé", img="femme-sourire.jpg",
-      d="Un compte d'épargne sécurisé pour les particuliers, les groupements et les professionnels.",
-      p="Votre épargne est collectée et gérée par votre caisse mutualiste, au plus près de chez vous. C'est le socle de notre mission : sécuriser l'argent de nos adhérents et le faire travailler pour la communauté.",
-      l=["Dépôts et retraits en caisse", "Ouverture simple pour particuliers, groupements et professionnels", "Épargne collectée et gérée par le réseau mutualiste"]),
- dict(id="parts-sociales", ico="users", t="Parts sociales rémunérées", s="Devenez sociétaire", img="reunion-equipe.jpg",
-      d="Devenez membre sociétaire en participant au capital de votre caisse.",
-      p="En souscrivant des parts sociales, vous devenez co-propriétaire de la mutuelle. Vous participez à ses décisions et à son développement, et vos parts sont rémunérées.",
-      l=["Participation au capital de la caisse", "Statut de membre sociétaire", "Rémunération des parts selon les décisions de la caisse"]),
- dict(id="depot-a-terme", ico="lock", t="Dépôts à terme (DAT)", s="Placement à échéance", img="equipe-bureau.jpg",
-      d="Placez une somme bloquée sur une durée définie pour la faire fructifier.",
-      p="Le dépôt à terme convient lorsque vous savez que vous n'aurez pas besoin d'une somme pendant une période donnée. Vous la placez, elle est bloquée pour la durée convenue, et elle vous rapporte un intérêt fixé à l'avance.",
-      l=["Somme bloquée sur une durée choisie", "Taux d'intérêt convenu à l'avance", "Idéal pour un projet à échéance connue"]),
- dict(id="credit", ico="hand-coins", t="Crédit", s="Projets et fonds de roulement", img="vendeur-banane.jpg",
-      d="Financement de projets, fonds de roulement et activités génératrices de revenus, à moindre coût.",
-      p="Commerçants, artisans, entrepreneurs : nos crédits financent votre activité sans vous exposer à l'endettement usurier. Chaque dossier est étudié en caisse, au plus près de votre réalité.",
-      l=["Fonds de roulement pour commerçants et artisans", "Équipement et projets d'entreprise", "Étude du dossier en caisse, remboursement adapté à votre activité"]),
- dict(id="credit-agricole", ico="sprout", t="Crédit agricole", s="Cacao, anacarde, vivrier", img="agricultrice.jpg", new=True,
-      d="Votre projet agricole mérite un coup de pouce : cacao, anacarde, cultures vivrières.",
-      p="Nos caisses sont implantées en priorité en zone rurale. Elles connaissent les cycles de vos cultures et vous accompagnent pour financer vos campagnes agricoles.",
-      l=["Intrants, semences et petit matériel", "Échéances pensées pour vos cycles de récolte", "Accompagnement par des caisses implantées en zone rurale"]),
- dict(id="pret-scolaire", ico="graduation-cap", t="Prêt scolaire & Sécurité Étude", s="Rentrée et parcours scolaire", img="ecoliere.jpg", new=True,
-      d="Préparez la rentrée sereinement et protégez chaque parcours scolaire.",
-      p="Deux solutions pour les familles : le prêt scolaire, « la clé d'une rentrée réussie », et RCMEC Sécurité Étude, « l'assurance qui protège chaque parcours scolaire ».",
-      l=["Prêt scolaire pour financer la rentrée", "RCMEC Sécurité Étude : assurance du parcours scolaire", "Conditions détaillées communiquées en caisse"]),
- dict(id="transfert", ico="send", t="Transfert rapide d'argent", s="Envoi et réception de fonds", img="client-telephone.jpg",
-      d="Envoyez et recevez des fonds en toute sécurité sur l'ensemble du territoire.",
-      p="Avec des caisses réparties dans plus de 10 régions, vous pouvez envoyer de l'argent à vos proches ou en recevoir, de manière sécurisée, sans quitter votre région.",
-      l=["Envoi et réception de fonds", "Réseau de caisses dans plus de 10 régions", "Opération sécurisée en caisse"]),
- dict(id="micro-assurance", ico="umbrella", t="Micro-assurance", s="Protégez famille et activité",
-      d="Des solutions d'assurance accessibles pour protéger votre famille et votre activité.",
-      p="La micro-assurance protège les ménages et les petites activités contre les aléas de la vie. Elle est pensée pour les populations rurales, semi-urbaines et urbaines.",
-      l=["Protection adaptée à votre situation", "Garanties liées à vos produits d'épargne et de crédit", "Détail des garanties communiqué en caisse"]),
+ dict(id="epargne", ico="piggy-bank", t="Épargne", img="femme-sourire.jpg",
+      d="Comptes d'épargne sécurisés pour les particuliers, les groupements et les professionnels.",
+      q="Avec nous, votre épargne est en sécurité."),
+ dict(id="parts-sociales", ico="users", t="Parts sociales rémunérées", img="reunion-equipe.jpg",
+      d="Participation au capital mutualiste permettant de devenir membre sociétaire et de percevoir des dividendes."),
+ dict(id="depot-a-terme", ico="lock", t="Dépôts à terme (DAT)", img="equipe-bureau.jpg",
+      d="Placement d'une somme bloquée sur une durée définie avec un taux d'intérêt avantageux."),
+ dict(id="credit", ico="hand-coins", t="Crédit", img="vendeur-banane.jpg",
+      d="Financement de projets, fonds de roulement, crédits agricoles et soutien aux activités génératrices de revenus. Des crédits adaptés, à moindre coût."),
+ dict(id="credit-agricole", ico="sprout", t="Crédit agricole", img="agricultrice.jpg",
+      d="Votre projet agricole mérite un coup de pouce !", q="La référence en milieu rural et défavorisé."),
+ dict(id="pret-scolaire", ico="graduation-cap", t="Prêt scolaire", img="ecoliere.jpg",
+      d="Le prêt scolaire : la clé d'une rentrée réussie."),
+ dict(id="securite-etude", ico="shield-check", t="RCMEC Sécurité Étude",
+      d="RCMEC Sécurité Étude : l'assurance qui protège chaque parcours scolaire."),
+ dict(id="transfert", ico="send", t="Transfert rapide d'argent", img="client-telephone.jpg",
+      d="Envoi et réception de fonds sécurisés sur l'ensemble du territoire.", q="Transférez votre argent en toute sécurité."),
+ dict(id="micro-assurance", ico="umbrella", t="Micro-assurance",
+      d="Des solutions de micro-assurance."),
 ]
+HOME_SERVICES = ["epargne", "parts-sociales", "depot-a-terme", "credit", "transfert", "micro-assurance"]
 
+# Caisses : liste telle que publiée sur la page « Nos caisses » du site officiel (localité entre parenthèses).
 CAISSES = {
  "Vallée du Bandama": [("Katiola", "Katiola"), ("Boniérédougou", "Dabakala")],
  "Lagunes": [("Macory", "Abidjan"), ("Koumassi", "Abidjan"), ("Yopougon Millionnaire", "Abidjan"), ("Bingerville", "Abidjan"), ("Ahouanou", "Grand-Lahou")],
@@ -60,24 +51,13 @@ CAISSES = {
  "Sud-Comoé": [("Aboisso", "Aboisso"), ("Affiénou", "Aboisso"), ("Koffikro", "Aboisso"), ("N'Zikro", "Aboisso")],
 }
 
-TIPS = [
- ("Épargne", "Pourquoi épargner régulièrement, même de petites sommes ?",
-  "Mettre de côté un montant fixe à chaque rentrée d'argent crée un matelas de sécurité pour les imprévus et finance vos projets sans dette. L'important n'est pas la somme, c'est la régularité."),
- ("Crédit", "Bien préparer sa demande de crédit",
-  "Définissez le montant réellement utile, la durée et votre capacité de remboursement mensuelle. Une mensualité raisonnable évite les difficultés. Utilisez notre simulateur pour vous faire une idée avant de rencontrer votre caisse."),
- ("Prévention", "Pourquoi éviter l'endettement usurier ?",
-  "Les prêts informels à taux excessifs fragilisent les ménages et les activités. Un crédit mutualiste, encadré et transparent, protège votre entreprise et votre famille."),
- ("Placement", "Comprendre le dépôt à terme",
-  "Un dépôt à terme bloque une somme pendant une durée convenue, en échange d'un intérêt fixé à l'avance. Il convient pour une somme dont vous n'avez pas besoin à court terme."),
- ("Mutualité", "Devenir sociétaire : le rôle des parts sociales",
-  "En souscrivant des parts sociales, vous devenez membre de la mutuelle. Vous participez à sa vie et à ses décisions, et vos parts sont rémunérées."),
- ("Sécurité", "Sécuriser vos transferts d'argent",
-  "Effectuez vos envois et retraits en caisse, vérifiez toujours le nom du bénéficiaire et ne communiquez jamais vos informations personnelles à des inconnus, par téléphone ou par message."),
-]
-
 
 def e(s):
     return html.escape(s, quote=True)
+
+
+def svc(sid):
+    return next(s for s in SERVICES if s["id"] == sid)
 
 
 def head(title, desc, page, og_img="assets/img/femme-sourire.jpg", ld=False):
@@ -85,28 +65,13 @@ def head(title, desc, page, og_img="assets/img/femme-sourire.jpg", ld=False):
     if ld:
         ldjson = '<script type="application/ld+json">' + json.dumps({
             "@context": "https://schema.org", "@type": "FinancialService",
-            "name": "RCMEC-CI - Réseau des Caisses Mutuelles d'Épargne et de Crédit de Côte d'Ivoire",
-            "url": "https://rcmec-ci.com/", "logo": "assets/logo.png", "foundingDate": "1995",
-            "slogan": "Avec vous au quotidien pour garantir votre épargne et assurer votre avenir",
-            "telephone": TEL, "email": MAIL, "areaServed": "CI", "sameAs": [LI, IG],
+            "name": "RCMEC-CI - " + FULL, "url": "https://rcmec-ci.com/", "logo": "assets/logo.png",
+            "foundingDate": "1995", "slogan": SLOGAN, "telephone": TEL, "email": MAIL, "areaServed": "CI", "sameAs": [LI, IG],
             "address": {"@type": "PostalAddress",
                         "streetAddress": "Cocody II Plateaux, Carrefour Duncan, en face de l'ex-ADDR, Immeuble SICOGI, Bât. A, 3e étage",
                         "postOfficeBoxNumber": "05 BP 822", "addressLocality": "Abidjan", "addressCountry": "CI"}},
             ensure_ascii=False) + "</script>"
-    opts = "".join(f'<option value="{h}">{l}</option>' for h, l in PROFILES)
-    mega = "".join(
-        f'<a href="services.html#{s["id"]}"><i data-lucide="{s["ico"]}"></i><span><b>{s["t"]}</b><small>{e(s["s"])}</small></span></a>'
-        for s in SERVICES)
-    items = ""
-    for h, l in NAV:
-        cls = ' class="on" aria-current="page"' if h == page else ""
-        if h == "services.html":
-            items += (f'<div class="has-sub"><a href="{h}"{cls}>{l}<i data-lucide="chevron-down"></i></a>'
-                      f'<button class="sub-toggle" type="button" aria-label="Afficher les services" aria-expanded="false"><i data-lucide="chevron-down"></i></button>'
-                      f'<div class="mega"><div class="mega__grid">{mega}</div>'
-                      f'<div class="mega__side"><b>Besoin d\'un conseil ?</b><p>Un conseiller vous répond au {TEL}.</p><a class="btn btn--sm" href="contact.html">Nous contacter<i data-lucide="arrow-right"></i></a></div></div></div>')
-        else:
-            items += f'<a href="{h}"{cls}>{l}</a>'
+    items = "".join(f'<a href="{h}"{" class=on aria-current=page" if h == page else ""}>{l}</a>' for h, l in NAV)
     return f'''<!doctype html>
 <html lang="fr">
 <head>
@@ -132,14 +97,11 @@ def head(title, desc, page, og_img="assets/img/femme-sourire.jpg", ld=False):
 <div class="progress" id="progress" aria-hidden="true"></div>
 <div class="util">
   <div class="container util__in">
-    <label class="who"><span>Je suis :</span>
-      <select id="who" aria-label="Je suis"><option value="" selected disabled>Mon profil</option>{opts}</select>
-    </label>
     <ul class="util__info">
       <li><i data-lucide="phone"></i><a href="tel:{TEL_HREF}">{TEL}</a></li>
       <li class="hide-sm"><i data-lucide="mail"></i><a href="mailto:{MAIL}">{MAIL}</a></li>
-      <li class="util__soc"><a href="{FB}" target="_blank" rel="noopener" aria-label="Facebook"><i data-lucide="facebook"></i></a><a href="{LI}" target="_blank" rel="noopener" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a><a href="{IG}" target="_blank" rel="noopener" aria-label="Instagram"><i data-lucide="instagram"></i></a></li>
     </ul>
+    <div class="util__soc"><a href="{FB}" target="_blank" rel="noopener" aria-label="Facebook"><i data-lucide="facebook"></i></a><a href="{LI}" target="_blank" rel="noopener" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a><a href="{IG}" target="_blank" rel="noopener" aria-label="Instagram"><i data-lucide="instagram"></i></a></div>
   </div>
 </div>
 <header class="nav" id="nav">
@@ -148,7 +110,7 @@ def head(title, desc, page, og_img="assets/img/femme-sourire.jpg", ld=False):
     <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <nav class="menu" id="menu" aria-label="Navigation principale">
       {items}
-      <a class="btn menu__cta" href="contact.html">Devenir membre<i data-lucide="arrow-right"></i></a>
+      <a class="btn menu__cta" href="contact.html">Ouvrir un compte<i data-lucide="arrow-right"></i></a>
     </nav>
   </div>
 </header>
@@ -158,37 +120,29 @@ def head(title, desc, page, og_img="assets/img/femme-sourire.jpg", ld=False):
 
 def footer():
     links = "".join(f'<li><a href="{h}">{l}</a></li>' for h, l in NAV)
-    svcs = "".join(f'<li><a href="services.html#{s["id"]}">{s["t"]}</a></li>' for s in SERVICES)
     return f'''</main>
 <footer class="footer">
   <div class="container footer__grid">
     <div class="footer__brand">
       <div class="logo-card"><img src="assets/logo.png" alt="RCMEC-CI" width="150" height="58" loading="lazy"></div>
-      <p>Réseau des Caisses Mutuelles d'Épargne et de Crédit de Côte d'Ivoire. Faîtière de microfinance, SFD agréé, au service des populations depuis 1995.</p>
+      <p>{FULL}. {SLOGAN}.</p>
       <ul class="soc">
         <li><a href="{FB}" target="_blank" rel="noopener" aria-label="Facebook"><i data-lucide="facebook"></i></a></li>
         <li><a href="{LI}" target="_blank" rel="noopener" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a></li>
         <li><a href="{IG}" target="_blank" rel="noopener" aria-label="Instagram"><i data-lucide="instagram"></i></a></li>
       </ul>
     </div>
-    <div><h4>Le réseau</h4><ul>{links}</ul></div>
-    <div><h4>Nos services</h4><ul>{svcs}</ul></div>
-    <div><h4>Nous joindre</h4>
-      <ul class="fcontact"><li><i data-lucide="map-pin"></i><span>Cocody II Plateaux, Carrefour Duncan<br>Immeuble SICOGI, Bât. A, 3<sup>e</sup> étage<br>05 BP 822 Abidjan 05</span></li>
+    <div><h4>Navigation</h4><ul>{links}</ul></div>
+    <div><h4>Siège (Direction Générale)</h4>
+      <ul class="fcontact"><li><i data-lucide="map-pin"></i><span>Cocody II Plateaux, Carrefour Duncan, en face de l'ex-ADDR, Immeuble SICOGI, Bâtiment A, 3<sup>e</sup> étage, Abidjan<br>05 BP 822 Abidjan 05</span></li>
       <li><i data-lucide="phone"></i><a href="tel:{TEL_HREF}">{TEL}</a></li><li><i data-lucide="mail"></i><a href="mailto:{MAIL}">{MAIL}</a></li></ul>
-      <form class="nl" id="nl"><input type="email" placeholder="Votre e-mail" required aria-label="E-mail"><button class="btn btn--sm" type="submit" aria-label="S'abonner à la newsletter"><i data-lucide="arrow-right"></i></button></form>
     </div>
   </div>
   <div class="container legal">
-    <p>RCMEC-CI est un Système Financier Décentralisé (SFD) agréé en Côte d'Ivoire. Les conditions de crédit, d'épargne et d'assurance sont communiquées en caisse. Les simulations présentées sur ce site sont indicatives.</p>
-    <p>Photos : <a href="https://www.pexels.com" target="_blank" rel="noopener">Pexels</a> (licence libre), à remplacer par des photos du réseau. © <span id="y"></span> RCMEC-CI. Tous droits réservés.</p>
+    <p>RCMEC-CI, Système Financier Décentralisé (SFD) agréé en Côte d'Ivoire.</p>
+    <p>Photos : <a href="https://www.pexels.com" target="_blank" rel="noopener">Pexels</a> (licence libre), illustrations à remplacer par des photos du réseau. © <span id="y"></span> RCMEC-CI. Tous droits réservés.</p>
   </div>
 </footer>
-<div class="dock" aria-label="Accès rapides">
-  <a href="tel:{TEL_HREF}" aria-label="Appeler"><i data-lucide="phone"></i><span>Appeler</span></a>
-  <a href="caisses.html" aria-label="Trouver une caisse"><i data-lucide="map-pin"></i><span>Nos caisses</span></a>
-  <a href="{FB}" target="_blank" rel="noopener" aria-label="Facebook"><i data-lucide="facebook"></i><span>Facebook</span></a>
-</div>
 <script src="js/lucide.min.js"></script>
 <script src="js/main.js"></script>
 </body>
@@ -201,27 +155,26 @@ def pagehead(title, sub, img):
   <div class="container">
     <nav class="crumbs" aria-label="Fil d'Ariane"><a href="index.html">Accueil</a><i data-lucide="chevron-right"></i><span>{e(title)}</span></nav>
     <h1>{e(title)}</h1>
-    <p>{e(sub)}</p>
+    {f"<p>{e(sub)}</p>" if sub else ""}
   </div>
 </section>
 '''
 
 
-def ctaband(title="Pas encore membre ?", txt="Faites le premier pas : rendez-vous dans la caisse la plus proche ou écrivez-nous, un conseiller vous accompagne."):
+def ctaband():
     return f'''<section class="ctaband">
   <div class="container ctaband__in">
-    <div><h2>{e(title)}</h2><p>{e(txt)}</p></div>
-    <a class="btn btn--ghost" href="contact.html">Devenir membre <i data-lucide="arrow-right"></i></a>
+    <div><h2>Ouvrir un compte chez RCMEC-CI</h2></div>
+    <a class="btn btn--ghost" href="contact.html">Ouvrir un compte <i data-lucide="arrow-right"></i></a>
   </div>
 </section>
 '''
 
 
 def svc_card(s):
-    badge = '<span class="badge">À la une</span>' if s.get("new") else ""
-    return f'''<a class="card" href="services.html#{s["id"]}">{badge}
+    return f'''<a class="card" href="services.html#{s["id"]}">
   <span class="card__ico"><i data-lucide="{s["ico"]}"></i></span><h3>{s["t"]}</h3>
-  <p>{e(s["d"])}</p><span class="card__go">Découvrir<i data-lucide="arrow-right"></i></span></a>'''
+  <p>{e(s["d"])}</p><span class="card__go">En savoir plus<i data-lucide="arrow-right"></i></span></a>'''
 
 
 def sec_head(label, title, sub="", center=True):
@@ -234,158 +187,52 @@ def write(name, content):
     print("écrit", name)
 
 
-def band(img="equipe-bureau.jpg"):
-    return f'''<section class="band" aria-label="Chiffres clés" style="--img:url(../assets/img/{img})">
-  <div class="container band__grid">
-    <div class="bstat"><i data-lucide="calendar-check"></i><b data-count="1995" data-plain="1">0</b><span>Année de création</span></div>
-    <div class="bstat"><i data-lucide="landmark"></i><b data-count="18">0</b><span>Caisses de base</span></div>
-    <div class="bstat"><i data-lucide="award"></i><b data-count="years" data-prefix="+">0</b><span>Ans d'expertise</span></div>
-    <div class="bstat"><i data-lucide="map-pin"></i><b data-count="10" data-prefix="+">0</b><span>Régions couvertes</span></div>
-  </div>
-</section>
-'''
-
-
 def cs_items():
     items = ""
     for r, lst in CAISSES.items():
         for n, v in lst:
-            items += f'<div class="cs" data-region="{e(r)}" data-q="{e((n + " " + v + " " + r).lower())}"><em>Région {e(r)}</em><strong>Caisse de {e(n)}</strong><small>Rattachée à {e(v)}</small></div>\n'
+            items += f'<div class="cs" data-region="{e(r)}" data-q="{e((n + " " + v + " " + r).lower())}"><em>Région {e(r)}</em><strong>Caisse de {e(n)}</strong><small>({e(v)})</small></div>\n'
     return items
 
 
 # ---------------------------------------------------------------- ACCUEIL
 def page_index():
-    slides = [
-        ("femme-sourire.jpg", "50% 22%", "Microfinance de proximité depuis 1995", "Votre épargne en <em>sécurité</em>, vos projets en marche",
-         "Avec vous au quotidien pour garantir votre épargne et assurer votre avenir.", "contact.html", "Devenir membre", "services.html", "Nos services", True),
-        ("agricultrice.jpg", "50% 40%", "Agriculture & ruralité", "Votre projet agricole mérite un <em>coup de pouce</em>",
-         "Cacao, anacarde, cultures vivrières : des crédits adaptés aux cycles de vos exploitations.", "simulateur.html", "Simuler mon crédit", "services.html#credit-agricole", "Crédit agricole", False),
-        ("artisane.jpg", "50% 30%", "Commerçants, artisans, PME", "Un financement accessible, <em>sans endettement usurier</em>",
-         "Fonds de roulement, équipement, activités génératrices de revenus : nous vous accompagnons.", "services.html#credit", "Voir nos crédits", "caisses.html", "Trouver ma caisse", False),
-    ]
-    sl = ""
-    for img, pos, chip, h, lead, h1, c1, h2, c2, first in slides:
-        tag, close = ("h1", "h1") if first else ("h2 class=h1", "h2")
-        sl += f'''    <article class="slide{' is-active' if first else ''}" style="--img:url(../assets/img/{img});--pos:{pos}">
-      <div class="container slide__in"><p class="chip-label">{e(chip)}</p><{tag}>{h}</{close}><p class="lead">{e(lead)}</p>
-      <div class="btns"><a class="btn" href="{h1}">{c1} <i data-lucide="arrow-right"></i></a><a class="btn btn--ghost" href="{h2}">{c2}</a></div></div>
-    </article>
-'''
-    needs = [("user-plus", "Devenir membre", "contact.html"), ("piggy-bank", "Épargner sereinement", "services.html#epargne"),
-             ("hand-coins", "Demander un crédit", "services.html#credit"), ("sprout", "Financer mon projet agricole", "services.html#credit-agricole"),
-             ("send", "Envoyer de l'argent", "services.html#transfert")]
-    nd = "".join(f'<a class="need" href="{h}"><span><i data-lucide="{i}"></i></span><b>{t}</b></a>' for i, t, h in needs)
-    tips = "".join(f'<article><span class="tag">{t}</span><h3>{e(h)}</h3><p>{e(p[:130].rsplit(" ", 1)[0])}…</p><a class="link" href="conseils.html#c{i}">Lire la suite<i data-lucide="arrow-right"></i></a></article>' for i, (t, h, p) in enumerate(TIPS[:3], 1))
-    opts = '<option value="Toutes">Toutes les régions</option>' + "".join(f'<option>{e(r)}</option>' for r in CAISSES)
-    return head("RCMEC-CI | Microfinance de proximité en Côte d'Ivoire",
-                "RCMEC-CI, faîtière de microfinance (SFD) créée en 1995 : épargne, crédit, dépôts à terme, transfert d'argent et micro-assurance partout en Côte d'Ivoire.",
+    cards = "".join(svc_card(svc(i)) for i in HOME_SERVICES)
+    return head("RCMEC-CI | " + FULL, f"RCMEC-CI, faîtière de microfinance (SFD agréé) créée en 1995. 18 caisses dans plus de 10 régions de Côte d'Ivoire. {SLOGAN}.",
                 "index.html", ld=True) + f'''
-<section class="hero">
-  <div class="slides" id="slides">
-{sl}    <button class="arrow arrow--l" id="prev" aria-label="Précédent"><i data-lucide="chevron-left"></i></button>
-    <button class="arrow arrow--r" id="next" aria-label="Suivant"><i data-lucide="chevron-right"></i></button>
-    <div class="dots" id="dots" role="tablist" aria-label="Diapositives"></div>
+<section class="hero hero--one" style="--img:url(../assets/img/femme-sourire.jpg)">
+  <div class="container hero__in">
+    <p class="chip-label">{FULL}</p>
+    <h1>{SLOGAN}</h1>
+    <p class="lead">Faîtière de microfinance, Système Financier Décentralisé (SFD) agréé en Côte d'Ivoire, depuis 1995.</p>
+    <div class="btns"><a class="btn" href="contact.html">Ouvrir un compte <i data-lucide="arrow-right"></i></a><a class="btn btn--ghost" href="services.html">Nos services</a></div>
   </div>
 </section>
 
 <section class="needs">
-  <div class="container"><div class="needs__box">
-    <h2>Quel est votre besoin ?</h2>
-    <div class="needs__grid">{nd}</div>
+  <div class="container"><div class="needs__box facts">
+    <div class="fact"><b data-count="1995" data-plain="1">0</b><span>Année de création</span></div>
+    <div class="fact"><b data-count="18">0</b><span>Caisses de base</span></div>
+    <div class="fact"><b data-count="10" data-prefix="+">0</b><span>Régions</span></div>
   </div></div>
 </section>
 
 <section class="section">
   <div class="container">
-    {sec_head("Pourquoi RCMEC-CI", "Une microfinance <em>de confiance</em>, près de chez vous")}
-    <div class="pillars">
-      <article class="pcard"><span class="ico"><i data-lucide="shield-check"></i></span><h3>Sécurité de l'épargne</h3><p>Des dépôts collectés et gérés par un réseau mutualiste, au plus près de vous.</p></article>
-      <article class="pcard"><span class="ico"><i data-lucide="hand-coins"></i></span><h3>Crédits accessibles</h3><p>Des financements adaptés à vos activités, à moindre coût, sans intermédiaire usurier.</p></article>
-      <article class="pcard"><span class="ico"><i data-lucide="map-pinned"></i></span><h3>Réseau de proximité</h3><p>18 caisses de base dans plus de 10 régions, en zone rurale, semi-urbaine et urbaine.</p></article>
-    </div>
+    {sec_head("Nos services", "Nos produits et services")}
+    <div class="cards cards--3">{cards}</div>
+    <p class="center"><a class="btn btn--outline" href="services.html">Tous nos services <i data-lucide="arrow-right"></i></a></p>
   </div>
 </section>
 
 <section class="section section--tint">
-  <div class="container promos">
-    <a class="promo" href="services.html#credit-agricole" style="--img:url(../assets/img/agricultrice.jpg)">
-      <span class="promo__tag">À la une</span><h3>Votre projet agricole mérite un coup de pouce</h3><p>Crédit agricole pour vos campagnes : cacao, anacarde, cultures vivrières.</p><span class="link link--w">Découvrir le crédit agricole<i data-lucide="arrow-right"></i></span>
-    </a>
-    <a class="promo promo--g" href="services.html#pret-scolaire" style="--img:url(../assets/img/ecoliere.jpg)">
-      <span class="promo__tag">À la une</span><h3>Prêt scolaire : la clé d'une rentrée réussie</h3><p>Avec RCMEC Sécurité Étude, protégez chaque parcours scolaire.</p><span class="link link--w">Découvrir le prêt scolaire<i data-lucide="arrow-right"></i></span>
-    </a>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    {sec_head("Nos services", "Des produits simples, <em>pensés pour votre activité</em>", "Épargne, crédit, assurance, transfert : tout ce qu'il faut pour épargner, investir et protéger.")}
-    <div class="cards cards--4">{"".join(svc_card(s) for s in SERVICES[:4])}</div>
-    <p class="center"><a class="btn btn--outline" href="services.html">Voir tous les services <i data-lucide="arrow-right"></i></a></p>
-  </div>
-</section>
-
-<section class="simband" id="simulateur-rapide">
-  <div class="container simband__in">
-    <div class="simband__txt">
-      <span class="eyebrow eyebrow--w">Simulateur</span>
-      <h2>Simulez votre crédit en quelques secondes</h2>
-      <p>Estimation en FCFA de votre mensualité. Taux d'exemple modifiable : les conditions réelles sont fixées par votre caisse.</p>
-      <a class="btn btn--ghost" href="simulateur.html">Simulateur complet <i data-lucide="arrow-right"></i></a>
-    </div>
-    <form class="simmini" id="sim-credit" onsubmit="return false">
-      <label>Montant <output id="c-amount-o"></output><input id="c-amount" type="range" min="50000" max="10000000" step="50000" value="1000000"></label>
-      <label>Durée <output id="c-dur-o"></output><input id="c-dur" type="range" min="3" max="48" step="1" value="12"></label>
-      <label>Taux annuel d'exemple (%)<input id="c-rate" type="number" min="0" max="60" step="0.5" value="12"></label>
-      <div class="result"><div><span>Mensualité estimée</span><b id="c-month">-</b></div><div><span>Coût du crédit</span><b id="c-cost">-</b></div><div><span>Total à rembourser</span><b id="c-total">-</b></div></div>
-    </form>
-  </div>
-</section>
-
-<section class="section">
   <div class="container split">
-    <div class="split__img"><img src="assets/img/reunion-equipe.jpg" alt="Réunion d'équipe" loading="lazy"><div class="badge-circle"><b>30+</b><span>ans d'expérience</span></div></div>
+    <div class="split__img"><img src="assets/img/vendeur-banane.jpg" alt="Commerçant sur un marché" loading="lazy"></div>
     <div>
-      {sec_head("À propos de nous", "Libérez le potentiel de <em>votre activité</em>", center=False)}
-      <p class="muted">Le RCMEC-CI est une faîtière de microfinance, Système Financier Décentralisé (SFD) agréé. Depuis 1995, nous offrons des services financiers durables aux populations qui n'ont pas accès aux produits des banques classiques.</p>
-      <ul class="ticks"><li>Collecter et gérer l'épargne de nos adhérents</li><li>Accorder des crédits adaptés à ceux qui en expriment le besoin</li><li>Protéger les populations contre l'endettement usurier</li></ul>
+      {sec_head("À propos de nous", "Une faîtière de microfinance", center=False)}
+      <p class="muted">Nous représentons une solution durable d'offre de services financiers aux populations qui n'ont pas accès aux produits des banques classiques. Depuis 1995, nous accompagnons ces populations vulnérables dans la réalisation de leurs projets et le développement de leur environnement.</p>
       <a class="btn" href="a-propos.html">En savoir plus <i data-lucide="arrow-right"></i></a>
     </div>
-  </div>
-</section>
-''' + band() + f'''
-<section class="section section--tint" id="trouver-caisse">
-  <div class="container finder">
-    <div class="finder__side">
-      {sec_head("Nos caisses", "Trouver <em>ma caisse</em>", center=False)}
-      <p class="muted">Choisissez votre région pour voir les caisses disponibles, ou consultez l'annuaire complet.</p>
-      <label class="selbox"><span>Région</span><select id="region-sel" aria-label="Région">{opts}</select></label>
-      <div class="hqmini"><i data-lucide="building-2"></i><div><b>Direction Générale</b><span>Cocody II Plateaux, Carrefour Duncan, Immeuble SICOGI, Bât. A, 3<sup>e</sup> étage, Abidjan</span></div></div>
-      <a class="btn btn--outline" href="caisses.html">Annuaire complet <i data-lucide="arrow-right"></i></a>
-    </div>
-    <div class="finder__list dir__grid" id="dir">
-{cs_items()}    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container split split--rev">
-    <div class="split__img"><img src="assets/img/client-telephone.jpg" alt="Client souriant avec son téléphone" loading="lazy"></div>
-    <div>
-      {sec_head("Transfert d'argent", "Envoyez et recevez de l'argent <em>en toute sécurité</em>", center=False)}
-      <p class="muted">Avec des caisses réparties dans plus de 10 régions, vos proches ne sont jamais loin.</p>
-      <ul class="ticks"><li>Envoi et réception de fonds</li><li>Réseau de caisses dans plus de 10 régions</li><li>Opération sécurisée en caisse</li></ul>
-      <a class="btn" href="services.html#transfert">Découvrir le transfert d'argent <i data-lucide="arrow-right"></i></a>
-    </div>
-  </div>
-</section>
-
-<section class="section section--tint">
-  <div class="container">
-    {sec_head("Conseils financiers", "Bien gérer son argent, <em>pas à pas</em>")}
-    <div class="tips">{tips}</div>
-    <p class="center"><a class="btn btn--outline" href="conseils.html">Tous les conseils <i data-lucide="arrow-right"></i></a></p>
   </div>
 </section>
 ''' + ctaband() + footer()
@@ -393,42 +240,47 @@ def page_index():
 
 # --------------------------------------------------------------- A PROPOS
 def page_apropos():
-    profiles = [("sprout", "Agriculteurs", "Financez semences, intrants et matériel, avec des échéances alignées sur vos récoltes."),
-                ("store", "Commerçants", "Renforcez votre fonds de roulement et sécurisez vos recettes au quotidien."),
-                ("hammer", "Artisans", "Équipez votre atelier et développez votre clientèle sans prêteurs informels."),
-                ("briefcase", "Entrepreneurs & PME", "Un partenaire local pour épargner, investir et faire grandir votre entreprise.")]
-    pr = "".join(f'<article><span class="ico"><i data-lucide="{i}"></i></span><h3>{e(t)}</h3><p>{e(d)}</p></article>' for i, t, d in profiles)
-    return head("À propos | RCMEC-CI", "Depuis 1995, le RCMEC-CI accompagne les populations exclues des banques classiques : mission, valeurs et réseau de 18 caisses de base.", "a-propos.html") + \
-        pagehead("À propos de nous", "Une faîtière de microfinance ancrée dans le quotidien des Ivoiriens.", "reunion-equipe.jpg") + f'''
+    vals = [("handshake", "Solidarité"), ("home", "Proximité"), ("landmark", "Inclusion financière"), ("trending-up", "Autonomisation économique"), ("shield-check", "Confiance")]
+    vh = "".join(f'<article><span class="ico"><i data-lucide="{i}"></i></span><h3>{t}</h3></article>' for i, t in vals)
+    cible = ["Populations vulnérables ou exclues des banques classiques", "Opérateurs économiques du secteur informel", "Agriculteurs", "Commerçants", "Artisans", "Entrepreneurs et PME"]
+    ch = "".join(f"<li>{e(c)}</li>" for c in cible)
+    return head("À propos | RCMEC-CI", f"Le RCMEC-CI est une faîtière de microfinance créée en 1995, qui compte dix-huit caisses de base implantées en priorité en zone rurale.", "a-propos.html") + \
+        pagehead("À propos de nous", "", "reunion-equipe.jpg") + f'''
 <section class="section">
   <div class="container split">
-    <div class="split__img"><img src="assets/img/vendeur-banane.jpg" alt="Commerçant sur un marché" loading="lazy"><div class="badge-circle"><b>30+</b><span>ans d'expérience</span></div></div>
+    <div class="split__img"><img src="assets/img/vendeur-banane.jpg" alt="Commerçant sur un marché" loading="lazy"><div class="badge-circle"><b>30+</b><span>ans d'existence</span></div></div>
     <div>
-      {sec_head("Notre histoire", "Plus de <em>30 ans</em> aux côtés des populations", center=False)}
-      <p class="muted">Le Réseau des Caisses Mutuelles d'Épargne et de Crédit de Côte d'Ivoire (RCMEC-CI) est une faîtière de microfinance, Système Financier Décentralisé (SFD) agréé en Côte d'Ivoire. Il compte dix-huit caisses de base, implantées en priorité en zone rurale, mais aussi en zone semi-urbaine et urbaine.</p>
-      <p class="muted">Depuis 1995, nous sommes installés auprès des populations les plus vulnérables, ce qui leur permet de profiter de services de proximité à moindre coût.</p>
-    </div>
-  </div>
-</section>
-''' + band() + f'''
-<section class="section">
-  <div class="container">
-    {sec_head("Mission & valeurs", "Ce qui nous <em>guide</em>", "Collecter et gérer l'épargne de nos adhérents, accorder des crédits à ceux qui en expriment le besoin, et protéger les populations contre l'endettement usurier.")}
-    <div class="vals">
-      <article><span class="ico"><i data-lucide="handshake"></i></span><h3>Solidarité</h3><p>Une mutuelle, c'est d'abord des membres qui avancent ensemble.</p></article>
-      <article><span class="ico"><i data-lucide="home"></i></span><h3>Proximité</h3><p>Des caisses implantées là où vivent et travaillent nos adhérents.</p></article>
-      <article><span class="ico"><i data-lucide="trending-up"></i></span><h3>Performance</h3><p>Un service de qualité, assuré par un personnel formé.</p></article>
+      {sec_head("Qui sommes-nous", "Réseau des Caisses Mutuelles d'Épargne et de Crédit de Côte d'Ivoire", center=False)}
+      <p class="muted">Le RCMEC-CI est une faîtière de microfinance qui compte à ce jour dix-huit caisses. Nous sommes implantés en priorité en zone rurale. Nous représentons une solution durable d'offre de services financiers aux populations qui n'ont pas accès aux produits des banques classiques.</p>
+      <p class="muted">Depuis 1995, nous accompagnons ces populations vulnérables dans la réalisation de leurs projets et le développement de leur environnement.</p>
     </div>
   </div>
 </section>
 
 <section class="section section--tint">
-  <div class="container">
-    {sec_head("Notre objectif", "Une finance <em>accessible à tous</em>", "Offrir des services financiers de qualité, accessibles à tous les opérateurs économiques, et particulièrement à ceux du monde rural, semi-urbain, urbain et du secteur informel.")}
-    <div class="profiles">{pr}</div>
+  <div class="container duo">
+    <article class="panel"><span class="eyebrow">Notre mission</span><p>Collecter et gérer l'épargne de nos adhérents, accorder des crédits adaptés à moindre coût à ceux qui en expriment le besoin, et protéger les populations contre l'endettement usurier.</p></article>
+    <article class="panel"><span class="eyebrow">Notre objectif</span><p>Apporter aux caisses un appui adéquat afin de leur permettre d'offrir des services financiers de qualité, accessibles à tous les opérateurs économiques en général et particulièrement à ceux du monde rural, semi-urbain, urbain et du secteur informel.</p></article>
   </div>
 </section>
-''' + ctaband("Rejoignez le réseau", "Devenez membre d'une caisse RCMEC-CI près de chez vous.") + footer()
+
+<section class="section">
+  <div class="container">
+    {sec_head("Nos valeurs", "Ce qui nous guide")}
+    <div class="vals vals--5">{vh}</div>
+  </div>
+</section>
+
+<section class="section section--tint">
+  <div class="container split split--rev">
+    <div class="split__img"><img src="assets/img/artisane.jpg" alt="Commerçante dans sa boutique" loading="lazy"></div>
+    <div>
+      {sec_head("À qui nous nous adressons", "Notre cible", center=False)}
+      <ul class="ticks">{ch}</ul>
+    </div>
+  </div>
+</section>
+''' + ctaband() + footer()
 
 
 # -------------------------------------------------------------- SERVICES
@@ -436,57 +288,52 @@ def page_services():
     cards = "".join(svc_card(s) for s in SERVICES)
     rows = ""
     for i, s in enumerate(SERVICES):
-        lis = "".join(f"<li>{e(x)}</li>" for x in s["l"])
         media = f'<img src="assets/img/{s["img"]}" alt="{e(s["t"])}" loading="lazy">' if s.get("img") else f'<div class="svc__panel"><i data-lucide="{s["ico"]}"></i></div>'
+        quote = f'<p class="quote">« {e(s["q"])} »</p>' if s.get("q") else ""
         rows += f'''<article class="svc{' svc--rev' if i % 2 else ''}" id="{s["id"]}">
   <div class="svc__media">{media}</div>
-  <div class="svc__body"><span class="eyebrow">{e("À la une" if s.get("new") else "Service")}</span><h2>{s["t"]}</h2><p class="muted">{e(s["p"])}</p><ul class="ticks">{lis}</ul>
-  <a class="btn" href="contact.html">Contacter une caisse <i data-lucide="arrow-right"></i></a></div>
+  <div class="svc__body"><h2>{s["t"]}</h2><p class="muted">{e(s["d"])}</p>{quote}
+  <a class="btn" href="contact.html">Nous contacter <i data-lucide="arrow-right"></i></a></div>
 </article>
 '''
-    return head("Nos services | RCMEC-CI", "Épargne, parts sociales, dépôts à terme, crédit, crédit agricole, prêt scolaire, transfert d'argent et micro-assurance : découvrez les services du RCMEC-CI.", "services.html", "assets/img/vendeur-banane.jpg") + \
-        pagehead("Nos services", "Des produits simples, pensés pour votre activité.", "vendeur-banane.jpg") + f'''
+    return head("Nos services | RCMEC-CI", "Épargne, parts sociales rémunérées, dépôts à terme, crédit, crédit agricole, prêt scolaire, RCMEC Sécurité Étude, transfert rapide d'argent et micro-assurance.", "services.html", "assets/img/vendeur-banane.jpg") + \
+        pagehead("Nos services", "", "vendeur-banane.jpg") + f'''
 <section class="section section--tint">
-  <div class="container"><div class="cards cards--4">{cards}</div></div>
+  <div class="container"><div class="cards cards--3">{cards}</div></div>
 </section>
 <section class="section"><div class="container svclist">{rows}</div></section>
-''' + ctaband("Un projet à financer ?", "Simulez votre crédit, puis rencontrez votre caisse.") + footer()
+''' + ctaband() + footer()
 
 
 # ------------------------------------------------------------- SIMULATEUR
 def page_simulateur():
-    return head("Simulateur de crédit et d'épargne | RCMEC-CI", "Estimez en FCFA la mensualité d'un crédit ou les intérêts d'un dépôt à terme avec le simulateur du RCMEC-CI.", "simulateur.html") + \
-        pagehead("Simulateur", "Estimez votre crédit ou votre épargne en FCFA.", "femme-sourire.jpg") + f'''
+    return head("Simulateur | RCMEC-CI", "Estimez en FCFA la mensualité d'un crédit ou les intérêts d'un dépôt, avec le taux communiqué par votre caisse.", "simulateur.html") + \
+        pagehead("Simulateur", "Estimation en FCFA : montant, durée et taux.", "femme-sourire.jpg") + f'''
 <section class="section">
   <div class="container sim">
     <div class="sim__intro">
-      {sec_head("Outil interactif", "Simulez votre <em>crédit</em> ou votre épargne", center=False)}
-      <p class="muted">Obtenez en quelques secondes une estimation en FCFA. Les taux ci-contre sont des <strong>exemples modifiables</strong> : les conditions réelles sont fixées par votre caisse lors de l'étude de votre dossier.</p>
+      {sec_head("Outil d'estimation", "Simulez un crédit ou une épargne", center=False)}
+      <p class="muted">Renseignez le montant, la durée et <strong>le taux communiqué par votre caisse</strong>. Ce simulateur ne contient aucun taux officiel : il calcule simplement une estimation à partir des valeurs que vous saisissez.</p>
       <p class="note"><i data-lucide="info"></i>Estimation indicative, sans valeur contractuelle.</p>
-      <ol class="steps">
-        <li><b>1</b><span>Choisissez le montant et la durée.</span></li>
-        <li><b>2</b><span>Ajustez le taux d'exemple si besoin.</span></li>
-        <li><b>3</b><span>Rendez-vous en caisse pour une offre personnalisée.</span></li>
-      </ol>
     </div>
     <div class="sim__box">
       <div class="tabs" role="tablist">
         <button class="tab is-on" role="tab" data-tab="credit" aria-selected="true">Crédit</button>
-        <button class="tab" role="tab" data-tab="epargne" aria-selected="false">Épargne (DAT)</button>
+        <button class="tab" role="tab" data-tab="epargne" aria-selected="false">Dépôt à terme</button>
       </div>
       <form id="sim-credit" class="simform" data-panel="credit" onsubmit="return false">
-        <label>Montant souhaité <output id="c-amount-o"></output><input id="c-amount" type="range" min="50000" max="10000000" step="50000" value="1000000"></label>
+        <label>Montant <output id="c-amount-o"></output><input id="c-amount" type="range" min="50000" max="10000000" step="50000" value="1000000"></label>
         <label>Durée <output id="c-dur-o"></output><input id="c-dur" type="range" min="3" max="48" step="1" value="12"></label>
-        <label>Taux annuel d'exemple (%)<input id="c-rate" type="number" min="0" max="60" step="0.5" value="12"></label>
+        <label>Taux annuel (%)<input id="c-rate" type="number" min="0" max="100" step="0.1" placeholder="Taux communiqué par votre caisse"></label>
         <div class="result"><div><span>Mensualité estimée</span><b id="c-month">-</b></div><div><span>Coût total du crédit</span><b id="c-cost">-</b></div><div><span>Total à rembourser</span><b id="c-total">-</b></div></div>
       </form>
       <form id="sim-epargne" class="simform" data-panel="epargne" onsubmit="return false" hidden>
         <label>Somme placée <output id="e-amount-o"></output><input id="e-amount" type="range" min="50000" max="20000000" step="50000" value="1000000"></label>
         <label>Durée du placement <output id="e-dur-o"></output><input id="e-dur" type="range" min="3" max="60" step="1" value="12"></label>
-        <label>Taux annuel d'exemple (%)<input id="e-rate" type="number" min="0" max="30" step="0.25" value="4"></label>
+        <label>Taux annuel (%)<input id="e-rate" type="number" min="0" max="100" step="0.1" placeholder="Taux communiqué par votre caisse"></label>
         <div class="result"><div><span>Intérêts estimés</span><b id="e-int">-</b></div><div><span>Capital au terme</span><b id="e-total">-</b></div></div>
       </form>
-      <a class="btn block" href="contact.html">Faire ma demande en caisse <i data-lucide="arrow-right"></i></a>
+      <a class="btn block" href="contact.html">Nous contacter <i data-lucide="arrow-right"></i></a>
     </div>
   </div>
 </section>
@@ -496,23 +343,21 @@ def page_simulateur():
 # ----------------------------------------------------------------- CAISSES
 def page_caisses():
     chips = '<button type="button" class="chip on" data-region="Toutes">Toutes</button>' + "".join(f'<button type="button" class="chip" data-region="{e(r)}">{e(r)}</button>' for r in CAISSES)
-    total = sum(len(v) for v in CAISSES.values())
-    return head("Nos caisses | RCMEC-CI", "Trouvez la caisse RCMEC-CI la plus proche : Lagunes, Zanzan, Sud-Comoé, Agnéby, Vallée du Bandama. Siège à Cocody II Plateaux, Abidjan.", "caisses.html", "assets/img/artisane.jpg") + \
-        pagehead("Nos caisses", "Une caisse près de chez vous, dans plus de 10 régions.", "artisane.jpg") + f'''
+    return head("Nos caisses | RCMEC-CI", "Les caisses du RCMEC-CI en Côte d'Ivoire : Vallée du Bandama, Lagunes, Agnéby, Zanzan et Sud-Comoé. Siège à Cocody II Plateaux, Abidjan.", "caisses.html", "assets/img/artisane.jpg") + \
+        pagehead("Nos caisses", "Dix-huit caisses de base, dans plus de 10 régions de la Côte d'Ivoire.", "artisane.jpg") + f'''
 <section class="section section--tint">
   <div class="container">
-    {sec_head("Annuaire", "Une caisse <em>près de chez vous</em>", f"{total} localités listées par région. Filtrez ou recherchez la vôtre.")}
     <div class="dir">
       <div class="dir__tools">
-        <input id="q" type="search" placeholder="Rechercher une localité (ex. Aboisso)" aria-label="Rechercher une localité">
+        <input id="q" type="search" placeholder="Rechercher une localité" aria-label="Rechercher une localité">
         <div class="chips" id="chips">{chips}</div>
       </div>
       <div class="dir__grid" id="dir">
 {cs_items()}      </div>
-      <p class="empty" id="empty" hidden>Aucune caisse trouvée. Contactez-nous pour être orienté.</p>
+      <p class="empty" id="empty" hidden>Aucune caisse trouvée.</p>
       <aside class="hq">
         <div>
-          <h3><i data-lucide="building-2"></i>Direction Générale</h3>
+          <h3><i data-lucide="building-2"></i>Siège (Direction Générale)</h3>
           <p>Cocody II Plateaux, Carrefour Duncan, en face de l'ex-ADDR, Immeuble SICOGI, Bâtiment A, 3<sup>e</sup> étage, Abidjan<br>05 BP 822 Abidjan 05</p>
           <p><i data-lucide="phone"></i> {TEL}</p>
         </div>
@@ -524,29 +369,17 @@ def page_caisses():
 ''' + footer()
 
 
-# ----------------------------------------------------------------- CONSEILS
-def page_conseils():
-    arts = "".join(f'<article id="c{i}"><span class="tag">{t}</span><h2>{e(h)}</h2><p>{e(p)}</p></article>' for i, (t, h, p) in enumerate(TIPS, 1))
-    return head("Conseils financiers | RCMEC-CI", "Épargne, crédit, dépôt à terme, parts sociales, prévention de l'endettement usurier : les conseils du RCMEC-CI pour bien gérer votre argent.", "conseils.html", "assets/img/cacao-seche.jpg") + \
-        pagehead("Conseils financiers", "Bien gérer son argent, pas à pas.", "cacao-seche.jpg") + f'''
-<section class="section">
-  <div class="container"><div class="arts">{arts}</div></div>
-</section>
-''' + ctaband("Une question sur votre budget ?", "Votre conseiller en caisse vous répond.") + footer()
-
-
 # ----------------------------------------------------------------- CONTACT
 def page_contact():
-    return head("Contact | RCMEC-CI", "Contactez le RCMEC-CI : Cocody II Plateaux, Carrefour Duncan, Abidjan. Téléphone +225 27 22 50 12 85, e-mail contact@rcmec.ci.", "contact.html", "assets/img/artisane.jpg") + \
-        pagehead("Contact", "Devenez membre ou posez-nous vos questions.", "artisane.jpg") + f'''
+    return head("Contact | RCMEC-CI", f"Contactez le RCMEC-CI : Cocody II Plateaux, Carrefour Duncan, Abidjan. Téléphone {TEL}, e-mail {MAIL}.", "contact.html", "assets/img/artisane.jpg") + \
+        pagehead("Contact", "", "artisane.jpg") + f'''
 <section class="section section--tint">
   <div class="container contact">
     <div class="contact__photo">
       <img src="assets/img/artisane.jpg" alt="Commerçante souriante dans sa boutique" loading="lazy">
-      <div class="badge-circle"><b>30+</b><span>ans d'expérience</span></div>
       <div class="contact__info">
         <ul>
-          <li><i data-lucide="map-pin"></i><span>II Plateaux, carrefour Duncan, en face de l'ex-ADDR, Immeuble SICOGI, Bât. A, 3<sup>e</sup> étage, Abidjan<br>05 BP 822 Abidjan 05</span></li>
+          <li><i data-lucide="map-pin"></i><span>Cocody II Plateaux, Carrefour Duncan, en face de l'ex-ADDR, Immeuble SICOGI, Bâtiment A, 3<sup>e</sup> étage, Abidjan<br>05 BP 822 Abidjan 05</span></li>
           <li><i data-lucide="phone"></i><a href="tel:{TEL_HREF}">{TEL}</a></li>
           <li><i data-lucide="mail"></i><a href="mailto:{MAIL}">{MAIL}</a></li>
         </ul>
@@ -554,29 +387,19 @@ def page_contact():
     </div>
     <form class="cform" id="cform">
       <span class="eyebrow">Contactez-nous</span>
-      <h2>Devenez <em>membre</em></h2>
-      <p class="lead2">Écrivez-nous ou passez à la caisse la plus proche : un conseiller vous orientera.</p>
+      <h2>Ouvrir un compte</h2>
       <div class="row">
         <input name="nom" placeholder="Nom et prénom" required autocomplete="name" aria-label="Nom et prénom">
         <input name="email" type="email" placeholder="E-mail" required autocomplete="email" aria-label="E-mail">
       </div>
       <div class="row">
-        <select name="objet" aria-label="Objet"><option>Ouvrir un compte</option><option>Demander un crédit</option><option>Placer mon épargne (DAT)</option><option>Transfert d'argent</option><option>Micro-assurance</option><option>Autre question</option></select>
-        <input name="tel" type="tel" placeholder="Téléphone / Mobile" autocomplete="tel" aria-label="Téléphone">
+        <select name="objet" aria-label="Objet"><option>Ouvrir un compte</option><option>Épargne</option><option>Crédit</option><option>Dépôt à terme</option><option>Transfert d'argent</option><option>Micro-assurance</option><option>Autre demande</option></select>
+        <input name="tel" type="tel" placeholder="Téléphone" autocomplete="tel" aria-label="Téléphone">
       </div>
       <textarea name="msg" rows="4" placeholder="Votre message" required aria-label="Message"></textarea>
-      <button class="btn" type="submit">Envoyer le message <i data-lucide="arrow-right"></i></button>
+      <button class="btn" type="submit">Envoyer <i data-lucide="arrow-right"></i></button>
       <p class="fine">Le bouton ouvre votre application e-mail avec le message pré-rempli, adressé à {MAIL}.</p>
     </form>
-  </div>
-</section>
-<section class="section">
-  <div class="container">
-    <div class="ccards">
-      <article><span class="ico"><i data-lucide="map-pin"></i></span><h3>Siège</h3><p>Cocody II Plateaux, Carrefour Duncan, Immeuble SICOGI, Bât. A, 3<sup>e</sup> étage, Abidjan</p><a class="link" target="_blank" rel="noopener" href="{OSM}">Voir sur la carte<i data-lucide="arrow-right"></i></a></article>
-      <article><span class="ico"><i data-lucide="phone"></i></span><h3>Téléphone</h3><p>{TEL}</p><a class="link" href="tel:{TEL_HREF}">Appeler<i data-lucide="arrow-right"></i></a></article>
-      <article><span class="ico"><i data-lucide="landmark"></i></span><h3>Nos caisses</h3><p>Trouvez la caisse la plus proche de chez vous.</p><a class="link" href="caisses.html">Voir les caisses<i data-lucide="arrow-right"></i></a></article>
-    </div>
   </div>
 </section>
 ''' + footer()
@@ -588,7 +411,6 @@ if __name__ == "__main__":
     write("services.html", page_services())
     write("simulateur.html", page_simulateur())
     write("caisses.html", page_caisses())
-    write("conseils.html", page_conseils())
     write("contact.html", page_contact())
     urls = ["" if h == "index.html" else h for h, _ in NAV]
     with open(os.path.join(OUT, "sitemap.xml"), "w", encoding="utf-8") as f:
