@@ -217,13 +217,8 @@ def page_index():
   </div></div>
 </section>
 
-<section class="quick">
-  <div class="wrap quick__grid">
-    <a href="contact.html"><i data-lucide="user-plus"></i><span>Ouvrir un compte</span></a>
-    <a href="services.html"><i data-lucide="layout-grid"></i><span>Nos services</span></a>
-    <a href="caisses.html"><i data-lucide="map-pin"></i><span>Trouver une caisse</span></a>
-    <a href="simulateur.html"><i data-lucide="calculator"></i><span>Simulateur</span></a>
-  </div>
+<section class="picsec">
+  <div class="wrap"><div class="pics">{pics}</div></div>
 </section>
 
 <section class="statsband" aria-label="Chiffres clés">
@@ -244,15 +239,7 @@ def page_index():
 
 <section class="section">
   <div class="wrap">
-    {head2("Nos services", "Épargne, crédit, assurance et transfert d'argent", ("services.html", "Tous nos services"))}
-    <p class="intro">Parce que vos projets méritent un partenaire solide !</p>
-    <div class="pics">{pics}</div>
-  </div>
-</section>
-
-<section class="section section--tint">
-  <div class="wrap">
-    {head2("Et aussi", "Autres produits et services")}
+    {head2("Nos services", "Autres produits et services", ("services.html", "Tous nos services"))}
     <div class="tiles">{tiles}</div>
   </div>
 </section>

@@ -459,3 +459,17 @@ input:focus,select:focus,textarea:focus{border-color:var(--green);outline:0;box-
   .nav.scrolled .brand img{height:64px}
   .nav.scrolled .nav__in{padding:8px 0}
 }
+
+/* quatre cartes (épargne, crédit, assurance, transfert) sous la photo, à la place de la barre d'accès rapide */
+.picsec{position:relative;z-index:5;margin-top:-96px;padding-bottom:64px}
+.picsec .pic-card{box-shadow:0 18px 44px rgba(11,37,69,.14);border-color:transparent}
+.statsband{margin-top:0;padding:56px 0}
+@media(max-width:640px){
+  .picsec{margin-top:-70px;padding-bottom:40px}
+  .picsec .pics{grid-template-columns:1fr 1fr;gap:12px}
+  .picsec .pic-card{padding:18px 10px 16px}
+  .picsec .pic-card img{height:84px;margin-bottom:8px}
+  .picsec .pic-card h3{font-size:17px}
+  .picsec .pic-card p{font-size:13.5px;line-height:1.45;margin-bottom:8px}
+  .picsec .pic-card .more{font-size:13px}
+}
