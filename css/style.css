@@ -385,3 +385,6 @@ input:focus,select:focus,textarea:focus{border-color:var(--green);outline:0;box-
 /* photo de la commerçante : cadrage carré, visage et étal visibles */
 .split__img img{height:auto}
 .split__img--sq img{aspect-ratio:1/1;object-fit:cover;object-position:50% 34%}
+
+/* image du conseiller : photo entière visible (logo + conseiller), format 3:2 */
+.split__img--wide img{aspect-ratio:3/2;object-fit:cover;object-position:50% 50%}
