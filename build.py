@@ -303,12 +303,25 @@ def page_index():
 
 
 # --------------------------------------------------------------- A PROPOS
+SOURCE_TRESOR = "Source : Direction Générale du Trésor et de la Comptabilité Publique, liste des Systèmes Financiers Décentralisés agréés au 19 août 2024 ; site officiel du RCMEC-CI."
+
+
 def page_apropos():
     vals = [("handshake", "Solidarité"), ("home", "Proximité"), ("landmark", "Inclusion financière"), ("trending-up", "Autonomisation économique"), ("shield-check", "Confiance")]
     vh = "".join(f'<li><i data-lucide="{i}"></i><span>{t}</span></li>' for i, t in vals)
     cible = ["Populations vulnérables ou exclues des banques classiques", "Opérateurs économiques du secteur informel", "Agriculteurs", "Commerçants", "Artisans", "Entrepreneurs et PME"]
     ch = "".join(f"<li>{e(c)}</li>" for c in cible)
-    return head("À propos | RCMEC-CI", "Le RCMEC-CI est une faîtière de microfinance créée en 1995, qui compte dix-huit caisses de base implantées en priorité en zone rurale.", "a-propos.html") + \
+    regions = "".join(f"<li>{e(r)}</li>" for r in CAISSES)
+    facts = [("Dénomination", "Réseau des Caisses Mutuelles d'Épargne et de Crédit de Côte d'Ivoire (RCMEC-CI)"),
+             ("Statut", "Faîtière de microfinance, Système Financier Décentralisé (SFD) agréé en Côte d'Ivoire"),
+             ("Catégorie", "Institution mutualiste ou coopérative d'épargne et de crédit : faîtière des unions mutualistes"),
+             ("Au service des populations", "Depuis 1995"),
+             ("Autorisation d'exercer", "Arrêté n° 151 du 8 juin 1999 · immatriculation A-U-1.4.1/98-13"),
+             ("Réseau", "18 caisses de base, dans plus de 10 régions de la Côte d'Ivoire"),
+             ("Implantation", "En priorité en zone rurale, mais aussi en zone semi-urbaine et urbaine"),
+             ("Siège, Direction Générale", "Cocody II Plateaux, Carrefour Duncan, en face de l'ex-ADDR, Immeuble SICOGI, Bâtiment A, 3e étage, Abidjan")]
+    fh = "".join(f"<div><dt>{e(k)}</dt><dd>{e(v)}</dd></div>" for k, v in facts)
+    return head("À propos | RCMEC-CI", "Le RCMEC-CI est une faîtière de microfinance, SFD agréé en Côte d'Ivoire, au service des populations depuis 1995. Mission, valeurs, cible et cadre officiel.", "a-propos.html") + \
         pagehead("À propos de nous") + f'''
 <section class="section">
   <div class="wrap split">
@@ -322,43 +335,136 @@ def page_apropos():
   </div>
 </section>
 
+<section class="triband" aria-label="Nos engagements">
+  <div class="wrap triband__in">
+    <div><b>Épargne</b></div><div><b>Sécurité</b></div><div><b>Fiabilité</b></div>
+  </div>
+</section>
+
 <section class="section section--tint">
+  <div class="wrap">
+    {head2("Fiche d'identité", "Le RCMEC-CI en bref")}
+    <dl class="idcard">{fh}</dl>
+    <p class="srcnote">{SOURCE_TRESOR}</p>
+  </div>
+</section>
+
+<section class="section">
   <div class="wrap duo">
     <div class="statement"><span class="kicker">Notre mission</span><p>Collecter et gérer l'épargne de nos adhérents, accorder des crédits adaptés à moindre coût à ceux qui en expriment le besoin, et protéger les populations contre l'endettement usurier.</p></div>
     <div class="statement"><span class="kicker">Notre objectif</span><p>Apporter aux caisses un appui adéquat afin de leur permettre d'offrir des services financiers de qualité, accessibles à tous les opérateurs économiques en général et particulièrement à ceux du monde rural, semi-urbain, urbain et du secteur informel.</p></div>
   </div>
 </section>
 
-<section class="section">
+<section class="section section--tint">
   <div class="wrap">
     {head2("Nos valeurs", "Ce qui nous guide")}
     <ul class="values">{vh}</ul>
   </div>
 </section>
 
-<section class="section section--tint">
-  <div class="wrap">
-    {head2("À qui nous nous adressons", "Notre cible")}
-    <ul class="checks">{ch}</ul>
+<section class="section">
+  <div class="wrap split split--rev">
+    <div class="split__img split__img--sq"><img src="assets/img/artisane.jpg" width="1350" height="1400" alt="Commerçante souriante derrière son étal" loading="lazy"></div>
+    <div class="split__txt">
+      <span class="kicker">À qui nous nous adressons</span>
+      <h2>Notre cible</h2>
+      <ul class="checks checks--one">{ch}</ul>
+    </div>
+  </div>
+</section>
+
+<section class="regions">
+  <div class="wrap regions__in">
+    <div>
+      <span class="kicker kicker--l">Notre réseau</span>
+      <h2>18 caisses, dans plus de 10 régions de la Côte d'Ivoire</h2>
+      <ul class="regions__list">{regions}</ul>
+    </div>
+    <a class="btn btn--light" href="caisses.html">Voir nos caisses</a>
   </div>
 </section>
 ''' + cta() + footer()
 
 
 # -------------------------------------------------------------- SERVICES
+# Points : uniquement des éléments tirés de la fiche RCMEC-CI, des affiches et du site officiel.
+SERVICE_POINTS = {
+ "epargne": ["Pour les particuliers, les groupements et les professionnels",
+             "Des comptes d'épargne sécurisés",
+             "Collecter et gérer l'épargne de nos adhérents : c'est la mission du réseau"],
+ "parts-sociales": ["Une participation au capital mutualiste",
+                    "Le statut de membre sociétaire",
+                    "La possibilité de percevoir des dividendes sur vos parts"],
+ "depot-a-terme": ["Une somme bloquée pendant toute la durée définie",
+                   "Un taux d'intérêt avantageux"],
+ "credit": ["Financement de projets",
+            "Fonds de roulement",
+            "Crédits agricoles",
+            "Soutien aux activités génératrices de revenus",
+            "Des crédits adaptés, à moindre coût",
+            "Une protection contre l'endettement usurier"],
+ "credit-agricole": ["Un financement pour vos projets agricoles",
+                     "Des caisses implantées en priorité en zone rurale"],
+ "pret-scolaire": ["Un prêt pensé pour la rentrée scolaire"],
+ "securite-etude": ["Une assurance liée au parcours scolaire",
+                    "Proposée sous le nom RCMEC Sécurité Étude"],
+ "transfert": ["Envoi et réception de fonds",
+               "Des opérations sécurisées",
+               "Sur l'ensemble du territoire"],
+ "micro-assurance": ["Des solutions de micro-assurance",
+                     "Pour protéger votre famille et vos biens"],
+}
+# Descriptions d'ouverture de la page Services (reformulations des mêmes sources, sans doublon avec les points)
+SERVICE_DESC = {
+ "epargne": "Confiez votre épargne à un réseau mutualiste dont la mission est de la collecter et de la gérer.",
+ "parts-sociales": "Participez au capital mutualiste et devenez membre sociétaire.",
+ "depot-a-terme": "Placez une somme sur une durée définie.",
+ "credit": "Des crédits adaptés, à moindre coût, pour ceux qui en expriment le besoin.",
+}
+SERVICE_LINES = {
+ "epargne": ["Avec nous, votre épargne est en sécurité.", "Construisez votre avenir en toute sécurité."],
+ "credit": ["Financez vos projets agricoles, commerciaux & personnels."],
+ "credit-agricole": ["Votre projet agricole mérite un coup de pouce !", "La référence en milieu rural et défavorisé."],
+ "pret-scolaire": ["La clé d'une rentrée réussie."],
+ "securite-etude": ["L'assurance qui protège chaque parcours scolaire."],
+ "transfert": ["Transférez votre argent en toute sécurité.", "Recevez et envoyez de l'argent facilement."],
+ "micro-assurance": ["Protégez votre famille et vos biens."],
+}
+
+
 def page_services():
-    rows = ""
+    nav = "".join(f'<a href="#{s["id"]}">{s["t"]}</a>' for s in SERVICES)
+    blocks = ""
     for n, s in enumerate(SERVICES, 1):
-        quote = f'<p class="quote">« {e(s["q"])} »</p>' if s.get("q") else ""
-        rows += f'''<article class="row" id="{s["id"]}">
-  <div class="row__n">{n:02d}</div>
-  <div class="row__t">{f'<img class="pic" src="assets/ico/{PIC_BY_ID[s["id"]]}" alt="" loading="lazy">' if s["id"] in PIC_BY_ID else f'<i data-lucide="{s["ico"]}"></i>'}<h2>{s["t"]}</h2></div>
-  <div class="row__b"><p>{e(s["d"])}</p>{quote}<a class="more" href="contact.html">Nous contacter<i data-lucide="arrow-right"></i></a></div>
+        pic = (f'<img class="pic" src="assets/ico/{PIC_BY_ID[s["id"]]}" alt="" loading="lazy">' if s["id"] in PIC_BY_ID
+               else f'<span class="svc2__ico"><i data-lucide="{s["ico"]}"></i></span>')
+        pts = "".join(f"<li>{e(x)}</li>" for x in SERVICE_POINTS[s["id"]])
+        lines = "".join(f'<p class="svc2__q">« {e(x)} »</p>' for x in SERVICE_LINES.get(s["id"], []))
+        blocks += f'''<article class="svc2" id="{s["id"]}">
+  <div class="svc2__side">{pic}<span class="svc2__n">{n:02d}</span></div>
+  <div class="svc2__main">
+    <h2>{s["t"]}</h2>
+    <p class="svc2__d">{e(SERVICE_DESC.get(s["id"], s["d"]))}</p>
+    <h3>À retenir</h3>
+    <ul class="checks checks--one">{pts}</ul>
+    {lines}
+    <div class="svc2__f"><span>Pour connaître les conditions de ce service, contactez-nous.</span><a class="btn btn--sm" href="contact.html">Nous contacter</a></div>
+  </div>
 </article>
 '''
     return head("Nos services | RCMEC-CI", "Épargne, parts sociales rémunérées, dépôts à terme, crédit, crédit agricole, prêt scolaire, RCMEC Sécurité Étude, transfert rapide d'argent et micro-assurance.", "services.html", "assets/img/vendeur-banane.jpg") + \
         pagehead("Nos services") + f'''
-<section class="section"><div class="wrap rows">{rows}</div></section>
+<section class="section svcintro">
+  <div class="wrap">
+    <p class="lead2">Nous représentons une solution durable d'offre de services financiers aux populations qui n'ont pas accès aux produits des banques classiques. Notre mission est de collecter et de gérer l'épargne de nos adhérents et d'accorder des crédits à ceux qui en expriment le besoin, avec des services de proximité à moindre coût.</p>
+    <nav class="pillnav" aria-label="Aller à un service">{nav}</nav>
+  </div>
+</section>
+<section class="section section--tint svclist2"><div class="wrap">{blocks}</div></section>
+<section class="triband" aria-label="Nos engagements">
+  <div class="wrap triband__in"><div><b>Épargne</b></div><div><b>Sécurité</b></div><div><b>Fiabilité</b></div></div>
+</section>
 ''' + cta() + footer()
 
 
