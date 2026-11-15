@@ -448,3 +448,8 @@ input:focus,select:focus,textarea:focus{border-color:var(--green);outline:0;box-
   .util__in{justify-content:center}
   .util__l{width:100%;justify-content:center}
 }
+@media(max-width:640px){
+  .nav__in{position:relative;justify-content:center}
+  .brand{display:block;margin:0 auto}
+  .burger{position:absolute;right:-8px;top:50%;transform:translateY(-50%)}
+}
