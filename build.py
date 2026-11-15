@@ -134,7 +134,7 @@ def footer():
 <footer class="footer">
   <div class="wrap footer__grid">
     <div class="footer__brand">
-      <div class="logo-foot"><img src="assets/logo-blanc.png" alt="RCMEC-CI, Réseau des Caisses Mutuelles d'Épargne et de Crédit de Côte d'Ivoire" width="260" height="102" loading="lazy"></div>
+      <div class="logo-foot"><img src="assets/logo-blanc.png" alt="RCMEC-CI, Réseau des Caisses Mutuelles d'Épargne et de Crédit de Côte d'Ivoire" width="260" height="102"></div>
       <p>{FULL}</p>
       <p class="footer__slogan">{SLOGAN}.</p>
     </div>
@@ -530,7 +530,7 @@ def partners_section():
     def card(pt):
         logo = pt.get("logo", "")
         if logo and os.path.exists(os.path.join(OUT, "assets", "img", "partners", logo)):
-            vis = f'<img src="assets/img/partners/{e(logo)}" alt="" height="44" loading="lazy">'
+            vis = f'<img src="assets/img/partners/{e(logo)}" alt="" height="44">'
         elif pt.get("icon"):
             vis = f'<span class="pt__ini pt__ini--ico" aria-hidden="true"><i data-lucide="{e(pt["icon"])}"></i></span>'
         else:
