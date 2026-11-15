@@ -473,3 +473,8 @@ input:focus,select:focus,textarea:focus{border-color:var(--green);outline:0;box-
   .picsec .pic-card p{font-size:13.5px;line-height:1.45;margin-bottom:8px}
   .picsec .pic-card .more{font-size:13px}
 }
+@media(max-width:640px){
+  .nav__in{position:static}
+  .burger{right:12px}
+  .menu{left:0;right:0}
+}

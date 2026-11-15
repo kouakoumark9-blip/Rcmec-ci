@@ -21,6 +21,10 @@ FULL = "Réseau des Caisses Mutuelles d'Épargne et de Crédit de Côte d'Ivoire
 NAV = [("index.html", "Accueil"), ("a-propos.html", "À propos"), ("services.html", "Nos services"),
        ("caisses.html", "Nos caisses"), ("simulateur.html", "Simulateur"), ("contact.html", "Contact")]
 
+# Menu du haut (ordre demandé par RCMEC-CI)
+HEAD_NAV = [("index.html", "Accueil"), ("services.html", "Nos services"), ("caisses.html", "Nos caisses"),
+            ("a-propos.html", "À propos"), ("contact.html", "Contact")]
+
 # Services : libellés et descriptions issus de la fiche, des affiches et du site officiel.
 SERVICES = [
  dict(id="epargne", ico="piggy-bank", t="Épargne",
@@ -70,7 +74,7 @@ def head(title, desc, page, og_img="assets/img/femme-sourire.jpg", ld=False):
                         "streetAddress": "Cocody II Plateaux, Carrefour Duncan, en face de l'ex-ADDR, Immeuble SICOGI, Bât. A, 3e étage",
                         "postOfficeBoxNumber": "05 BP 822", "addressLocality": "Abidjan", "addressCountry": "CI"}},
             ensure_ascii=False) + "</script>"
-    items = "".join(f'<a href="{h}"{" class=on aria-current=page" if h == page else ""}>{l}</a>' for h, l in NAV)
+    items = "".join(f'<a href="{h}"{" class=on aria-current=page" if h == page else ""}>{l}</a>' for h, l in HEAD_NAV)
     return f'''<!doctype html>
 <html lang="fr">
 <head>
@@ -105,7 +109,6 @@ def head(title, desc, page, og_img="assets/img/femme-sourire.jpg", ld=False):
     <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <nav class="menu" id="menu" aria-label="Navigation principale">
       {items}
-      <a class="btn btn--sm menu__cta" href="contact.html">Ouvrir un compte</a>
     </nav>
   </div>
 </header>
