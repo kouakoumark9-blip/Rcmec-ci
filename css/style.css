@@ -732,3 +732,31 @@ input:focus,select:focus,textarea:focus{border-color:var(--green);outline:0;box-
   .plc__img{height:500px;object-position:82% 20%}
   .plc .kicker{color:#f0dca8}
 }
+
+/* ===== Nos Partenaires : ruban défilant ===== */
+.partners{background:var(--tint);padding:72px 0 80px;overflow:hidden}
+.partners__head{text-align:center;margin-bottom:38px}
+.partners__head h2{font-size:clamp(28px,3.4vw,42px)}
+.marquee{overflow:hidden;width:100%;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%)}
+.marquee__track{display:flex;width:max-content;animation:marquee var(--dur,60s) linear infinite;will-change:transform}
+.marquee:hover .marquee__track,.marquee:focus-within .marquee__track{animation-play-state:paused}
+.marquee__list{display:flex;flex:none;gap:20px;padding:6px 20px 6px 0;margin:0}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.pt{display:flex;align-items:center;gap:16px;flex:none;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:14px 26px 14px 16px;box-shadow:0 6px 20px rgba(11,37,69,.06);white-space:nowrap}
+.pt__logo{display:grid;place-items:center;min-width:48px;height:48px}
+.pt__logo img{height:44px;width:auto;max-width:120px;object-fit:contain}
+.pt__ini{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:var(--navy);color:#fff;font:700 15px var(--f-ui,var(--f-body));letter-spacing:.02em}
+.pt__ini--long{font-size:11px;letter-spacing:0}
+.pt__txt b{display:block;font:600 17px var(--f-head);color:var(--navy);line-height:1.25}
+.pt__txt small{display:block;font:500 13.5px var(--f-body);color:var(--muted);margin-top:2px}
+@media(max-width:640px){
+  .partners{padding:56px 0 60px}
+  .marquee{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%)}
+  .pt{padding:12px 20px 12px 14px;gap:12px}.pt__txt b{font-size:16px}
+}
+@media(prefers-reduced-motion:reduce){
+  .marquee{-webkit-mask-image:none;mask-image:none}
+  .marquee__track{animation:none;width:auto;flex-direction:column;align-items:center}
+  .marquee__list{flex-wrap:wrap;justify-content:center;padding:6px 20px}
+  .marquee__list[aria-hidden="true"]{display:none}
+}

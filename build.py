@@ -297,7 +297,7 @@ def page_index():
     <a class="btn" href="service-depot-a-terme.html">Découvrir les dépôts à terme</a>
   </div></div>
 </section>
-''' + cta("Ne soyez plus inquiets, vos projets et votre entreprise sont en de bonnes mains.") + footer()
+''' + partners_section() + footer()
 
 
 # --------------------------------------------------------------- A PROPOS
@@ -505,6 +505,32 @@ def herosvc(h1, lead, img, alt, crumbs, btns, pos="center"):
     <h1>{h1}</h1>
     <p class="shero2__lead">{e(lead)}</p>
     <div class="btns">{btns}</div>
+  </div>
+</section>
+'''
+
+
+def partners_section():
+    """Bandeau défilant « Nos Partenaires » : données dans data/partners.json, logos dans assets/img/partners/."""
+    with open(os.path.join(OUT, "data", "partners.json"), encoding="utf-8") as fh:
+        items = json.load(fh)
+    def card(pt):
+        logo = pt.get("logo", "")
+        if logo and os.path.exists(os.path.join(OUT, "assets", "img", "partners", logo)):
+            vis = f'<img src="assets/img/partners/{e(logo)}" alt="" height="44" loading="lazy">'
+        else:
+            ini = e(pt.get("initials") or pt["name"][:2].upper())
+            vis = f'<span class="pt__ini{" pt__ini--long" if len(ini) > 3 else ""}" aria-hidden="true">{ini}</span>'
+        return f'<li class="pt"><span class="pt__logo">{vis}</span><span class="pt__txt"><b>{e(pt["name"])}</b><small>{e(pt["role"])}</small></span></li>'
+    lis = "".join(card(pt) for pt in items)
+    dur = max(30, 9 * len(items))
+    return f'''<section class="partners" aria-label="Nos partenaires">
+  <div class="wrap partners__head"><h2>Nos Partenaires</h2></div>
+  <div class="marquee" style="--dur:{dur}s">
+    <div class="marquee__track">
+      <ul class="marquee__list">{lis}</ul>
+      <ul class="marquee__list" aria-hidden="true">{lis}</ul>
+    </div>
   </div>
 </section>
 '''

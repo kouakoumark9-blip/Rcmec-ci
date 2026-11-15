@@ -1,0 +1,9 @@
+Logos des partenaires
+=====================
+Déposez ici les logos (PNG ou SVG, fond transparent de préférence) avec EXACTEMENT les noms de fichier
+indiqués dans data/partners.json :
+
+  tresor-ci.png  bceao.png  commission-bancaire.png  apsfd-ci.png  mwendro.png  transfert.png  assurance.png
+
+Tant qu'un logo est absent, le site affiche les initiales du partenaire à la place.
+Pour ajouter un partenaire : ajoutez une ligne dans data/partners.json, puis lancez  python3 build.py
