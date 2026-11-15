@@ -191,19 +191,19 @@ def page_index():
         s = next(x for x in SERVICES if x["id"] == sid)
         tiles += f'''<a class="tile" href="services.html#{s["id"]}">
   <img src="assets/img/{img}" alt="" loading="lazy">
-  <span class="tile__body"><i data-lucide="{s["ico"]}"></i><h3>{s["t"]}</h3><p>{e(s["d"])}</p><span class="tile__more">En savoir plus<i data-lucide="arrow-right"></i></span></span>
+  <span class="tile__body"><h3>{s["t"]}</h3><p>{e(s["d"])}</p><span class="tile__more">En savoir plus<i data-lucide="arrow-right"></i></span></span>
 </a>
 '''
     regions = "".join(f"<li>{e(r)}</li>" for r in CAISSES)
     return head("RCMEC-CI | " + FULL, f"RCMEC-CI, faîtière de microfinance (SFD agréé) créée en 1995. 18 caisses dans plus de 10 régions de Côte d'Ivoire. {SLOGAN}.",
                 "index.html", ld=True) + f'''
 <section class="hero2" style="--img:url(../assets/img/agricultrice.jpg)">
-  <div class="wrap hero2__in">
-    <span class="kicker kicker--l">{FULL}</span>
+  <div class="wrap hero2__in"><div class="hero2__card">
+    <span class="kicker">{FULL}</span>
     <h1>{SLOGAN}</h1>
     <p class="lead">Faîtière de microfinance, Système Financier Décentralisé (SFD) agréé en Côte d'Ivoire, depuis 1995.</p>
-    <div class="btns"><a class="btn" href="contact.html">Ouvrir un compte</a><a class="btn btn--ghost" href="services.html">Découvrir nos services</a></div>
-  </div>
+    <div class="btns"><a class="btn" href="contact.html">Ouvrir un compte</a><a class="btn btn--outline" href="services.html">Découvrir nos services</a></div>
+  </div></div>
 </section>
 
 <section class="quick">
