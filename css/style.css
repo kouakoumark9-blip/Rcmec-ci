@@ -388,3 +388,33 @@ input:focus,select:focus,textarea:focus{border-color:var(--green);outline:0;box-
 
 /* image du conseiller : photo entière visible (logo + conseiller), format 3:2 */
 .split__img--wide img{aspect-ratio:3/2;object-fit:cover;object-position:50% 50%}
+
+/* ===== hero mobile : photo visible en haut, texte lisible en dessous ===== */
+@media(max-width:640px){
+  .hero2{display:block;position:relative;min-height:0;padding:300px 0 112px;background:var(--navy)}
+  .hero2::before{content:"";position:absolute;top:0;left:0;right:0;height:300px;background:var(--img) 85% 28%/cover no-repeat}
+  .hero2__in{position:relative}
+  .hero2__card{max-width:none;padding:30px 0 0}
+  .hero2 .hero2__card .kicker{font-size:11.5px;letter-spacing:.1em;line-height:1.5;margin-bottom:12px;text-shadow:none}
+  .hero2 .hero2__card h1{font-size:30px;line-height:1.2;margin-bottom:14px;text-shadow:none}
+  .hero2__card .lead{font-size:16.5px;line-height:1.55;margin-bottom:24px;text-shadow:none}
+  .hero2__card .btns{display:grid;grid-template-columns:1fr;gap:12px}
+  .hero2__card .btn{width:100%;padding:15px 20px}
+  .quick{margin-top:-84px}
+  .quick__grid a{flex-direction:row;justify-content:flex-start;gap:12px;padding:18px 14px;font-size:15px;text-align:left}
+  .quick__grid a svg{width:24px;height:24px;flex:none}
+}
+@media(max-width:640px){
+  .hero2{padding:236px 0 108px}
+  .hero2::before{height:236px;background-position:85% 26%}
+  .hero2__card{padding-top:24px}
+  .hero2 .hero2__card .kicker{font-size:11px;margin-bottom:10px}
+  .hero2 .hero2__card h1{font-size:27px;margin-bottom:12px}
+  .hero2__card .lead{font-size:16px;margin-bottom:20px}
+  .hero2__card .btns{gap:10px}
+  .hero2__card .btn{padding:14px 18px}
+}
+@media(max-width:640px){
+  .quick__grid a{font-size:14px;gap:10px;padding:18px 10px;white-space:nowrap}
+  .quick__grid a svg{width:22px;height:22px}
+}
