@@ -193,7 +193,7 @@ def cs_items():
     items = ""
     for r, lst in CAISSES.items():
         for n, v in lst:
-            items += f'<div class="cs" data-region="{e(r)}" data-q="{e((n + " " + v + " " + r).lower())}"><strong>Caisse de {e(n)}</strong><span>({e(v)})</span><em>{e(r)}</em></div>\n'
+            items += f'<div class="cs" data-region="{e(r)}" data-q="{e((n + " " + v + " " + r).lower())}"><strong>Caisse {"d'" if n[0] in "AEIOUÉÈÂÊÎÔ" else "de "}{e(n)}</strong><span>({e(v)})</span><em>{e(r)}</em></div>\n'
     return items
 
 
@@ -226,7 +226,7 @@ def page_index():
   <div class="wrap hero2__in"><div class="hero2__card">
     <span class="kicker">{FULL}</span>
     <h1>{SLOGAN}</h1>
-    <p class="lead">Faîtière de microfinance, Système Financier Décentralisé (SFD) agréé en Côte d'Ivoire, depuis 1995.</p>
+    <p class="lead">Faîtière de microfinance, Système Financier Décentralisé (SFD) agréé en Côte d'Ivoire. Au service des populations depuis 1995.</p>
     <div class="btns"><a class="btn" href="contact.html">Ouvrir un compte</a><a class="btn btn--outline" href="services.html">Découvrir nos services</a></div>
   </div></div>
 </section>
@@ -246,8 +246,8 @@ def page_index():
 
 <section class="section section--tint">
   <div class="wrap duo">
-    <div class="statement"><span class="kicker">Notre mission</span><p>Collecter et gérer l'épargne de nos adhérents, accorder des crédits adaptés à moindre coût à ceux qui en expriment le besoin, et protéger les populations contre l'endettement usurier.</p></div>
-    <div class="statement"><span class="kicker">Notre objectif</span><p>Apporter aux caisses un appui adéquat afin de leur permettre d'offrir des services financiers de qualité, accessibles à tous les opérateurs économiques en général et particulièrement à ceux du monde rural, semi-urbain, urbain et du secteur informel.</p></div>
+    <div class="statement"><span class="kicker">Notre mission</span><p>Collecter et gérer l'épargne de nos adhérents, accorder des crédits adaptés et à moindre coût à ceux qui en ont besoin, et protéger les populations de l'endettement usurier.</p></div>
+    <div class="statement"><span class="kicker">Notre objectif</span><p>Appuyer les caisses du réseau pour qu'elles offrent des services financiers de qualité, accessibles à tous les acteurs économiques, en particulier à ceux du monde rural, semi-urbain et urbain et du secteur informel.</p></div>
   </div>
 </section>
 
@@ -273,12 +273,12 @@ def page_index():
   <div class="wrap split">
     <div class="split__img split__img--sq split__img--face"><img src="assets/img/vendeur-banane.jpg" width="933" height="1400" alt="Commerçante souriante sur un marché" loading="lazy"></div>
     <div class="split__txt">
-      <p>Nous représentons une solution durable d'offre de services financiers aux populations qui n'ont pas accès aux produits des banques classiques. Depuis 1995, nous accompagnons ces populations vulnérables dans la réalisation de leurs projets et le développement de leur environnement.</p>
-      <p>Nous nous adressons aux populations vulnérables ou exclues des banques classiques, aux opérateurs économiques du secteur informel, aux agriculteurs, commerçants, artisans, entrepreneurs et PME.</p>
+      <p>Nous offrons des services financiers durables aux populations qui n'ont pas accès aux produits des banques classiques. Depuis 1995, nous accompagnons ces populations vulnérables dans la réalisation de leurs projets et le développement de leur environnement.</p>
+      <p>Nous nous adressons aux populations vulnérables ou exclues des banques classiques, aux opérateurs du secteur informel, aux agriculteurs, aux commerçants, aux artisans, aux entrepreneurs et aux PME.</p>
       <ul class="force">
-        <li><i data-lucide="landmark"></i><span><b>18 caisses actives</b>implantées dans plus de 10 régions de la Côte d'Ivoire</span></li>
-        <li><i data-lucide="users"></i><span><b>Un personnel qualifié</b>adapté pour répondre à vos besoins, dans chacune de nos agences</span></li>
-        <li><i data-lucide="sprout"></i><span><b>Implantés en priorité en zone rurale</b>au service des populations n'ayant pas accès aux banques classiques</span></li>
+        <li><i data-lucide="landmark"></i><span><b>18 caisses actives</b>présentes dans plus de 10 régions de la Côte d'Ivoire</span></li>
+        <li><i data-lucide="users"></i><span><b>Un personnel qualifié</b>à votre service dans chacune de nos agences, pour répondre à vos besoins</span></li>
+        <li><i data-lucide="sprout"></i><span><b>Une implantation en priorité rurale</b>au service des populations qui n'ont pas accès aux banques classiques</span></li>
       </ul>
       <a class="more" href="a-propos.html">En savoir plus<i data-lucide="arrow-right"></i></a>
     </div>
@@ -324,9 +324,9 @@ def page_apropos():
     regions = "".join(f"<li>{e(r)}</li>" for r in CAISSES)
     facts = [("Dénomination", "Réseau des Caisses Mutuelles d'Épargne et de Crédit de Côte d'Ivoire (RCMEC-CI)"),
              ("Statut", "Faîtière de microfinance, Système Financier Décentralisé (SFD) agréé en Côte d'Ivoire"),
-             ("Catégorie", "Institution mutualiste ou coopérative d'épargne et de crédit : faîtière des unions mutualistes"),
+             ("Catégorie", "Institution mutualiste d'épargne et de crédit, faîtière des unions mutualistes"),
              ("Au service des populations", "Depuis 1995"),
-             ("Autorisation d'exercer", "Arrêté n° 151 du 8 juin 1999 · immatriculation A-U-1.4.1/98-13"),
+             ("Autorisation d'exercer", "Arrêté n° 151 du 8 juin 1999 (immatriculation A-U-1.4.1/98-13)"),
              ("Réseau", "18 caisses de base, dans plus de 10 régions de la Côte d'Ivoire"),
              ("Implantation", "En priorité en zone rurale, mais aussi en zone semi-urbaine et urbaine"),
              ("Siège, Direction Générale", "Cocody II Plateaux, Carrefour Duncan, en face de l'ex-ADDR, Immeuble SICOGI, Bâtiment A, 3e étage, Abidjan")]
@@ -338,7 +338,7 @@ def page_apropos():
     <div class="split__txt">
       <span class="kicker">Qui sommes-nous</span>
       <h2>Réseau des Caisses Mutuelles d'Épargne et de Crédit de Côte d'Ivoire</h2>
-      <p>Le RCMEC-CI est une faîtière de microfinance qui compte à ce jour dix-huit caisses. Nous sommes implantés en priorité en zone rurale. Nous représentons une solution durable d'offre de services financiers aux populations qui n'ont pas accès aux produits des banques classiques.</p>
+      <p>Le RCMEC-CI est une faîtière de microfinance qui compte à ce jour dix-huit caisses, implantées en priorité en zone rurale. Nous offrons des services financiers durables aux populations qui n'ont pas accès aux produits des banques classiques.</p>
       <p>Depuis 1995, nous accompagnons ces populations vulnérables dans la réalisation de leurs projets et le développement de leur environnement.</p>
     </div>
     <div class="split__img split__img--wide"><img src="assets/img/conseiller-rcmec.jpg" width="1536" height="1024" alt="Conseiller RCMEC-CI au bureau, avec en arrière-plan un marché et un village de Côte d'Ivoire" loading="lazy"></div>
@@ -361,8 +361,8 @@ def page_apropos():
 
 <section class="section">
   <div class="wrap duo">
-    <div class="statement"><span class="kicker">Notre mission</span><p>Collecter et gérer l'épargne de nos adhérents, accorder des crédits adaptés à moindre coût à ceux qui en expriment le besoin, et protéger les populations contre l'endettement usurier.</p></div>
-    <div class="statement"><span class="kicker">Notre objectif</span><p>Apporter aux caisses un appui adéquat afin de leur permettre d'offrir des services financiers de qualité, accessibles à tous les opérateurs économiques en général et particulièrement à ceux du monde rural, semi-urbain, urbain et du secteur informel.</p></div>
+    <div class="statement"><span class="kicker">Notre mission</span><p>Collecter et gérer l'épargne de nos adhérents, accorder des crédits adaptés et à moindre coût à ceux qui en ont besoin, et protéger les populations de l'endettement usurier.</p></div>
+    <div class="statement"><span class="kicker">Notre objectif</span><p>Appuyer les caisses du réseau pour qu'elles offrent des services financiers de qualité, accessibles à tous les acteurs économiques, en particulier à ceux du monde rural, semi-urbain et urbain et du secteur informel.</p></div>
   </div>
 </section>
 
@@ -388,7 +388,8 @@ def page_apropos():
   <div class="wrap regions__in">
     <div>
       <span class="kicker kicker--l">Notre réseau</span>
-      <h2>18 caisses, dans plus de 10 régions de la Côte d'Ivoire</h2>
+      <h2>18 caisses de base, présentes dans plus de 10 régions de la Côte d'Ivoire</h2>
+      <p class="regions__lead">Les caisses répertoriées sur ce site se trouvent dans les régions suivantes :</p>
       <ul class="regions__list">{regions}</ul>
     </div>
     <a class="btn btn--light" href="caisses.html">Voir nos caisses</a>
@@ -406,7 +407,7 @@ SVC = {
  "epargne": dict(img="comptabilite.jpg", pos="50% 40%", alt="Femme comptant des billets à son bureau",
    lead="Un compte d'épargne sécurisé pour mettre votre argent à l'abri et construire votre avenir.",
    rcmec=["Des comptes d'épargne sécurisés, pour les particuliers, les groupements et les professionnels.",
-          "Collecter et gérer l'épargne de nos adhérents est la mission du réseau.",
+          "Une mission du réseau : collecter et gérer l'épargne de ses adhérents.",
           "Un réseau de 18 caisses de base, dans plus de 10 régions de la Côte d'Ivoire."],
    general=["L'épargne consiste à mettre de côté une partie de ses revenus plutôt que de la dépenser. Déposée dans une institution financière agréée, elle est plus en sécurité que de l'argent conservé chez soi.",
             "Épargner régulièrement permet de faire face aux imprévus, de préparer un projet ou de se constituer un capital."],
@@ -414,14 +415,14 @@ SVC = {
    quote="Construisez votre avenir en toute sécurité."),
  "parts-sociales": dict(img="reunion-equipe.jpg", pos="50% 45%", alt="Réunion de travail autour d'une table",
    lead="Devenez membre sociétaire de votre caisse en participant à son capital.",
-   rcmec=["Une participation au capital mutualiste.", "Elle permet de devenir membre sociétaire.", "Les parts sociales sont rémunérées : vous pouvez percevoir des dividendes."],
+   rcmec=["Une participation au capital mutualiste, qui permet de devenir membre sociétaire.", "Des parts sociales rémunérées : vous pouvez percevoir des dividendes."],
    general=["Dans une mutuelle d'épargne et de crédit, les membres sont aussi ceux qui la possèdent. En souscrivant des parts sociales, chaque membre apporte une part du capital de la caisse.",
             "Le capital ainsi constitué sert de base solide à l'activité de la caisse, notamment pour accorder des crédits à ses membres."],
    pour=["Toute personne qui souhaite devenir membre sociétaire de sa caisse"],
    quote=None),
  "depot-a-terme": dict(img="placement.jpg", pos="70% 50%", alt="Horloge et piles de pièces d'or devant un graphique en hausse",
    lead="Placez une somme sur une durée définie, avec un taux d'intérêt avantageux.",
-   rcmec=["Un placement d'une somme bloquée sur une durée définie.", "Un taux d'intérêt avantageux."],
+   rcmec=["Le placement d'une somme, bloquée pendant une durée définie.", "Un taux d'intérêt avantageux."],
    general=["Un dépôt à terme est un placement : vous confiez une somme à l'institution pour une durée convenue à l'avance, pendant laquelle elle reste bloquée.",
             "En contrepartie, l'institution vous verse un intérêt. Ce type de placement convient à une somme dont vous n'avez pas besoin avant l'échéance."],
    pour=["Toute personne ou structure qui dispose d'une somme à placer"],
@@ -429,44 +430,44 @@ SVC = {
  "credit": dict(img="vendeur-banane.jpg", pos="50% 40%", alt="Commerçante souriante sur son étal",
    lead="Des crédits adaptés à vos activités, à moindre coût, pour financer vos projets.",
    rcmec=["Financement de projets.", "Fonds de roulement.", "Crédits agricoles.", "Soutien aux activités génératrices de revenus.",
-          "Des crédits adaptés, à moindre coût, et une protection contre l'endettement usurier."],
+          "Des crédits adaptés, à moindre coût.", "Une protection contre l'endettement usurier."],
    general=["Un crédit est une somme mise à votre disposition, que vous remboursez progressivement avec des intérêts. Un fonds de roulement finance les dépenses courantes d'une activité (achat de marchandises, par exemple).",
             "Un crédit bien adapté à votre activité vous évite de recourir à des prêts informels à des conditions défavorables."],
    pour=["Les commerçants", "Les artisans", "Les agriculteurs", "Les entrepreneurs et PME", "Les opérateurs du secteur informel"],
    quote="Financez vos projets agricoles, commerciaux & personnels."),
  "credit-agricole": dict(img="cabosse-cacao.jpg", pos="50% 50%", alt="Cabosse de cacao posée sur des fèves de cacao",
    lead="Votre projet agricole mérite un coup de pouce.",
-   rcmec=["Un financement pour les projets agricoles.", "Des caisses implantées en priorité en zone rurale.", "« La référence en milieu rural et défavorisé. »"],
+   rcmec=["Un financement pour les projets agricoles.", "Des caisses implantées en priorité en zone rurale."],
    general=["Un crédit agricole finance l'activité d'une exploitation : préparation des terres, achat de semences et de matériel, par exemple.",
-            "L'activité agricole suit les saisons : c'est pourquoi le crédit se discute avec la caisse en fonction de votre projet."],
+            "L'activité agricole suit le rythme des saisons : le crédit se définit donc avec la caisse, en fonction de votre projet."],
    pour=["Les agriculteurs", "Les populations du monde rural"],
-   quote="Votre projet agricole mérite un coup de pouce !"),
+   quote="La référence en milieu rural et défavorisé."),
  "pret-scolaire": dict(img="ecole-uniformes.jpg", pos="50% 40%", alt="Enfants en uniforme assis à leurs bancs d'école",
-   lead="La clé d'une rentrée réussie.",
-   rcmec=["Le prêt scolaire : la clé d'une rentrée réussie."],
+   lead="Un prêt pour préparer la rentrée scolaire de vos enfants.",
+   rcmec=["Un prêt pensé pour la scolarité des enfants."],
    general=["Un prêt scolaire est un crédit destiné aux dépenses liées à la scolarité des enfants. Il permet d'étaler ces dépenses plutôt que de les payer en une fois."],
    pour=["Les parents d'élèves"],
    quote="La clé d'une rentrée réussie."),
  "securite-etude": dict(img="classe.jpg", pos="50% 35%", alt="Enfants souriants dans une salle de classe",
    lead="L'assurance qui protège chaque parcours scolaire.",
-   rcmec=["RCMEC Sécurité Étude : l'assurance qui protège chaque parcours scolaire."],
+   rcmec=["Une assurance liée au parcours scolaire, proposée sous le nom RCMEC Sécurité Étude."],
    general=["Une assurance liée aux études a pour but de protéger la scolarité d'un enfant face aux aléas de la vie."],
    pour=["Les familles dont les enfants sont scolarisés"],
    quote="L'assurance qui protège chaque parcours scolaire."),
  "transfert": dict(img="telephone-homme.jpg", pos="60% 40%", alt="Homme souriant consultant son téléphone",
    lead="Envoyez et recevez de l'argent facilement, en toute sécurité.",
-   rcmec=["Envoi et réception de fonds sécurisés.", "Sur l'ensemble du territoire.", "Un réseau de caisses réparties dans plus de 10 régions."],
+   rcmec=["Envoi et réception de fonds sécurisés.", "Un service disponible sur l'ensemble du territoire.", "Des caisses réparties dans plus de 10 régions."],
    general=["Un transfert d'argent permet de faire parvenir une somme à un proche, ou d'en recevoir une, sans avoir à se déplacer avec de l'argent liquide.",
             "Pour votre sécurité, vérifiez toujours l'identité du bénéficiaire et ne communiquez jamais vos informations personnelles à des inconnus."],
    pour=["Toute personne qui souhaite envoyer ou recevoir des fonds"],
    quote="Recevez et envoyez de l'argent facilement."),
  "micro-assurance": dict(img="famille-perron.jpg", pos="50% 45%", alt="Famille souriante assise sur le perron de sa maison",
    lead="Protégez votre famille et vos biens.",
-   rcmec=["Des solutions de micro-assurance.", "Pour protéger votre famille et vos biens."],
+   rcmec=["Des solutions de micro-assurance pour protéger votre famille et vos biens."],
    general=["La micro-assurance est une assurance conçue pour les personnes à revenus modestes, avec des protections simples et accessibles.",
             "Elle aide un ménage ou une petite activité à faire face à un événement imprévu sans compromettre son équilibre financier."],
    pour=["Les familles", "Les petites activités"],
-   quote="Protégez votre famille et vos biens."),
+   quote=None),
 }
 
 
@@ -493,12 +494,12 @@ IMPORTANCE = {
 }
 
 # « Pourquoi choisir RCMEC-CI » : uniquement des faits issus de la liste officielle des SFD agréés, du site officiel et de la fiche.
-WHY = [("shield-check", "Un réseau agréé", "SFD agréé en Côte d'Ivoire : arrêté n° 151 du 8 juin 1999 (liste des SFD agréés, Trésor)."),
-       ("calendar-check", "Depuis 1995", "Un réseau qui accompagne les populations depuis 1995."),
-       ("map-pinned", "Un réseau de proximité", "18 caisses de base, dans plus de 10 régions de la Côte d'Ivoire, en priorité en zone rurale."),
-       ("hand-coins", "Des services à moindre coût", "Des services de proximité à moindre coût, pour les populations qui n'ont pas accès aux banques classiques."),
-       ("users", "Un personnel qualifié", "Un personnel adapté et qualifié pour répondre à vos besoins, dans chacune des agences."),
-       ("lock", "Une protection contre l'endettement usurier", "Une mission : accorder des crédits à ceux qui en expriment le besoin et protéger les populations de l'endettement usurier.")]
+WHY = [("shield-check", "Un réseau agréé", "Système Financier Décentralisé agréé en Côte d'Ivoire par arrêté n° 151 du 8 juin 1999 (source : liste officielle des SFD agréés du Trésor)."),
+       ("calendar-check", "Depuis 1995", "Nous accompagnons les populations vulnérables dans la réalisation de leurs projets depuis 1995."),
+       ("map-pinned", "Un réseau de proximité", "18 caisses de base dans plus de 10 régions de la Côte d'Ivoire, implantées en priorité en zone rurale."),
+       ("hand-coins", "Des services à moindre coût", "Des services de proximité à moindre coût, destinés aux populations qui n'ont pas accès aux banques classiques."),
+       ("users", "Un personnel qualifié", "Dans chacune de nos agences, un personnel qualifié pour répondre à vos besoins."),
+       ("lock", "Une protection contre l'endettement usurier", "Notre mission : accorder des crédits à ceux qui en ont besoin et protéger les populations de l'endettement usurier.")]
 
 
 HDR = {"epargne": "h-epargne.jpg", "parts-sociales": "h-parts-sociales.jpg", "depot-a-terme": "placement.jpg", "credit": "h-credit.jpg",
@@ -567,7 +568,7 @@ def page_services():
         herosvc("Nos services", "Épargne, crédit, assurance et transfert d'argent : des services financiers de proximité.", "h-services.jpg", "Femmes d'une équipe réunies autour d'une tablette", '<a href="index.html">Accueil</a><span aria-hidden="true">/</span><span>Nos services</span>', '<a class="btn" href="contact.html">Nous contacter</a>') + f'''
 <section class="section svcintro">
   <div class="wrap">
-    <p class="lead2">Nous représentons une solution durable d'offre de services financiers aux populations qui n'ont pas accès aux produits des banques classiques. Notre mission est de collecter et de gérer l'épargne de nos adhérents et d'accorder des crédits à ceux qui en expriment le besoin, avec des services de proximité à moindre coût.</p>
+    <p class="lead2">Nous offrons des services financiers durables aux populations qui n'ont pas accès aux produits des banques classiques. Notre mission : collecter et gérer l'épargne de nos adhérents et accorder des crédits à ceux qui en ont besoin, avec des services de proximité à moindre coût.</p>
   </div>
 </section>
 <section class="section section--tint svclist2"><div class="wrap"><div class="scards">{cards}</div></div></section>
@@ -637,7 +638,7 @@ def page_simulateur():
   <div class="wrap sim">
     <div class="sim__intro">
       <span class="kicker">Outil d'estimation</span>
-      <h2>Simulez un crédit ou une épargne</h2>
+      <h2>Simulez un crédit ou un dépôt à terme</h2>
       <p>Renseignez le montant, la durée et <strong>le taux communiqué par votre caisse</strong>. Ce simulateur ne contient aucun taux officiel : il calcule simplement une estimation à partir des valeurs que vous saisissez.</p>
       <p class="note">Estimation indicative, sans valeur contractuelle.</p>
     </div>
@@ -669,7 +670,7 @@ def page_simulateur():
 def page_caisses():
     groups = ""
     for r, lst in CAISSES.items():
-        rows = "".join(f'<li class="cs" data-region="{e(r)}" data-q="{e((n + " " + v + " " + r).lower())}"><span class="cs__n"><i data-lucide="landmark"></i>Caisse de {e(n)}</span><span class="cs__v">{e(v)}</span></li>\n' for n, v in lst)
+        rows = "".join(f'<li class="cs" data-region="{e(r)}" data-q="{e((n + " " + v + " " + r).lower())}"><span class="cs__n"><i data-lucide="landmark"></i>Caisse {"d'" if n[0] in "AEIOUÉÈÂÊÎÔ" else "de "}{e(n)}</span><span class="cs__v">{e(v)}</span></li>\n' for n, v in lst)
         groups += f'''<section class="rgroup" data-region="{e(r)}">
   <header class="rgroup__h"><h2>{e(r)}</h2><span>Région</span></header>
   <div class="rgroup__cols"><span>Caisse</span><span>Localité de rattachement</span></div>
@@ -679,7 +680,7 @@ def page_caisses():
 '''
     chips = '<button type="button" class="chip on" data-region="Toutes">Toutes</button>' + "".join(f'<button type="button" class="chip" data-region="{e(r)}">{e(r)}</button>' for r in CAISSES)
     return head("Nos caisses | RCMEC-CI", "Les caisses du RCMEC-CI en Côte d'Ivoire : Vallée du Bandama, Lagunes, Agnéby, Zanzan et Sud-Comoé. Siège à Cocody II Plateaux, Abidjan.", "caisses.html", "assets/img/artisane.jpg") + \
-        pagehead("Nos caisses", "Dix-huit caisses de base, dans plus de 10 régions de la Côte d'Ivoire.") + f'''
+        pagehead("Nos caisses", "Les caisses du réseau, classées par région.") + f'''
 <section class="section">
   <div class="wrap">
     <div class="dir__tools">
@@ -718,7 +719,7 @@ def page_contact():
       <div class="ccol__f"><a class="more" target="_blank" rel="noopener" href="{OSM}">Voir sur la carte<i data-lucide="arrow-right"></i></a></div>
     </div>
     <form class="cform ccol" id="cform">
-      <header class="ccol__h"><span>Écrivez-nous</span><h2>Ouvrir un compte</h2></header>
+      <header class="ccol__h"><span>Écrivez-nous</span><h2>Envoyez-nous un message</h2></header>
       <div class="cform__body">
       <div class="row2">
         <input name="nom" placeholder="Nom et prénom" required autocomplete="name" aria-label="Nom et prénom">

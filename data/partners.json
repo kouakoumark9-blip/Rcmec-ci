@@ -1,13 +1,13 @@
 [
   {
     "name": "Direction Générale du Trésor (DGTCP)",
-    "role": "Tutelle & Agrément",
+    "role": "Tutelle et agrément",
     "logo": "tresor-ci.png",
     "initials": "DGTCP"
   },
   {
     "name": "BCEAO",
-    "role": "Banque Centrale UMOA",
+    "role": "Banque centrale de l'UMOA",
     "logo": "bceao.png",
     "initials": "BCEAO"
   },
@@ -19,13 +19,13 @@
   },
   {
     "name": "APSFD-CI",
-    "role": "Association Professionnelle SFD",
+    "role": "Association professionnelle des SFD",
     "logo": "apsfd-ci.png",
     "initials": "APSFD"
   },
   {
     "name": "Mwendro",
-    "role": "Conseil & Digitalisation",
+    "role": "Conseil et digitalisation",
     "logo": "mwendro.png",
     "initials": "MW"
   },
@@ -52,12 +52,5 @@
     "role": "Transfert d'argent",
     "logo": "wave.png",
     "initials": "WV"
-  },
-  {
-    "name": "Compagnies de Micro-Assurance",
-    "role": "Protection & Prévoyance",
-    "logo": "assurance.png",
-    "initials": "MA",
-    "icon": "umbrella"
   }
 ]
