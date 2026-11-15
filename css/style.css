@@ -508,3 +508,43 @@ input:focus,select:focus,textarea:focus{border-color:var(--green);outline:0;box-
   .cs__n{font-size:17px}
   .cs__v{padding-left:32px;font-size:15px}
 }
+
+/* ===== page Contact : deux cartes, même style que Nos caisses ===== */
+.contact{display:grid;grid-template-columns:1fr 1.1fr;gap:28px;align-items:start}
+.ccol{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:0 8px 28px rgba(11,37,69,.06);padding:0;display:block}
+.ccol__h{padding:22px 28px;background:var(--navy)}
+.ccol__h span{display:block;font:600 11px var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:#d9c28f;margin-bottom:6px}
+.ccol__h h2{color:#fff;font-size:26px;margin:0}
+.clist{margin:0}
+.clist li{display:flex;gap:16px;align-items:flex-start;padding:20px 28px;border-bottom:1px solid var(--line)}
+.clist svg{flex:none;width:22px;height:22px;color:var(--green);stroke-width:1.7;margin-top:3px}
+.clist b{display:block;font:600 12px var(--f-body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.clist span,.clist a{font-size:18px;line-height:1.55;color:var(--ink)}
+.clist a:hover{color:var(--green)}
+.clist .soc2 a{margin-right:20px}
+.ccol__f{padding:18px 28px}
+.cform__body{padding:26px 28px 28px;display:grid;gap:14px}
+.cform.ccol{padding:0;gap:0;box-shadow:0 8px 28px rgba(11,37,69,.06)}
+@media(max-width:1000px){.contact{grid-template-columns:1fr}}
+@media(max-width:640px){
+  .ccol__h{padding:18px 20px}.ccol__h h2{font-size:22px}
+  .clist li{padding:16px 20px}
+  .cform__body{padding:20px}
+  .ccol__f{padding:16px 20px}
+}
+
+/* ===== menu du haut : plus grand et plus proche du logo (ordinateur) ===== */
+@media(min-width:861px){
+  .nav__in{justify-content:flex-start;gap:44px}
+  .menu{margin-left:0}
+  .menu>a:not(.btn){font-size:17px;padding:12px 18px}
+  .menu>a:not(.btn)::after{left:18px;right:18px;bottom:4px}
+}
+@media(min-width:861px) and (max-width:1100px){
+  .nav__in{gap:24px}
+  .menu>a:not(.btn){font-size:16px;padding:12px 12px}
+  .menu>a:not(.btn)::after{left:12px;right:12px}
+}
+.clist .soc2{display:flex;flex-wrap:wrap;gap:6px 20px}
+.clist .soc2 a{margin-right:0}
+.clist div{min-width:0}

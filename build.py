@@ -440,20 +440,19 @@ def page_contact():
         pagehead("Contact") + f'''
 <section class="section">
   <div class="wrap contact">
-    <div class="contact__info">
-      <span class="kicker">Nos coordonnées</span>
-      <h2>Siège, Direction Générale</h2>
-      <dl>
-        <dt>Adresse</dt><dd>Cocody II Plateaux, Carrefour Duncan, en face de l'ex-ADDR, Immeuble SICOGI, Bâtiment A, 3<sup>e</sup> étage, Abidjan<br>05 BP 822 Abidjan 05</dd>
-        <dt>Téléphone</dt><dd><a href="tel:{TEL_HREF}">{TEL}</a></dd>
-        <dt>E-mail</dt><dd><a href="mailto:{MAIL}">{MAIL}</a></dd>
-        <dt>Réseaux sociaux</dt><dd class="soc2"><a href="{FB}" target="_blank" rel="noopener">Facebook</a><a href="{LI}" target="_blank" rel="noopener">LinkedIn</a><a href="{IG}" target="_blank" rel="noopener">Instagram</a></dd>
-      </dl>
-      <a class="more" target="_blank" rel="noopener" href="{OSM}">Voir sur la carte<i data-lucide="arrow-right"></i></a>
+    <div class="ccol">
+      <header class="ccol__h"><span>Nos coordonnées</span><h2>Siège, Direction Générale</h2></header>
+      <ul class="clist">
+        <li><i data-lucide="map-pin"></i><div><b>Adresse</b><span>Cocody II Plateaux, Carrefour Duncan, en face de l'ex-ADDR, Immeuble SICOGI, Bâtiment A, 3<sup>e</sup> étage, Abidjan<br>05 BP 822 Abidjan 05</span></div></li>
+        <li><i data-lucide="phone"></i><div><b>Téléphone</b><a href="tel:{TEL_HREF}">{TEL}</a></div></li>
+        <li><i data-lucide="mail"></i><div><b>E-mail</b><a href="mailto:{MAIL}">{MAIL}</a></div></li>
+        <li><i data-lucide="share-2"></i><div><b>Réseaux sociaux</b><span class="soc2"><a href="{FB}" target="_blank" rel="noopener">Facebook</a><a href="{LI}" target="_blank" rel="noopener">LinkedIn</a><a href="{IG}" target="_blank" rel="noopener">Instagram</a></span></div></li>
+      </ul>
+      <div class="ccol__f"><a class="more" target="_blank" rel="noopener" href="{OSM}">Voir sur la carte<i data-lucide="arrow-right"></i></a></div>
     </div>
-    <form class="cform" id="cform">
-      <span class="kicker">Écrivez-nous</span>
-      <h2>Ouvrir un compte</h2>
+    <form class="cform ccol" id="cform">
+      <header class="ccol__h"><span>Écrivez-nous</span><h2>Ouvrir un compte</h2></header>
+      <div class="cform__body">
       <div class="row2">
         <input name="nom" placeholder="Nom et prénom" required autocomplete="name" aria-label="Nom et prénom">
         <input name="email" type="email" placeholder="E-mail" required autocomplete="email" aria-label="E-mail">
@@ -465,6 +464,7 @@ def page_contact():
       <textarea name="msg" rows="5" placeholder="Votre message" required aria-label="Message"></textarea>
       <button class="btn" type="submit">Envoyer</button>
       <p class="fine">Le bouton ouvre votre application e-mail avec le message pré-rempli, adressé à {MAIL}.</p>
+      </div>
     </form>
   </div>
 </section>
