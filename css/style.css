@@ -760,3 +760,6 @@ input:focus,select:focus,textarea:focus{border-color:var(--green);outline:0;box-
   .marquee__list{flex-wrap:wrap;justify-content:center;padding:6px 20px}
   .marquee__list[aria-hidden="true"]{display:none}
 }
+.pt__ini--ico{background:var(--green)}
+.pt__ini--ico svg{width:24px;height:24px;stroke-width:1.8}
+.pt__logo img{image-rendering:auto}

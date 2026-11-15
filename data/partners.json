@@ -1,9 +1,46 @@
 [
-  {"name": "Direction Générale du Trésor (DGTCP)", "role": "Tutelle & Agrément", "logo": "tresor-ci.png", "initials": "DGTCP"},
-  {"name": "BCEAO", "role": "Banque Centrale UMOA", "logo": "bceao.png", "initials": "BCEAO"},
-  {"name": "Commission Bancaire de l'UMOA", "role": "Régulation", "logo": "commission-bancaire.png", "initials": "CB"},
-  {"name": "APSFD-CI", "role": "Association Professionnelle SFD", "logo": "apsfd-ci.png", "initials": "APSFD"},
-  {"name": "Mwendro", "role": "Conseil & Digitalisation", "logo": "mwendro.png", "initials": "MW"},
-  {"name": "Opérateurs de Transfert d'Argent", "role": "Services Financiers", "logo": "transfert.png", "initials": "TA"},
-  {"name": "Compagnies de Micro-Assurance", "role": "Protection & Prévoyance", "logo": "assurance.png", "initials": "MA"}
+  {
+    "name": "Direction Générale du Trésor (DGTCP)",
+    "role": "Tutelle & Agrément",
+    "logo": "tresor-ci.png",
+    "initials": "DGTCP"
+  },
+  {
+    "name": "BCEAO",
+    "role": "Banque Centrale UMOA",
+    "logo": "bceao.png",
+    "initials": "BCEAO"
+  },
+  {
+    "name": "Commission Bancaire de l'UMOA",
+    "role": "Régulation",
+    "logo": "commission-bancaire.png",
+    "initials": "CB"
+  },
+  {
+    "name": "APSFD-CI",
+    "role": "Association Professionnelle SFD",
+    "logo": "apsfd-ci.png",
+    "initials": "APSFD"
+  },
+  {
+    "name": "Mwendro",
+    "role": "Conseil & Digitalisation",
+    "logo": "mwendro.png",
+    "initials": "MW"
+  },
+  {
+    "name": "Opérateurs de Transfert d'Argent",
+    "role": "Services Financiers",
+    "logo": "transfert.png",
+    "initials": "TA",
+    "icon": "send"
+  },
+  {
+    "name": "Compagnies de Micro-Assurance",
+    "role": "Protection & Prévoyance",
+    "logo": "assurance.png",
+    "initials": "MA",
+    "icon": "umbrella"
+  }
 ]

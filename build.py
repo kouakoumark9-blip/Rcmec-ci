@@ -59,6 +59,18 @@ CAISSES = {
 }
 
 
+def _asset_version():
+    import hashlib
+    h = hashlib.md5()
+    for rel in ("css/style.css", "js/main.js"):
+        with open(os.path.join(OUT, rel), "rb") as fh:
+            h.update(fh.read())
+    return h.hexdigest()[:8]
+
+
+ASSET_V = _asset_version()
+
+
 def e(s):
     return html.escape(s, quote=True)
 
@@ -92,7 +104,7 @@ def head(title, desc, page, og_img="assets/img/femme-sourire.jpg", ld=False, act
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v={ASSET_V}">
 {ldjson}
 </head>
 <body>
@@ -138,7 +150,7 @@ def footer():
   </div>
 </footer>
 <script src="js/lucide.min.js"></script>
-<script src="js/main.js"></script>
+<script src="js/main.js?v={ASSET_V}"></script>
 </body>
 </html>
 '''
@@ -518,6 +530,8 @@ def partners_section():
         logo = pt.get("logo", "")
         if logo and os.path.exists(os.path.join(OUT, "assets", "img", "partners", logo)):
             vis = f'<img src="assets/img/partners/{e(logo)}" alt="" height="44" loading="lazy">'
+        elif pt.get("icon"):
+            vis = f'<span class="pt__ini pt__ini--ico" aria-hidden="true"><i data-lucide="{e(pt["icon"])}"></i></span>'
         else:
             ini = e(pt.get("initials") or pt["name"][:2].upper())
             vis = f'<span class="pt__ini{" pt__ini--long" if len(ini) > 3 else ""}" aria-hidden="true">{ini}</span>'
