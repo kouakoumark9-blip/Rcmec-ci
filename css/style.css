@@ -478,3 +478,8 @@ input:focus,select:focus,textarea:focus{border-color:var(--green);outline:0;box-
   .burger{right:12px}
   .menu{left:0;right:0}
 }
+
+/* logo blanc du pied de page, sans cadre */
+.logo-foot{margin-bottom:18px}
+.logo-foot img{width:260px;max-width:100%;height:auto}
+@media(max-width:640px){.logo-foot img{width:230px}}

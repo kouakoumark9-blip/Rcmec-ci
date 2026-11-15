@@ -83,7 +83,7 @@ def head(title, desc, page, og_img="assets/img/femme-sourire.jpg", ld=False):
 <title>{e(title)}</title>
 <meta name="description" content="{e(desc)}">
 <meta name="theme-color" content="#0b2545">
-<link rel="icon" href="assets/favicon.png" type="image/png">
+<link rel="icon" href="assets/favicon-v2.png" type="image/png">
 <link rel="canonical" href="https://rcmec-ci.com/{'' if page == 'index.html' else page}">
 <meta property="og:type" content="website">
 <meta property="og:title" content="{e(title)}">
@@ -122,7 +122,7 @@ def footer():
 <footer class="footer">
   <div class="wrap footer__grid">
     <div class="footer__brand">
-      <div class="logo-card"><img src="assets/logo.png" alt="RCMEC-CI, Réseau des Caisses Mutuelles d'Épargne et de Crédit de Côte d'Ivoire" width="178" height="72" loading="lazy"></div>
+      <div class="logo-foot"><img src="assets/logo-blanc.png" alt="RCMEC-CI, Réseau des Caisses Mutuelles d'Épargne et de Crédit de Côte d'Ivoire" width="260" height="102" loading="lazy"></div>
       <p>{FULL}</p>
       <p class="footer__slogan">{SLOGAN}.</p>
     </div>
