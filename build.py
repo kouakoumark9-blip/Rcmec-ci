@@ -184,8 +184,14 @@ def cs_items():
 
 
 # ---------------------------------------------------------------- ACCUEIL
-TILES = [("epargne", "femme-sourire.jpg"), ("parts-sociales", "reunion-equipe.jpg"), ("depot-a-terme", "equipe-bureau.jpg"),
-         ("credit", "vendeur-banane.jpg"), ("credit-agricole", "cabosse-cacao.jpg"), ("transfert", "client-telephone.jpg")]
+TILES = [("parts-sociales", "reunion-equipe.jpg"), ("depot-a-terme", "equipe-bureau.jpg"), ("credit-agricole", "cabosse-cacao.jpg")]
+
+# Illustrations et phrases de l'affiche fournie par RCMEC-CI
+PICS = [("epargne", "epargne.png", "Épargne", "Construisez votre avenir en toute sécurité"),
+        ("credit", "credit.png", "Crédit", "Financez vos projets agricoles, commerciaux & personnels"),
+        ("micro-assurance", "assurance.png", "Assurance", "Protégez votre famille et vos biens"),
+        ("transfert", "transfert.png", "Transfert d'argent", "Recevez et envoyez de l'argent facilement")]
+PIC_BY_ID = {sid: f for sid, f, _, _ in PICS}
 
 
 def page_index():
@@ -198,6 +204,8 @@ def page_index():
 </a>
 '''
     regions = "".join(f"<li>{e(r)}</li>" for r in CAISSES)
+    pics = "".join(f'''<a class="pic-card" href="services.html#{sid}"><img src="assets/ico/{f}" alt="" loading="lazy"><h3>{t}</h3><p>{e(p)}</p><span class="more">En savoir plus<i data-lucide="arrow-right"></i></span></a>
+''' for sid, f, t, p in PICS)
     return head("RCMEC-CI | " + FULL, f"RCMEC-CI, faîtière de microfinance (SFD agréé) créée en 1995. 18 caisses dans plus de 10 régions de Côte d'Ivoire. {SLOGAN}.",
                 "index.html", ld=True) + f'''
 <section class="hero2" style="--img:url(../assets/img/agricultrice.jpg)">
@@ -236,8 +244,15 @@ def page_index():
 
 <section class="section">
   <div class="wrap">
-    {head2("Nos services", "Nos produits et services", ("services.html", "Tous nos services"))}
-    <p class="intro">Épargne sécurisée, parts sociales rémunérées, dépôts à terme, crédits, transfert rapide d'argent et micro-assurance : des services financiers destinés aux particuliers, aux groupements et aux professionnels.</p>
+    {head2("Nos services", "Épargne, crédit, assurance et transfert d'argent", ("services.html", "Tous nos services"))}
+    <p class="intro">Parce que vos projets méritent un partenaire solide !</p>
+    <div class="pics">{pics}</div>
+  </div>
+</section>
+
+<section class="section section--tint">
+  <div class="wrap">
+    {head2("Et aussi", "Autres produits et services")}
     <div class="tiles">{tiles}</div>
   </div>
 </section>
@@ -350,7 +365,7 @@ def page_services():
         quote = f'<p class="quote">« {e(s["q"])} »</p>' if s.get("q") else ""
         rows += f'''<article class="row" id="{s["id"]}">
   <div class="row__n">{n:02d}</div>
-  <div class="row__t"><i data-lucide="{s["ico"]}"></i><h2>{s["t"]}</h2></div>
+  <div class="row__t">{f'<img class="pic" src="assets/ico/{PIC_BY_ID[s["id"]]}" alt="" loading="lazy">' if s["id"] in PIC_BY_ID else f'<i data-lucide="{s["ico"]}"></i>'}<h2>{s["t"]}</h2></div>
   <div class="row__b"><p>{e(s["d"])}</p>{quote}<a class="more" href="contact.html">Nous contacter<i data-lucide="arrow-right"></i></a></div>
 </article>
 '''

@@ -369,3 +369,15 @@ input:focus,select:focus,textarea:focus{border-color:var(--green);outline:0;box-
 .brand img{height:62px}
 .nav.scrolled .brand img{height:50px}
 @media(max-width:640px){.brand img{height:50px}}
+
+/* illustrations de l'affiche */
+.pics{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.pic-card{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;padding:34px 24px 30px;background:#fff;border:1px solid var(--line);border-radius:var(--r);border-bottom:3px solid var(--green);transition:transform .25s,box-shadow .25s}
+.pic-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(11,37,69,.12)}
+.pic-card img{width:100%;height:150px;object-fit:contain;margin-bottom:14px}
+.pic-card h3{font-size:24px}
+.pic-card p{color:var(--muted);flex:1;margin-bottom:12px;font-size:17px}
+.row__t img.pic{flex:none;width:74px;height:74px;object-fit:contain;margin-top:-4px}
+@media(max-width:1020px){.pics{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.pics{grid-template-columns:1fr}.pic-card img{height:130px}}
+.row__t img.pic{width:58px;height:58px;margin-top:-2px}
