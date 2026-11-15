@@ -260,7 +260,7 @@ def page_index():
 
 <section class="section">
   <div class="wrap split">
-    <div class="split__img split__img--wide"><img src="assets/img/conseiller-rcmec.jpg" width="1536" height="1024" alt="Conseiller RCMEC-CI au bureau, avec en arrière-plan un marché et un village de Côte d'Ivoire" loading="lazy"></div>
+    <div class="split__img split__img--sq split__img--face"><img src="assets/img/vendeur-banane.jpg" width="933" height="1400" alt="Commerçante souriante sur un marché" loading="lazy"></div>
     <div class="split__txt">
       <p>Nous représentons une solution durable d'offre de services financiers aux populations qui n'ont pas accès aux produits des banques classiques. Depuis 1995, nous accompagnons ces populations vulnérables dans la réalisation de leurs projets et le développement de leur environnement.</p>
       <p>Nous nous adressons aux populations vulnérables ou exclues des banques classiques, aux opérateurs économiques du secteur informel, aux agriculteurs, commerçants, artisans, entrepreneurs et PME.</p>
@@ -318,7 +318,7 @@ def page_apropos():
       <p>Le RCMEC-CI est une faîtière de microfinance qui compte à ce jour dix-huit caisses. Nous sommes implantés en priorité en zone rurale. Nous représentons une solution durable d'offre de services financiers aux populations qui n'ont pas accès aux produits des banques classiques.</p>
       <p>Depuis 1995, nous accompagnons ces populations vulnérables dans la réalisation de leurs projets et le développement de leur environnement.</p>
     </div>
-    <div class="split__img"><img src="assets/img/vendeur-banane.jpg" alt="Commerçant sur un marché" loading="lazy"></div>
+    <div class="split__img split__img--wide"><img src="assets/img/conseiller-rcmec.jpg" width="1536" height="1024" alt="Conseiller RCMEC-CI au bureau, avec en arrière-plan un marché et un village de Côte d'Ivoire" loading="lazy"></div>
   </div>
 </section>
 
