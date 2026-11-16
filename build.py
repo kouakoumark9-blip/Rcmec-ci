@@ -636,6 +636,75 @@ def page_services():
 ''' + cta() + footer()
 
 
+# Contenus complémentaires par service : conseils généraux et questions fréquentes.
+# Aucune condition, aucun taux ni aucune durée propre à RCMEC-CI : ces informations sont données par la caisse.
+DETAIL = {
+ "epargne": dict(
+   how=["Épargner, c'est mettre de côté régulièrement, même de petites sommes. Avec le temps, ces montants forment une réserve.",
+        "Un compte d'épargne permet de garder cet argent à l'abri, séparé de l'argent du quotidien, et de le retrouver quand le besoin se présente."],
+   tips=["Fixez-vous un objectif précis : une rentrée scolaire, une réparation, un projet.", "Mettez de côté dès que vous recevez un revenu, avant de dépenser.", "Séparez l'épargne de l'argent du quotidien.", "Gardez une réserve pour les imprévus avant de lancer un nouveau projet."],
+   faq=[("Pourquoi épargner dans une institution agréée ?", "Un argent déposé dans une institution agréée est plus en sécurité qu'un argent conservé chez soi, où il peut être perdu, volé ou dépensé sans y penser."),
+        ("Qui peut ouvrir un compte d'épargne ?", "Le RCMEC-CI propose des comptes d'épargne pour les particuliers, les groupements et les professionnels."),
+        ("Quelles sont les conditions d'ouverture ?", NOTE_CONDITIONS)]),
+ "parts-sociales": dict(
+   how=["Dans une caisse mutualiste, chaque membre détient une part du capital. On parle de parts sociales.",
+        "Le capital apporté par les membres donne à la caisse une base solide pour son activité, notamment pour accorder des crédits. Les parts sociales rémunérées permettent de recevoir une part des bénéfices."],
+   tips=["Une part sociale n'est pas un dépôt d'épargne : c'est une participation à la caisse dont on devient membre.", "Demandez à votre caisse comment sont rémunérées les parts sociales.", "Renseignez-vous sur les règles de souscription avant de vous décider."],
+   faq=[("Que signifie « devenir membre » ?", "Devenir membre, c'est participer au capital de sa caisse. Une caisse mutualiste appartient à ses membres."),
+        ("Les parts sociales rapportent-elles quelque chose ?", "Le RCMEC-CI propose des parts sociales rémunérées : le membre peut recevoir une part des bénéfices. Le détail est communiqué par la caisse."),
+        ("Quelles sont les conditions ?", NOTE_CONDITIONS)]),
+ "depot-a-terme": dict(
+   how=["Vous choisissez une somme et une durée. Pendant cette durée, la somme est bloquée.",
+        "À l'échéance, vous retrouvez votre somme, avec l'intérêt prévu au départ."],
+   tips=["Ne placez que de l'argent dont vous n'avez pas besoin avant l'échéance.", "Gardez une épargne disponible à côté, pour les imprévus.", "Demandez à votre caisse le taux et la durée avant de signer.", "Utilisez le simulateur du site pour estimer l'intérêt, avec le taux que votre caisse vous communique."],
+   faq=[("Que veut dire « somme bloquée » ?", "Cela signifie que la somme reste placée jusqu'à la fin de la durée convenue. Il faut donc y réfléchir avant de placer."),
+        ("Comment connaître le taux d'intérêt ?", "Le RCMEC-CI propose un taux d'intérêt avantageux. Le taux exact est communiqué par votre caisse, ce site n'en affiche aucun."),
+        ("Puis-je estimer mon gain ?", "Oui : le simulateur calcule une estimation à partir du montant, de la durée et du taux que vous saisissez.")]),
+ "credit": dict(
+   how=["Un crédit vous permet de financer un projet ou une activité maintenant, et de rembourser ensuite progressivement, avec des intérêts.",
+        "Le RCMEC-CI propose notamment le financement de projets, le fonds de roulement, les crédits agricoles et le soutien aux activités qui génèrent des revenus."],
+   tips=["Empruntez pour une activité ou un projet qui peut vous aider à rembourser.", "Calculez ce que vous pouvez rembourser chaque mois avant de vous engager.", "Demandez le coût total du crédit, pas seulement la mensualité.", "Remboursez à la date prévue pour garder la confiance de votre caisse.", "Utilisez le simulateur pour estimer la mensualité."],
+   faq=[("À quoi sert un fonds de roulement ?", "Il finance les dépenses courantes d'une activité, par exemple l'achat de marchandises."),
+        ("Pourquoi éviter les prêts à taux abusifs ?", "Un prêt à taux abusif peut coûter bien plus cher que prévu. Le RCMEC-CI a pour mission d'accorder des crédits adaptés, à faible coût, et de protéger les populations contre ces prêts."),
+        ("Quelles sont les conditions pour obtenir un crédit ?", NOTE_CONDITIONS)]),
+ "credit-agricole": dict(
+   how=["Une exploitation agricole a des dépenses avant de pouvoir vendre sa récolte : préparation des terres, semences, matériel.",
+        "Le crédit agricole permet de financer ces dépenses. Les caisses du RCMEC-CI sont situées en priorité dans les campagnes, au plus près des agriculteurs."],
+   tips=["Présentez clairement votre projet : ce que vous voulez cultiver ou acheter.", "Tenez compte des saisons pour parler du calendrier de remboursement avec la caisse.", "Parlez de votre projet à votre caisse avant de vous engager.", "Estimez vos dépenses et vos recettes possibles."],
+   faq=[("Que peut financer un crédit agricole ?", "En général, il finance l'activité d'une exploitation : préparation des terres, semences, matériel. Le détail dépend de votre projet et de la caisse."),
+        ("Où trouver une caisse près de chez moi ?", "La page « Nos caisses » liste les caisses par région. Le réseau en compte 18, dans plus de 10 régions."),
+        ("Comment se déroule le remboursement ?", "Il se définit avec la caisse, en fonction de votre projet. " + NOTE_CONDITIONS)]),
+ "pret-scolaire": dict(
+   how=["La rentrée concentre de nombreuses dépenses en peu de temps. Un prêt scolaire permet de les étaler.",
+        "Vous recevez la somme au moment où vous en avez besoin, puis vous la remboursez progressivement."],
+   tips=["Calculez le budget de la rentrée avant de demander un prêt.", "Ne demandez que ce dont vous avez besoin.", "Prévoyez le remboursement dans votre budget mensuel.", "Si possible, combinez avec une épargne pour l'école des enfants, pour les années suivantes."],
+   faq=[("À qui s'adresse le prêt scolaire ?", "Aux parents d'élèves qui veulent préparer la scolarité de leurs enfants."),
+        ("Quelle différence avec l'épargne pour l'école des enfants ?", "Le prêt permet d'avoir la somme tout de suite et de la rembourser ensuite. L'épargne consiste à mettre de côté à l'avance."),
+        ("Quelles sont les conditions ?", NOTE_CONDITIONS)]),
+ "epargne-ecole": dict(
+   how=["Plutôt que de tout payer au moment de la rentrée, vous mettez de côté un peu chaque mois ou chaque fois que vous le pouvez.",
+        "Le jour de la rentrée, vous disposez d'une réserve pour les dépenses d'école de vos enfants."],
+   tips=["Commencez tôt : de petites sommes régulières finissent par compter.", "Choisissez un montant que vous pouvez tenir tous les mois.", "Gardez cette épargne uniquement pour l'école.", "Demandez à votre caisse comment ouvrir ce produit."],
+   faq=[("À qui s'adresse l'épargne pour l'école des enfants ?", "Aux parents qui souhaitent préparer la scolarité de leurs enfants."),
+        ("Pourquoi épargner à l'avance ?", "Cela permet de préparer les dépenses de la rentrée sans avoir à emprunter."),
+        ("Quelles sont les conditions ?", NOTE_CONDITIONS)]),
+ "transfert": dict(
+   how=["Un transfert d'argent permet d'envoyer une somme à une personne, ou d'en recevoir une, sans se déplacer avec de l'argent liquide.",
+        "Le RCMEC-CI propose l'envoi et la réception de fonds sécurisés, avec un service disponible sur l'ensemble du territoire."],
+   tips=["Vérifiez toujours l'identité du bénéficiaire.", "Ne communiquez jamais vos informations personnelles à des inconnus.", "Conservez le justificatif de chaque opération.", "En cas de doute, contactez directement votre caisse."],
+   faq=[("Qui peut envoyer ou recevoir de l'argent ?", "Toute personne qui souhaite envoyer ou recevoir des fonds."),
+        ("Où le service est-il disponible ?", "Le RCMEC-CI indique un service disponible sur l'ensemble du territoire, avec des caisses dans plus de 10 régions."),
+        ("Comment connaître les frais et les modalités ?", NOTE_CONDITIONS)]),
+ "micro-assurance": dict(
+   how=["La micro-assurance propose des protections simples et accessibles, pensées pour les personnes à revenus modestes.",
+        "En cas d'événement imprévu, elle aide une famille ou une petite activité à ne pas voir son équilibre financier compromis."],
+   tips=["Listez ce que vous voulez protéger : votre famille, vos biens, votre activité.", "Demandez ce qui est couvert et ce qui ne l'est pas.", "Gardez vos documents d'assurance en lieu sûr.", "Posez vos questions à votre caisse avant de souscrire."],
+   faq=[("Qu'est-ce que la micro-assurance ?", "C'est une assurance conçue pour les personnes à revenus modestes, avec des protections simples et accessibles."),
+        ("Que protège-t-elle ?", "Le RCMEC-CI propose des solutions pour protéger votre famille et vos biens. Le détail des protections est communiqué par la caisse."),
+        ("Quelles sont les conditions ?", NOTE_CONDITIONS)]),
+}
+
+
 def page_service(i):
     s = SERVICES[i]; d = SVC[s["id"]]
     prev_s = SERVICES[(i - 1) % len(SERVICES)]; next_s = SERVICES[(i + 1) % len(SERVICES)]
@@ -643,6 +712,10 @@ def page_service(i):
     gen = "".join(f"<p>{e(x)}</p>" for x in d["general"])
     pour = "".join(f"<li>{e(x)}</li>" for x in d["pour"])
     imp = "".join(f"<p>{e(x)}</p>" for x in IMPORTANCE[s["id"]])
+    dt = DETAIL[s["id"]]
+    how = "".join(f"<p>{e(x)}</p>" for x in dt["how"])
+    tips = "".join(f"<li>{e(x)}</li>" for x in dt["tips"])
+    faq = "".join(f"<details><summary>{e(q)}</summary><p>{e(a)}</p></details>" for q, a in dt["faq"])
     why = "".join(f'<article><span class="ico"><i data-lucide="{ic}"></i></span><h3>{e(t)}</h3><p>{e(x)}</p></article>' for ic, t, x in WHY)
     quote = f'<p class="svc2__q">« {e(d["quote"])} »</p>' if d.get("quote") else ""
     crumbs_svc = f'<a href="index.html">Accueil</a><span aria-hidden="true">/</span><a href="services.html">Nos services</a><span aria-hidden="true">/</span><span>{s["t"]}</span>'
@@ -663,6 +736,10 @@ def page_service(i):
       <div class="prose">{gen}</div>
       <h2 class="sdetail__h">Pourquoi c'est important</h2>
       <div class="prose">{imp}</div>
+      <h2 class="sdetail__h">Comment ça marche</h2>
+      <div class="prose">{how}</div>
+      <h2 class="sdetail__h">Nos conseils</h2>
+      <ul class="checks checks--one">{tips}</ul>
     </div>
     <aside class="sdetail__side">
       <div class="sbox"><h3>Pour qui ?</h3><ul class="checks checks--one">{pour}</ul></div>
@@ -672,6 +749,13 @@ def page_service(i):
 </section>
 
 <section class="section section--tint">
+  <div class="wrap faqwrap">
+    {head2("Questions fréquentes", "Vos questions sur ce service")}
+    <div class="faq">{faq}</div>
+  </div>
+</section>
+
+<section class="section">
   <div class="wrap">
     {head2("Pourquoi choisir RCMEC-CI", "Ce qui caractérise le réseau")}
     <div class="why">{why}</div>
