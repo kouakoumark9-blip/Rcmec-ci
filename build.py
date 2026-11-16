@@ -150,7 +150,7 @@ def footer():
   </div>
 </footer>
 <script src="js/lucide.min.js"></script>
-<script src="js/main.js?v={ASSET_V}"></script>
+<script defer src="js/main.js?v={ASSET_V}"></script>
 </body>
 </html>
 '''
@@ -201,9 +201,32 @@ def _logo_partout(html):
     return head_part + sep + "".join(parts)
 
 
+import json as _json
+
+try:
+    with open(os.path.join(OUT, "assets", "icons.json"), encoding="utf-8") as _f:
+        _ICONS = _json.load(_f)
+except OSError:
+    _ICONS = {}
+
+
+def _icones_en_ligne(html):
+    """Remplace <i data-lucide="x"></i> par le SVG en ligne : plus besoin de charger la bibliothèque d'icônes (358 Ko)."""
+    def sub(m):
+        n = m.group(1)
+        if n not in _ICONS:
+            return m.group(0)
+        return ('<svg class="lucide lucide-%s" data-lucide="%s" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" '
+                'fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">%s</svg>') % (n, n, _ICONS[n])
+    return _re.sub(r'<i data-lucide="([a-z0-9-]+)"></i>', sub, html)
+
+
 def write(name, content):
     if name.endswith(".html"):
         content = _logo_partout(content)
+        content = _icones_en_ligne(content)
+        if all(('data-lucide="%s"></i>' % k) not in content for k in _ICONS):
+            content = content.replace('<script src="js/lucide.min.js"></script>', '')
     with open(os.path.join(OUT, name), "w", encoding="utf-8") as f:
         f.write(content)
     print("écrit", name)
