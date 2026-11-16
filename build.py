@@ -757,13 +757,6 @@ def page_service(i):
 
 <section class="section">
   <div class="wrap">
-    {head2("Pourquoi choisir RCMEC-CI", "Ce qui caractérise le réseau")}
-    <div class="why">{why}</div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="wrap">
     {head2("Nos services", "Découvrez aussi")}
     <div class="scards scards--s">{others}</div>
     <div class="pager"><a href="{surl(prev_s["id"])}"><i data-lucide="arrow-left"></i><span><small>Précédent</small>{prev_s["t"]}</span></a><a href="{surl(next_s["id"])}"><span><small>Suivant</small>{next_s["t"]}</span><i data-lucide="arrow-right"></i></a></div>
