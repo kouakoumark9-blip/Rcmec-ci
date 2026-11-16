@@ -183,7 +183,27 @@ def head2(kicker, title, link=None):
     return f'<div class="sh"><div><span class="kicker">{e(kicker)}</span><h2>{title}</h2></div>{l}</div>'
 
 
+import re as _re
+
+_RN = '<span class="rn"><img src="assets/logo-inline.png" alt="" width="26" height="12">RCMEC-CI</span>'
+
+
+def _logo_partout(html):
+    """Ajoute le pictogramme du logo devant chaque « RCMEC-CI » du texte visible."""
+    head_part, sep, body = html.partition("<body")
+    if not sep:
+        return html
+    skip = _re.compile(r"(<script[\s\S]*?</script>|<style[\s\S]*?</style>|<svg[\s\S]*?</svg>|<iframe[\s\S]*?</iframe>|<option[\s\S]*?</option>|<textarea[\s\S]*?</textarea>|<a [^>]*class=\"logo[^>]*>[\s\S]*?</a>|<div class=\"logo-foot\">[\s\S]*?</div>|<[^>]+>)")
+    parts = skip.split(body)
+    for k, p in enumerate(parts):
+        if k % 2 == 0 and "RCMEC-CI" in p:
+            parts[k] = p.replace("RCMEC-CI", _RN)
+    return head_part + sep + "".join(parts)
+
+
 def write(name, content):
+    if name.endswith(".html"):
+        content = _logo_partout(content)
     with open(os.path.join(OUT, name), "w", encoding="utf-8") as f:
         f.write(content)
     print("écrit", name)

@@ -800,3 +800,8 @@ input:focus,select:focus,textarea:focus{border-color:var(--green);outline:0;box-
 .caisses__intro{max-width:820px;margin:0 0 36px}
 .contact__intro{max-width:820px;margin:0 0 32px}
 @media(max-width:860px){.timeline{grid-template-columns:1fr}}
+
+/* Pictogramme du logo devant « RCMEC-CI » */
+.rn{white-space:nowrap}
+.rn img{display:inline-block;width:auto;height:.82em;max-height:none;margin:0 .22em 0 0;vertical-align:-.06em;box-shadow:none;border-radius:0}
+.footer .rn img,.foot .rn img,.hero2 .rn img,.banner3 .rn img,.shero2 .rn img,.regions .rn img,.plc .rn img,.statsband .rn img,.cta .rn img,.topbar .rn img,[class*="foot"] .rn img{filter:brightness(0) invert(1)}
