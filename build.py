@@ -305,13 +305,6 @@ def page_index():
   </div>
 </section>
 
-<section class="section">
-  <div class="wrap">
-    {head2("Pourquoi choisir RCMEC-CI", "Ce qui caractérise le réseau")}
-    <div class="why">{"".join(f'<article><span class="ico"><i data-lucide="{ic}"></i></span><h3>{e(t)}</h3><p>{e(x)}</p></article>' for ic, t, x in WHY)}</div>
-  </div>
-</section>
-
 <section class="section section--tint mapsec">
   <div class="wrap">
     {head2("Nous trouver", "Notre siège à Abidjan")}
